@@ -10,51 +10,51 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      # - name: Checkout Code
+      #   uses: actions/checkout@v2
 
       - name: Run ls
         run: ls -la
 
-      - name: Setup LaTeX
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: ./ma424_abstract/notes/template.pdf
-          args: pdflatex
+  #     - name: Setup LaTeX
+  #       uses: xu-cheng/latex-action@v2
+  #       with:
+  #         root_file: ./ma424_abstract/notes/template.pdf
+  #         args: pdflatex
           
-      - name: Build LaTeX Project
-        run: make -C ./ma424_abstract/notes/
+  #     - name: Build LaTeX Project
+  #       run: make -C ./ma424_abstract/notes/
 
-      - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            ./ma424_abstract/notes/template.pdf
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Create Release
+  #       id: create_release
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         files: |
+  #           ./ma424_abstract/notes/template.pdf
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload Release Asset
-        uses: actions/upload-artifact@v2
-        with:
-          name: release-assets
-          path: ./ma424_abstract/notes/template.pdf  # Change this to the name of your PDF output file
+  #     - name: Upload Release Asset
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: release-assets
+  #         path: ./ma424_abstract/notes/template.pdf  # Change this to the name of your PDF output file
 
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Release Asset
-        uses: actions/download-artifact@v2
-        with:
-          name: release-assets
-          path: /tmp
+  # release:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download Release Asset
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: release-assets
+  #         path: /tmp
 
-      - name: Create GitHub Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: /tmp/template.pdf
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Create GitHub Release
+  #       id: create_release
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         files: /tmp/template.pdf
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
