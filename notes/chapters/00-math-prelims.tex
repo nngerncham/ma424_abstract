@@ -1,0 +1,64 @@
+\chapter{Mathematical Preliminaries}
+
+\section{Preliminaries}
+
+\subsection{What is Algebra}
+
+What's the difference between algebra and arithmetic? An easy way to differentiate them is this: arithmetics deal with numbers, algebra deals with the \textit{structure} of operations or numbers.
+
+Now, onto the subject name---abstract algebra. What exactly does \textit{abstract} mean? Abstract, in this case, refers to structures. Abstract Algebra, then, is the study of said structure in hopes of simplifying it for further computations. Abstract Algebra is also known as Modern Algebra as it founded quite recently in the 1800s.
+
+\subsection{Sets}
+
+Using set theory, we are able to recursively define the integers as follows:
+\[
+\begin{aligned}
+    0 &= \emptyset = \text{ empty set} \\
+    1 &= \left\{\emptyset\right\} = \left\{0\right\} \\
+    2 &= \left\{0, 1\right\} \\
+    3 &= \left\{0, 1, 2\right\} \\
+      &\phantom{0}\vdots \\
+    S^+ &= S \cup \left\{S\right\} = S+1 &\text{(\(S^+\) is the \textit{successor} of \(S\))}
+\end{aligned}
+\]
+We also define the set of natural numbers \(\mathbb{N}\) to be \( \mathbb{N} = \mathbb{Z}^+ = \left\{1, 2, 3, \ldots\right\}\).
+
+\section{Well-Ordering Axiom (WOA)}
+
+\begin{theorem}
+    If \(S \subseteq \mathbb{Z}^+\) and \(S \neq \emptyset\), then \(S\) has the least, say \(a \in S\).
+\end{theorem}
+
+\begin{distraction}
+    Note that we can use WOA for the the sets \(\mathbb{Z}^+ \cup \left\{0\right\}\) or \(\mathbb{Z}^+ \cup \left\{-1, 0\right\}\) as well.
+\end{distraction}
+
+\begin{theorem}[Principal of Mathematical Induction 1 or Induction]
+    For every \(n \in \mathbb{Z}^+\), let \(T(n)\) be a statement. If the following conditions hold:
+    \begin{enumerate}
+        \item \(T(1)\) is true
+        \item For all \(k \in \mathbb{Z}^+\), \(T(k)\) being true implies that \(T(k+1)\) is true
+    \end{enumerate}
+    Then, \(T(n)\) is true for all \(n \in \mathbb{Z}^+\).
+\end{theorem}
+
+\begin{proof}
+    Assume that \(T(n)\) satisfies both conditions for each \(n \in \mathbb{Z}^+\). Let \(S = \left\{n \in \mathbb{Z}^+ : T(n) \text{ is false}\right\}\) which is a subset of \(\mathbb{Z}^+\). If \(S = \emptyset\), then we are done.
+
+    Otherwise, assume to the contrary that \(S \neq \emptyset\). By the WOA, \(S\) has the least element \(a \in S\). By condition 1, we have that \(T(1)\) must be true. Thus, we have that \(1 \notin S\) and \(a > 1\). Let \(k = a - 1 \in \mathbb{Z}^+\). Since \(a\) is the smallest element of \(S\), we have that \(k \notin S\). That is, \(T(k)\) is true. Then, by condition 2, \(T(k+1) = T(a)\) must be true as well. This is a contradiction.
+
+    Therefore, \(S\) must be empty.
+\end{proof}
+
+\begin{theorem}[Principal of Mathematical Induction 2 or Strong Induction]
+    For each \(n \in \mathbb{Z}^+\), let \(T(n)\) be a statement. If the following conditions hold:
+    \begin{enumerate}
+        \item \(T(1)\) is true
+        \item For every \(k \in \mathbb{Z}^+\), \(T(1), T(2), \ldots, T(k)\) being true implies that \(T(k+1)\) is true
+    \end{enumerate}
+    Then, \(T(n)\) is true for all \(n \in \mathbb{Z}^+\).
+\end{theorem}
+
+\begin{proof}
+    Exercise!
+\end{proof}
