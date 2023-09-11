@@ -3,7 +3,9 @@ name: Build and Release LaTeX Project
 on:
   push:
     branches:
-      - main  # Change this to the branch you want to trigger the workflow on
+      - main
+    tag:
+      - '*'
 
 jobs:
   build:
