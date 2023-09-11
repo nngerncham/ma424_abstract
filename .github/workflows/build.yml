@@ -20,14 +20,14 @@ jobs:
           args: pdflatex
           
       - name: Build LaTeX Project
-        run: make -C notes/ # Assuming your Makefile has a target to build the LaTeX project
+        run: make -C /notes/ # Assuming your Makefile has a target to build the LaTeX project
 
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            notes/template.pdf
+            /notes/template.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: release-assets
-          path: main.pdf  # Change this to the name of your PDF output file
+          path: /notes/template.pdf  # Change this to the name of your PDF output file
 
   release:
     needs: build
