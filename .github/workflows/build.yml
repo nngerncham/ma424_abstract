@@ -16,18 +16,18 @@ jobs:
       - name: Setup LaTeX
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: /notes/template.pdf
+          root_file: ma424_abstract/notes/template.pdf
           args: pdflatex
           
       - name: Build LaTeX Project
-        run: make -C /notes/
+        run: make -C ma424_abstract/notes/
 
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            /notes/template.pdf
+            ma424_abstract/notes/template.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: release-assets
-          path: /notes/template.pdf  # Change this to the name of your PDF output file
+          path: ma424_abstract/notes/template.pdf  # Change this to the name of your PDF output file
 
   release:
     needs: build
