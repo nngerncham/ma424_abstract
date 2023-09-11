@@ -16,11 +16,11 @@ jobs:
       - name: Setup LaTeX
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: notes/template.pdf
+          root_file: /notes/template.pdf
           args: pdflatex
           
       - name: Build LaTeX Project
-        run: make -C /notes/ # Assuming your Makefile has a target to build the LaTeX project
+        run: make -C /notes/
 
       - name: Create Release
         id: create_release
