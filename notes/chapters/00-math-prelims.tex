@@ -1,6 +1,6 @@
 \chapter{Mathematical Preliminaries}
 
-\section{Preliminaries}
+\section{Introduction}
 
 \subsection{What is Algebra}
 
@@ -62,3 +62,129 @@ We also define the set of natural numbers \(\mathbb{N}\) to be \( \mathbb{N} = \
 \begin{proof}
     Exercise!
 \end{proof}
+
+\subsection{Tower of Hanoi}
+
+Recall the Tower of Hanoi game where there is a pattern to the number of steps needed to solve the game with \(n\) disks. We want to prove this pattern using PMI 1.
+
+First, let us find the pattern.
+\begin{itemize}
+    \item with 1 disk, we take 1 step
+    \item with 2 disks, we take 3 steps
+    \item with 3 disks, we take 7 steps
+    \item and so on...
+\end{itemize}
+
+Now, we can define the mathematical statement to be used with induction.
+
+\begin{claim}[Tower of Hanoi]
+    It takes \(2^n - 1\) steps to solve the Tower of Hanoi game with \(n\) disks.
+\end{claim}
+
+\begin{proof}
+     Let \(T(n)\) be the statement ``It takes \(2^n - 1\) steps to solve the Tower of Hanoi game with \(n\) disks.''
+
+    First, let us show that the base case holds. That is, let us show that it takes 1 step to solve the Tower of Hanoi with 1 disk. To solve this, we can simply move the disk from the first to the third pole---taking 1 step. Thus, the base case is proven.
+
+    Now, let us show that the inductive case holds. Let us assume that \(T(k)\) holds and use it to show that \(T(k+1)\) holds as well. That is, it takes \(2^k-1\) steps to solve the Tower of Hanoi with \(k\) disks makes it so that it takes \(2^{k+1} - 1\) steps to solve the Tower of Hanoi with \(k+1\) disks.
+
+    In order to solve the Tower of Hanoi with \(k+1\) disks, we need to do the following. First, we move the top \(k\) disks to the second pole. By the inductive assumption, this takes \(2^k - 1\) steps. Then, we move the bottom disk to the third pole which takes 1 step. Finally, we need to move the disks in the second pole to the third pole, finishing the game. By the inductive assumption, this also takes \(2^k - 1\) steps. In summary, this takes
+    \[
+    \begin{aligned}
+        (2^k - 1) + 1 + (2^k - 1) &= 2 \cdot 2^k - 2 + 1 \\
+                                  &= 2^{k+1} - 1 \text{ steps}
+    \end{aligned}
+    \]
+
+    Therefore, by the Principal of Mathematical Induction I, we can conclude that it takes \(2^n - 1\) steps to solve the Tower of Hanoi with \(n\) disks.
+\end{proof}
+
+\section{Divisibility, GCD, Primes, and Unique Factorization}
+
+\begin{definition}[Divisibility]
+    Suppose that \(a, b \in \mathbb{Z}\). We say that \(a\) \textit{divides} \(b\), denoted as \(a \mid b\), if there exists \(c \in \mathbb{Z}\) such that \(b = ac\). Equivalently, we can say that
+    \begin{itemize}
+        \item \(a\) is a divisor of \(b\)
+        \item \(b\) is a multiple of \(a\)
+        \item \(b\) is divislble by \(a\)
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Prime Numbers]
+    An integer \(p > 1\) is \textit{prime} if for all \(a, b \in \mathbb{Z}\), then \(a = \pm 1\) or \(b = \pm 1\).
+\end{definition}
+
+\begin{distraction}
+    There are 25 prime numbers that are less than or equals to 100.
+\end{distraction}
+
+\begin{theorem}[Unique Factorization or Division Algorithm]
+    For any non-negative integers \(a\) and \(b\) with \(b > 0\), there exists a unique pair of integers \(q\) (quotient) and \(r\) (remainder) such that
+    \[ a = bq + r \]
+    where \(0 \leq r \leq b-1\).
+\end{theorem}
+
+\begin{proof}
+    Let \(a, b \in \mathbb{Z}^+\left\{0\right\}\) be given. First, let us show the existence of their factorization. Let \(S = \left\{k \in \mathbb{Z}^+ \cup \left\{0\right\} : k = a - bn \ \exists \ n \in \mathbb{Z}\right\}\). If we let \(n = 0\), we will have that \(k = a - b(0) = a \in \mathbb{Z}^+ \cup \left\{0\right\}\) and that \(k \in S\). Thus, \(S \neq \emptyset\). By the Well-Ordering Axiom, \(S\) has the least element, say, \(r \in S\). Thus, \(r = a - bq \geq 0\) for some \(q \in \mathbb{Z}\). Claim that \(0 \leq r \leq b-1\).
+
+    Assume to the contrary that \(r \geq b\). Consider the following:
+    \[
+    \begin{aligned}
+        r' &= a - b(q + 1) \\
+           &= \underbrace{a - bq}_{r} - b \\
+           &= r - b \geq 0 \qquad \text{(by assumption that \(r \geq b\))}
+    \end{aligned}
+    \]
+    Thus, \(r' \in S\). However, \(r' < r\) since \(b \geq 1\). This is a contradiction. Thus, the factorization of integers exists.
+
+    Now, let us show the uniqueness of said factorization. Assume that there are \(q_1, q_2 \in \mathbb{Z}\) and \(r_1, r_2 \in \mathbb{Z}^+ \cup \left\{0\right\}\) such that \(a = bq_1 + r_1 = bq_2 + r_2\) where \(0 \leq r_1, r_2 \leq b-1\). Without loss of generality, assume that \(r_2 \geq r_1\). We now have the following:
+    \[
+    \begin{aligned}
+        0 &= bq_2 + r_2 - (bq_1 + r_1) \\
+          &= b(q_2 - q_1) + (r_2 - r_1) \\
+        -(r_2 - r_1) &= b(q_2 - q_1) \\
+    \end{aligned}
+    \]
+
+    Since \(0 \leq r_1, r_2 \leq b-1\), it follows that \(0 \leq r_2 - r_1 \leq b-1\). From our relation, we also have that \(b \mid (r_2 - r_1)\). Consequently, \(r_2 - r_1 = 0\) since \(b\) must divide it but their difference is at most \(b-1\). Since \(0 = b(q_2 - q_1)\), it must follows that either \(b\) or \(q_2 - q_1\) is 0. However, we already made the assumption that \(b > 0\), so it must be that \(q_2 - q_1 = 0\).
+
+    Therefore, we can conclude that for \(q_1 = q_2\) and \(r_1 = r_2\) and that the factorization is unique.
+\end{proof}
+
+\begin{definition}[Greatest Common Divisor]
+    The \textit{greatest common divisor (GCD)} is the number \(d \in \mathbb{Z}^+\) of two non-zero integers \(a, b\), written as \(d = \gcd(a, b)\) if \(d\) satisfies these two properties:
+    \begin{enumerate}
+        \item \(d \mid a\) and \(d \mid b\)
+        \item For every \(c \in \mathbb{Z}\) such that \(c \mid a\) and \(c \mid b\), we have that \(d \geq c\)
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Relative Primes]
+    If \(\gcd(a, b) = 1\), we say that \(a\) and \(b\) are relatively prime.
+\end{definition}
+
+\subsection{Euclidean Algorithm}
+
+\begin{nexample}
+    Let \(a = 101\) and \(b = 77\). We want to find \(\gcd(101, 77)\). Observe that 
+    \[
+    \begin{aligned}
+        101 &= 77(1) + 24 &\quad 0 \leq 24 \leq 76 \\
+    \end{aligned}
+    \]
+    Then, we set 77 to be the new \(a\) and 24 to be the new \(b\) and do the same thing over and over again. We will now have that
+    \[
+    \begin{aligned}
+        77 &= 24(3) + 5 &\quad 0 \leq 5 \leq 23 \\
+        24 &= 5(4) + 4 &\quad 0 \leq 4 \leq 4 \\
+        5 &= 4(1) + 1 &\quad 0 \leq 1 \leq 3 \\
+        4 &= 4(1) + 0 &\quad 0 \leq 0 \leq 1
+    \end{aligned}
+    \]
+
+    Finally, we can conclude that \(\gcd(101, 77) = 1\).
+\end{nexample}
+
+\begin{theorem}[Euclidean Algorithm]
+    Let \(a, b \in \mathbb{Z}\)
+\end{theorem}
