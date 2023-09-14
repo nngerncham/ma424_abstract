@@ -49,3 +49,116 @@
 \end{itemize}
     
 \end{hwproblem}
+
+\begin{hwproblem}
+{34}{
+    The Fibonacci numbers are $1,1,2,3,5,8,13,21,34, \ldots$. In general, the Fibonacci numbers are defined by $f_1=1, f_2=1$, and for $n \geq 3, f_n=f_{n-1}+f_{n-2}$. Prove that the $n$-th Fibonacci number $f_n$ satisfies $f_n<2^n$.
+}
+    
+We will prove the claim of the problem using the Principal of Mathematical Induction II or strong induction. First, let \(T(n)\) be the statement ``The \(n\)-th Fibonacci number \(f_n \leq 2^n\).'' We will now show that the base case \(T(1)\) holds. Since \(f_1\) is defined to be \(1\), we have that
+\[ f_1 = 1 \leq 2^1 = 2 \]
+Thus, \(T(1)\) holds.
+
+Now, let us prove the inductive case. Assume that \(T(1), T(2), \ldots, T(k)\) holds for some \(k \in \mathbb{Z}^+\). We will show that \(T(k+1)\) is true as well. That is, we will show that if \(f_1 \leq 2^1, f_2 \leq 2^2, \ldots, f_k \leq 2^k\), then \(f_{k+1} \leq 2^{k+1}\). Consider
+\[
+\begin{aligned}
+    f_{k+1} &= f_{k} + f_{k-1} \\
+            &\leq 2^k + 2^{k-1} \\
+            &< 2^k + 2^k \\
+            &= 2 \cdot 2^{k} = 2^{k+1}
+\end{aligned}
+\]
+Thus, the inductive case holds as well.
+
+Therefore, we can conclude by the Principal of Mathematical Induction II that the \(n\)-th Fibonacci number \(f_n \leq 2^n\)
+\end{hwproblem}
+
+\begin{hwproblem}
+{42}{
+    Suppose that a money order identification number and check digit of 21720421168 is erroneously copied as 27750421168. Will the check digit detect the error?
+}
+    
+Recall that the check digit of a money order identification number is the modulo 9 of the first 10 digits. Notice that \(2775042116 \mod 9 = 8\) as well. Thus, the check digit will unfortunately not detect the error.
+\end{hwproblem}
+
+\begin{hwproblem}
+{57}{
+    Complete of the Theorem 0.8.
+}
+    
+\begin{theorem}[Properties of Functions]
+    Given functions \(\alpha: A \to B\), \(\beta: B \to C\), and \(\gamma: C \to D\), then
+    \begin{enumerate}
+        \item $\gamma(\beta \alpha)=(\gamma \beta) \alpha$ (associativity).
+        \item If $\alpha$ and $\beta$ are one-to-one, then $\beta \alpha$ is one-to-one.
+        \item If $\alpha$ and $\beta$ are onto, then $\beta \alpha$ is onto.
+        \item If $\alpha$ is one-to-one and onto, then there is a function $\alpha^{-1}$ from $B$ onto $A$ such that $\left(\alpha^{-1} \alpha\right)(a)=a$ for all $a$ in $A$ and $\left(\alpha \alpha^{-1}\right)(b)=b$ for all $b$ in $B$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \phantom{pain}
+
+    \underline{\textit{Part 1.}} Already proven by the textbook.
+
+    \underline{\textit{Part 2.}} We will show that for every \(a_1, a_2 \in A\), if \(\beta\alpha(a_1) = \beta\alpha(a_2)\), then \(a_1 = a_2\).
+
+    Let \(b_1 = \alpha(a_1)\) and \(b_2 = \alpha(a_2)\). Since \(\alpha\) is one-to-one, \(b_1\) must be the unique image of \(a_1\) under \(\alpha\). Similarly, \(b_2\) must be the unique image of \(a_2\) under \(\alpha\). Now we have that
+    \[
+        \beta\alpha(a_1) = \beta(\alpha(a_1)) = \beta(b_1) = \beta(b_2) = \beta(\alpha(a_2)) = \beta\alpha(a_2)
+    \]
+    Since \(\beta\) is one-to-one, we have that \(b_1 = b_2\). Consequently, we also have that \(a_1 = a_2\) since \(b_1\) and \(b_2\) are the unique images of \(a_1\) and \(a_2\) respectively.
+
+    Therefore, we can conclude that if \(\alpha\) and \(\beta\) are one-to-one, then \(\beta\alpha\) is one-to-one.
+
+    \underline{\textit{Part 3.}} We will show that for every element \(c \in C\), there exists at least one \(a \in A\) such that \(\beta\alpha(a) = c\).
+
+    Let \(c \in C\) be given. Since \(\beta\) is onto, we have that there is at least one \(b \in B\) such that \(\beta(b) = c\). Similarly, since \(\alpha\) is onto, we have that there is at least one \(a \in A\) such that \(\alpha(a) = b\) for every \(b \in B\). 
+    Thus, we can pick \(b_0\) such that \(\beta(b_0) = c\) and \(a_0\) such that \(\alpha(a_0) = b_0\). Finally, we have
+    \[
+    \begin{aligned}
+        c &= \beta(b_0) \\
+          &= \beta(\alpha(a_0)) \\
+          &= \beta\alpha(a_0)
+    \end{aligned}
+    \]
+    That is, for each \(c \in C\), there always exists an element \(a \in A\) such that \(\beta\alpha(a) = c\). Therefore, we can conclude that if \(\alpha\) and \(\beta\) are onto, then \(\beta\alpha\) is onto as well.
+
+    \underline{\textit{Part 4.}} We will show that there exists an onto function \(\alpha^{-1}: B \to A\) such that it satisfies the following conditions.
+    \begin{enumerate}
+        \item For all \(a \in A\), \((\alpha^{-1}\alpha)(a) = a\).
+        \item For all \(b \in B\), \((\alpha\alpha^{-1})(b) = b\).
+    \end{enumerate}
+
+    First, define \(\alpha^{-1}: B \to A\) to be the mapping such that for any \(b \in B\), \(\alpha^{-1}\) satisfies
+    \[
+        \alpha^{-1}(b) = a \iff \alpha(a) = b
+    \]
+    We now only need to show that this function exists, is onto, and satisfies the above conditions.
+
+    \textit{Existence and Onto.} We will show that \(\alpha^{-1}\) is a valid function and that every \(a \in A\) is mapped to by some \(b \in B\). Since \(\alpha\) is one-to-one, we have that that for every \(a \in A\), \(\alpha(a)\) maps to a unique \(b \in B\). Since \(\alpha\) is also onto, we have that every \(b \in B\) is mapped to by some \(a \in A\).
+
+    Consequently, we have that for every \(b \in B\), there is a unique \(a \in A\) that satisfies the condition \(\alpha(a) = b\), making \(\alpha^{-1}\) a valid function. That is, for each \(b \in B\), there is only a single output \(\alpha^{-1}(b) = a \in A\). Equivalently, since every \(a \in A\) satisfies \(\alpha(a) = b\) for some (unique) \(b \in B\), we have that every \(a \in A\) is mapped to by some \(b \in B\). Corollarily, \(\alpha^{-1}\) one-to-one as well.
+    
+    \textit{Condition 1.} Let \(a \in A\) be given and let \(b \in B\) be the unique image of \(a\) under \(\alpha\). That is, let \(b = \alpha(a)\). Observe that
+    \[
+    \begin{aligned}
+        (\alpha^{-1}\alpha)(a) &= \alpha^{-1}(\alpha(a)) \\
+                               &= \alpha^{-1}(b)
+    \end{aligned}
+    \]
+    Let \(a' = \alpha^{-1}(b)\). This means that \(a'\) must satisfies \(\alpha(a') = b\). Since \(\alpha\) is one-to-one, we have that \(a' = a\). Thus, we have that \( (\alpha^{-1}\alpha)(a) = a \).
+
+    \textit{Condition 2.} Let \(b \in B\) be given and let \(a \in A\) be the image of \(b\) under \(\alpha^{-1}\). That is, let \(a = \alpha^{-1}(b)\). This means that \(a\) must satisfy \(\alpha(a) = b\). Consider
+    \[
+    \begin{aligned}
+        (\alpha\alpha^{-1})(b) &= \alpha(\alpha^{-1}(b)) \\
+                               &= \alpha(a) \\
+                               &= b
+    \end{aligned}
+    \]
+    Thus, we have that \( (\alpha\alpha^{-1})(b) = b \).
+
+    Therefore, we can conclude that there exists an onto function \(\alpha^{-1}: B \to A\) such that \((\alpha^{-1}\alpha)(a) = a\) and \((\alpha\alpha^{-1})(b) = b\).
+\end{proof}
+\end{hwproblem}
