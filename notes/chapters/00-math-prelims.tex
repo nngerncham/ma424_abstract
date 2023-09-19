@@ -186,5 +186,166 @@ Now, we can define the mathematical statement to be used with induction.
 \end{nexample}
 
 \begin{theorem}[Euclidean Algorithm]
-    Let \(a, b \in \mathbb{Z}\)
+    Suppose that we are given \(a, b \in \mathbb{Z}\) that we want to find the greatest common denominator of. Without loss of generality, assume that \(0 < b < a\). Apply the Division Algorithm recursively as follows:
+    \[
+    \begin{aligned}
+        r_0 &= a \\
+        r_1 &= b \\
+        r_{i} &= r_{i+1} \cdot q_{k+1} + r_{i+2}
+    \end{aligned}
+    \]
+    with \(0 < r_{i+2} < r_{i+1}\) for \(0 \leq i < n - 1\) and \(r_{n+1} = 0\). Once terminated, we will have that \(r_n = \gcd(a, b)\).
 \end{theorem}
+
+\begin{proof}
+    Can be done by using WOA.
+\end{proof}
+
+\section{Equivalence Relations}
+
+\begin{definition}[Ordered Pair]
+    Let \(a\) and \(b\) be sets. An ordered pair is
+    \[
+        (a, b) = \left\{\left\{a\right\}, \left\{a, b\right\}\right\}
+    \]
+\end{definition}
+
+\begin{definition}[Cartesian Product]
+    Let \(A\) and \(B\) be sets. The \textit{Cartesian Product} of \(A\) and \(B\) is
+    \[
+        A \times B = {(a, b) : a \in A, b \in B}
+    \]
+\end{definition}
+
+\begin{nexample}
+    Let \(A = \left\{0, 1, 2\right\}\) and \(B = \left\{a, b\right\}\). Then, we have
+    \[
+        A \times B = \left\{(0, a), (0, b), (1, a), (1, b), (2, a), (2, b)\right\}
+    \]
+
+    Intuitively, the cross product is the combination of all elements of \(A\) and \(B\).
+\end{nexample}
+
+\begin{definition}[Relation]
+    A subset of \(A \times B\) is called a \textit{relation} from \(A\) to \(B\). That is, \(R\) is a relation from \(A\) to \(B\) if and only if \(R \subseteq A \times B\).
+
+    If \(R\) is a relation from \(A\) to \(A\), then \(R\) is called a relation on \(A\).
+\end{definition}
+
+\begin{definition}[Equivalence Relation]
+    Let \(R\) be a relation on a set \(A\). \(R\) is called an \textit{equivalence relation} if the following properties hold
+    \begin{enumerate}
+        \item \textit{Reflexivity} --- For all \(a \in A\), \((a, a) \in R\)
+        \item \textit{Symmetry} --- For all \(a, b \in A\), \((a, b) \in R\) implies that \((b, a) \in R\)
+        \item \textit{Transitivity} For all \(a, b, c \in A\), \((a, b) \in R\) and \((b, c) \in R\) implies that \((a, c) \in R\)
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    If \(R\) is an equivalence relation, we write \(a \sim b\) to represent \((a, b) \in R\).
+\end{remark}
+
+\begin{nexample}
+    Let \(A = \mathbb{Z}\). We define
+    \[
+        R_2 = \left\{(a, b) \in A \times A : 2 \mid a-b\right\}
+    \]
+    Let us show that \(R_2\) is a equivalence relation.
+    \begin{enumerate}
+        \item \textit{Reflexive} --- Let \(a \in \mathbb{Z}\). Then, \(a - a = 0\) and we have that \(2 \mid 0\). Thus, \((a, a) \in R_2\).
+        \item \textit{Symmetry} --- Let \(a, b \in \mathbb{Z}\) and \((a, b) \in R_2\). We have that \(2 \mid a-b\). That means that there is \(k \in \mathbb{Z}\) such that \(a - b = 2k\). Therefore, \(b - a = 2(-k)\) and \(-k \in \mathbb{Z}\). We also have that \(2 \mid b-a\). Therefore, \((b, a) \in R_2\).
+        \item \textit{Transitivity} --- Assume that \((a, b)\) and \((b, c) \in R_2\). Thus, \(2 \mid a-b\) and \(2 \mid b-c\). Therefore, there are \(k_2\) and \(k_3 \in \mathbb{Z}\) such that \(a-b = 2k_2\) and \(b-c = 2k_3\). Consider
+            \[
+            \begin{aligned}
+                (a - b) + (b - c) &= 2k_2 + 2k_3 \\
+                (a - c) &= 2(k_2 + k_3)
+            \end{aligned}
+            \]
+            Note that \(k_2 + k_3 \in \mathbb{Z}\). Therefore, we have that \((a, c) \in R_2\).
+    \end{enumerate}
+\end{nexample}
+
+\begin{definition}[Congruency]
+    Let \(n \in \mathbb{Z}^+\) and \(a, b \in \mathbb{Z}\). If \(n \mid a-b\), then we write
+    \[
+        a \equiv b \mod n
+    \]
+    That is, \(a\) is \textit{congruence} to \(b\) modulo \(n\).
+\end{definition}
+
+\begin{nexample}
+    \phantom{wow}
+
+    \begin{itemize}
+        \item ``='' is an equivalence relation
+        \item \((\mathbb{Z}, <)\) is not an equivalence relation since it fails reflexivity and symmetry (but is a type relation)
+        \item \((\mathbb{Z}, \leq)\) is not an equivalence relation since it fails symmetry
+    \end{itemize}
+\end{nexample}
+
+\begin{definition}[Partition]
+    Set \(P\) is a partition of \(S\) if the following properties satisfy:
+    \begin{enumerate}
+        \item \(A_i \neq \emptyset\) for all \(i \in \Lambda\)
+        \item \(A_i \cap A_j \neq\) for any \(i \neq j\)
+        \item \(\bigcup_{i \in \Lambda} A_i = S\)
+    \end{enumerate}
+    where \(\Lambda\) is the index set.
+
+    Symbolically, we represent partition \(P\) as 
+    \[
+        P = \left\{A_i : A_i \subseteq S, i \in \Lambda\right\}
+    \]
+\end{definition}
+
+\begin{nexample}
+    \phantom{wow}
+
+    \begin{itemize}
+        \item \(S = \mathbb{Z}\), a valid partition would be \(P = \left\{\mathbb{Z}^-, \mathbb{Z}^+, \left\{0\right\}\right\}\).
+        \item For the same \(S\), \(\left\{S\right\}\) is also a partition as well (lazy)
+        \item For the same \(S\), let \(n = 3\), define
+            \[
+            \begin{aligned}
+                A_0 &= \left\{0, \pm 3, \pm 6, \pm 9, \ldots\right\} \\
+                A_1 &= \left\{\ldots, -5, -2, 1, 4, 7, 10, \ldots\right\} \\
+                A_2 &= \left\{\ldots, -4, -1, 2, 5, 8, \ldots\right\}
+            \end{aligned}
+            \]
+            and the partition \(P = \left\{A_0, A_1, A_2\right\}\) where each set in the partition is constructed with modulo 3
+    \end{itemize}
+\end{nexample}
+
+\begin{definition}[Equivalent Class]
+    Let \(\sim_{R}\) be an equivalence relation on \(S\) and let \(a \in S\). An equivalence class of \(A\), denoted \([a]_R\) or \([a]\), is the set \(\left\{x \in S : x \sim a\right\}\). That is, it is a set of \(x\)'s such that \((a, x) \in R\) where \(R\) is a relation on \(A\).
+\end{definition}
+
+\begin{theorem}[Equivalence Classes Partition]
+    Following are equivalent.
+
+    \begin{enumerate}
+        \item The equivalence classes of an equivalence relation on a set \(S\) is a partition of \(S\).
+        \item For any partition \(P\) of \(S\), there is an equivalence relation on \(S\) whose equivalent classes are the the elements of \(P\).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    We will prove the two conditions in the theorem separately.
+
+    \textit{Part 1.} Let \(\sim_R\) be a an equivalence relation on \(S\). Define a collection of subsets of \(S\) as follows:
+    \[
+        P = \left\{[a] : a \in S\right\}
+    \]
+    We will show that \(P\) is a partition.
+    \begin{enumerate}
+        \item We will show that the equivalent class is non-empty. Let \(a \in S\). Since \(a \sim a\), we have \(a \in [a]\). That is, \([a] \neq \emptyset\).
+        \item We will show that \([a]\) and \([b]\) are equivalent classes such that \([a] \neq [b]\). That is, we want to show that \([a] \cap [b] \neq \emptyset\).
+
+            % Without loss of generality, assume that there is \(b_1 \in [b] \setminus [a]\).
+            Assume to the contrary that \([a] \cap [b] \neq \emptyset\). Then, there is some \(c \in [a] \cap [b]\). If \(a_1 \in [a]\) and \(b_1 \in [b]\), then we have that \(a_1 \sim c\) and \(c \sim b_1\). Therefore, \(a_1 \sim b_1\) by transtivity of being equivalence relations. Thus, \([a] = [b]\). That is, \(a_1 \in [b]\) and \(b_1 \in [a]\). This is a contradiction.
+
+        \item Since \(S\) is the index, we already have that \(\bigcup_{a \in S} [a] = S\)
+    \end{enumerate}
+
+    \textit{Sketch for Part 2.} Let \(P\) be a partition of a set \(S\), say \(P = \left\{A_i : A_i \subseteq S, i \in \Lambda\right\}\). Define a relation \(R\) on S by: For any \(a, b \in S\), \((a, b) \in R\) if there is \(i \in \Lambda\) such that \(a, b \in A_i\). Using this, we can show that this is an equivalence relation.
+\end{proof}
