@@ -35,26 +35,26 @@ The goal of this section is to identify every possible way that we can remove a 
 
 Suppose that we painted a square piece of paper with the colors pink, white, green, and blue. We can now claim that there are exactly 8 ways a square object can be repositioned.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.65\textwidth]{images/ch1-movements-of-square.png}
     \caption{All possible motions that can be done on a square}
-    \label{fig:sq-movements}
+    \label{fig:sqmovements}
 \end{figure}
 
-Now, let us investigate some consequences of our claim that any chain of motions is equivalent to a single one from the Figure \ref{fig:sq-movements}. Suppose we rotate once by \(90^\circ\) and then flip along the horizontal axis. Notice in Figure \ref{fig:chain-moves} that this is equivalent to a single flip along the diagonal.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/ch1-chain-of-movements.png}
+    \caption{Chain of movements being equivalent}
+    \label{fig:chainmoves}
+\end{figure}
+
+Now, let us investigate some consequences of our claim that any chain of motions is equivalent to a single one from the Figure \ref{fig:sqmovements}. Suppose we rotate once by \(90^\circ\) and then flip along the horizontal axis. Notice in Figure \ref{fig:chainmoves} that this is equivalent to a single flip along the diagonal.
 
 This observation suggests that the 8 motions can be viewed as functions from the square region to itself and we can \textit{compose} them together. Namely, let \(H\) be the horizontal flip, \(R_{d}\) be a clock-wise rotation of \(d\) degrees, and \(D\) be the flip along the main diagonal, we can write the chain of moves previously brought up as follows
 \[
     H\ R_{90} = D \text{ or } H \circ R_{90} = D
 \]
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{images/ch1-chain-of-movements.png}
-    \caption{Chain of movements being equivalent}
-    \label{fig:chain-moves}
-\end{figure}
 
 More generally, the eight motions \(R_0, R_{90}, R_{180}, R_{270}, H, V, D, D'\) together with the operation of composition forms a mathematical structure called the \textit{dihedral group of order 8}, denoted as \(D_4\). Let us now look at some properties of groups by using \(D_4\) as an example.
 
@@ -62,16 +62,16 @@ More generally, the eight motions \(R_0, R_{90}, R_{180}, R_{270}, H, V, D, D'\)
 
 First, let us construct an \textit{operation table} or a \textit{Cayley table} (named after English mathematician Arthur Caley who introduced them in 1854) for \(D_4\) as follows.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/ch1-cayley-table.png}
     \caption{Cayley table for \(D_4\)}
-    \label{fig:cayley-table}
+    \label{fig:cayleytable}
 \end{figure}
 
 \subsection{Closure}
 
-Notice that the table in Figure \ref{fig:cayley-table} does not introduce any extra motion/element. Algebraically, this means that if elements \(A\) and \(B\) are in \(D_4\), then so is their composition \(AB\). This property is called \textit{closure}.
+Notice that the table in Figure \ref{fig:cayleytable} does not introduce any extra motion/element. Algebraically, this means that if elements \(A\) and \(B\) are in \(D_4\), then so is their composition \(AB\). This property is called \textit{closure}.
 
 \subsection{Identity}
 
