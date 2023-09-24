@@ -1,0 +1,78 @@
+\chapter{Groups}
+
+\section{Definitions}
+
+\begin{definition}[Binary Operation]
+    Let \(G\) be a set. The function \(*: G \times G \to G\) is called a \textit{binary operation} on \(G\). Symbolically, let \(a, b, c \in G\), the following expressions are equivalent:
+    \[
+        *(a, b) = c \iff a * b = c
+    \]
+\end{definition}
+
+\begin{remark}
+    The function \(f: G \to G\) is called a \textit{unary operation} on \(G\). This is also known as a \textit{discrete dynamical system}.
+\end{remark}
+
+\begin{nexample}
+    Let \(G = \mathbb{Z}^+\). We have the following binary operations:
+    \begin{itemize}
+        \item Addition, \(+: G \times G \to G\)
+        \item Multiplication, \(\times: G \times G \to G\)
+    \end{itemize}
+    Notice that these have the closure property. Subtraction and divisions, however, are not binary operations on \(\mathbb{Z}^+\) as they do not have the closure property.
+\end{nexample}
+
+\begin{definition}[Group]
+    Let \(G\) be a set with a binary operation \(*\). \((G, *)\) is a group if the following conditions are satisfied:
+    \begin{enumerate}
+        \item Associativity: For every \(a, b, c \in G\), we have that
+            \[
+                (a * b) * c = a * (b * c)
+            \]
+            Intuitively, it just means that parentheses don't matter.
+        \item Identity: There exists element \(e \in G\) such that for every \(a \in G\), we have that
+            \[
+                a * e = a = e * a
+            \]
+        \item Inverse: For every \(a \in G\), there is \(b \in G\) such that
+            \[
+                a * b = b * a = e
+            \]
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    In many cases, if the operation \(*\) is clear in the context, we usually write \(a * b = ab\) for some \(a, b \in G\).
+
+    Also, if \(ab = ba\) for all \(a, b \in G\), then \(G\) is called Abelian---similar to a mention in chapter 1.
+\end{remark}
+
+\begin{nexample}
+    Some of the Abelian groups are \((\mathbb{Z}, +), (\mathbb{Q}, +), (\mathbb{R}, +), (\mathbb{C}, +)\). However, \((\mathbb{Z}, {}\cdot{})\) is not Abelian. In fact, it's not even a group! This is because there is no inverse for \(0 \in \mathbb{Z}\). Even when 0 is removed from \(\mathbb{Z}\), \((\mathbb{Z} \setminus 0, {}\cdot{})\) is still not a group as it still does not contain any inverse.
+\end{nexample}
+
+\begin{nexample}
+    Here are a quick rapid-fire of a pairing of a set and a binary operation:
+    \begin{itemize}
+        \item \((\mathbb{Q} \setminus 0, {}\cdot{})\) is a group
+        \item \(\left(M_{2 \times 2}(\mathbb{R}), +\right)\) is a group
+        \item \(\left(M_{2 \times 2}(\mathbb{R}), {}\cdot{}\right)\) is not a group
+        \item \(\left(GL_2(\mathbb{R}) = \left\{A \in M_{2 \times 2}(\mathbb{R}) : \det(A) \neq 0\right\}, {}\cdot{})\) is a group
+    \end{itemize}
+\end{nexample}
+
+\begin{theorem}[Uniqueness of Identity]
+    Let \((G, {}*{})\) be a group. \(G\) has a unique identity.
+\end{theorem}
+
+\begin{proof}
+    Since \(G\) is a group, there is an identity, say \(e \in G\). Let us assume that there is another identity, say \(e' \in G\). We have now have that
+    \[
+    \begin{aligned}
+        e &= e * e' \\
+          &= e' * e \\
+          &= e'
+    \end{aligned}
+    \]
+    Therefore, we can conclude that the identity is unique.
+\end{proof}
