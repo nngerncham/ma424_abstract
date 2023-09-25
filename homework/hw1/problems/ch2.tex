@@ -109,3 +109,100 @@ Thus, we can conclude that \([n-1] \in U(n)\) and \([n-1]^2 = [1]\) for any \(n 
 
 Since \(n > 2\), it follows that \(n-1 > 2-1 = 1\). This means that \(n-1 \neq 1\) and \([n-1] = [1]\) is impossible. Therefore, we can conclude that there are always at least two elements in \(U(n)\) that satisfies \(x^2 = [1]\).
 \end{hwproblem}
+
+\begin{hwproblem}
+{36}{
+    Let \(a\) and \(b\) be in a group \(G\). Find an \(x\) in \(G\) such that \(xabx^{-1} = ba\).
+}
+
+Since the problem only asks for only \textit{an} \(x \in G\), let \(x = b\). Consider
+\[
+\begin{aligned}
+    xabx^{-1} &= babb^{-1} \\
+              &= ba(bb^{-1}) \\
+              &= bae = ba
+\end{aligned}
+\]
+Thus, an \(x \in G\) that satisfies \(xabx^{-1} = ba\) is \(x = b\).
+
+Similarly, we can also let \(x = a^{-1}\). Consider
+\[
+\begin{aligned}
+    xabx^{-1} &= a^{-1}ab(a^{-1})^{-1} \\
+              &= (a^{-1}a)ba \\
+              &= eba = ba
+\end{aligned}
+\]
+Thus, another \(x \in G\) that satisfies \(xabx^{-1} = ba\) is \(x = a^{-1}\).
+\end{hwproblem}
+
+\begin{hwproblem}
+{48}{
+    In a finite group, show that the number of nonidentity elements that satisfy the equation $x^5=e$ is a multiple of 4. If the stipulation that the group be finite is omitted, what can you say about the number of nonidentity elements that satisfy the equation $x^5=e$?
+}
+
+If \(G\) is empty or has no non-identity element that satisfies \(x^5 = e\), then we are done since the number of such elements is 0 which is a multiple of 4.
+
+Otherwise, consider that \(x^5 = xxxxx\). Since \(x \in G\) and \(G\) is a group, we have the associativity property. Thus, we can separate the operations as follows:
+\[
+\begin{aligned}
+    x(xxxx) &= xx^4 \\
+    (xx)(xxx) &= x^2x^3 \\
+    (xxx)(xx) &= x^3x^2 \\
+    (xxxx)x &= x^4x
+\end{aligned}
+\]
+
+Define the following:
+\[
+\begin{aligned}
+    a &= x &\quad b &= x^2 &\quad c &= x^3 &\quad d &= x^4
+\end{aligned}
+\]
+Since \(x \in \text{ group } G\), then its operation must also be closed under \(G\). That is, \(a, b, c, d \in G\).
+
+Now, consider the following:
+\[
+    a^5 = x^5 = e
+\]
+and
+\[
+\begin{aligned}
+    b^5 &= (x^2)^5 \\
+        &= (xx)^5 \\
+        &= (xx)(xx)(xx)(xx)(xx) \\
+        &= \underbrace{xx \cdots x}_\text{10 times} \\
+        &= x^5x^5 \qquad \text{(Associativity)} \\
+        &= ee = e
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+    c^5 &= (x^3)^5 \\
+        &= \underbrace{xx \cdots x}_{\text{15 times}} \\
+        &= (x^5)^3 \\
+        &= eee = e
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+    d^5 &= (x^4)^5 \\
+        &= \underbrace{xx \cdots x}_\text{20 times} \\
+        &= (x^5)^4 \\
+        &= e^4 = e
+\end{aligned}
+\]
+
+Thus, we have that for every \(x \in G\) that satisfies \(x^5 = e\), we can always pick 3 more elements in \(G\) that satisfies the equation as well---making a total of 4.
+
+Now, we will show that the 3 extra elements we pick, \(b, c, d\), are also non-identities as well (since \(a = x\) and \(x\) is a non-identity).
+\begin{itemize}
+    \item For \(d\). Since \(x(xxxx) = xd = e\), \(d\) must be the inverse of \(x\). Claim that the inverse of a non-identity is also a non-identity. Observe that if \(d\) (the inverse of a non-identity) is an identity, then \(xd = x\). Since \(x\) is a non-identity, we have a contradiction as an element operated with its inverse must give the identity. Thus, the inverse of a non-identity is also a non-identity and \(d\) is a non-identity.
+    \item For \(b\). We can write the equation as \((xx)(xx)x = bbx\). If \(b\) is an identity, then we will have that \(bbx = eex = x\) which is a contradiction. Thus, \(b\) is a non-identity.
+    \item For \(c\). We can write the equation as \((xx)(xxx) = bc\) (or the other way around). Since we already showed that \(b\) is a non-identity and that the inverse of a non-identity must also be a non-identity, we have that \(c\) is non-identity.
+\end{itemize}
+
+Therefore, the number of non-identity elements that satisfy the equation \(x^5 = e\) is always a multiple of 4. That is, if the group is finite. If the group is infinite then there could be infinitely many of such solutions and we cannot conclude whether an infinity is a multiple of 4 or not.
+\end{hwproblem}
