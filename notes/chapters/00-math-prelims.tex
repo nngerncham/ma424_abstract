@@ -23,9 +23,9 @@ Using set theory, we are able to recursively define the integers as follows:
 \]
 We also define the set of natural numbers \(\mathbb{N}\) to be \( \mathbb{N} = \mathbb{Z}^+ = \left\{1, 2, 3, \ldots\right\}\).
 
-\section{Well-Ordering Axiom (WOA)}
+\section{Well-Ordering Axiom and Induction}
 
-\begin{theorem}
+\begin{theorem}[Well-Ordering Axiom (WOA)]
     If \(S \subseteq \mathbb{Z}^+\) and \(S \neq \emptyset\), then \(S\) has the least, say \(a \in S\).
 \end{theorem}
 
@@ -222,14 +222,11 @@ Now, we can define the mathematical statement to be used with induction.
     \[
         A \times B = \left\{(0, a), (0, b), (1, a), (1, b), (2, a), (2, b)\right\}
     \]
-
-    Intuitively, the cross product is the combination of all elements of \(A\) and \(B\).
+    Intuitively, the cartesian product is the set of all possible combinations of elements of \(A\) and \(B\).
 \end{nexample}
 
 \begin{definition}[Relation]
-    A subset of \(A \times B\) is called a \textit{relation} from \(A\) to \(B\). That is, \(R\) is a relation from \(A\) to \(B\) if and only if \(R \subseteq A \times B\).
-
-    If \(R\) is a relation from \(A\) to \(A\), then \(R\) is called a relation on \(A\).
+    A subset of \(A \times B\) is called a \textit{relation} from \(A\) to \(B\). That is, \(R\) is a relation from \(A\) to \(B\) if and only if \(R \subseteq A \times B\). If \(R\) is a relation from \(A\) to \(A\), then \(R\) is called a relation on \(A\).
 \end{definition}
 
 \begin{definition}[Equivalence Relation]
@@ -268,10 +265,14 @@ Now, we can define the mathematical statement to be used with induction.
 \begin{definition}[Congruency]
     Let \(n \in \mathbb{Z}^+\) and \(a, b \in \mathbb{Z}\). If \(n \mid a-b\), then we write
     \[
-        a \equiv b \mod n
+        a \equiv b \pmod n
     \]
-    That is, \(a\) is \textit{congruence} to \(b\) modulo \(n\).
+    That is, \(a\) is \textit{congruence} to \(b\).
 \end{definition}
+
+\begin{remark}
+    Note that the \(\pmod n\) says that the modulo is applied on \textit{both} sides of the equation. Intuitively, \(a\) is congruent to \(b\) if \(a \mod n = b \mod n\).
+\end{remark}
 
 \begin{nexample}
     \phantom{wow}
@@ -284,18 +285,16 @@ Now, we can define the mathematical statement to be used with induction.
 \end{nexample}
 
 \begin{definition}[Partition]
-    Set \(P\) is a partition of \(S\) if the following properties satisfy:
-    \begin{enumerate}
-        \item \(A_i \neq \emptyset\) for all \(i \in \Lambda\)
-        \item \(A_i \cap A_j \neq\) for any \(i \neq j\)
-        \item \(\bigcup_{i \in \Lambda} A_i = S\)
-    \end{enumerate}
-    where \(\Lambda\) is the index set.
-
-    Symbolically, we represent partition \(P\) as 
+    Define the set \(P\) as follows for some index set \(\Lambda\):
     \[
         P = \left\{A_i : A_i \subseteq S, i \in \Lambda\right\}
     \]
+    We say that \(P\) is a partition of \(S\) if the following conditions satisfy:
+    \begin{enumerate}
+        \item \(A_i \neq \emptyset\) for all \(i \in \Lambda\)
+        \item \(A_i \cap A_j = \emptyset\) for any \(i \neq j\)
+        \item \(\bigcup_{i \in \Lambda} A_i = S\)
+    \end{enumerate}
 \end{definition}
 
 \begin{nexample}
@@ -316,8 +315,8 @@ Now, we can define the mathematical statement to be used with induction.
     \end{itemize}
 \end{nexample}
 
-\begin{definition}[Equivalent Class]
-    Let \(\sim_{R}\) be an equivalence relation on \(S\) and let \(a \in S\). An equivalence class of \(A\), denoted \([a]_R\) or \([a]\), is the set \(\left\{x \in S : x \sim a\right\}\). That is, it is a set of \(x\)'s such that \((a, x) \in R\) where \(R\) is a relation on \(A\).
+\begin{definition}[Equivalence Class]
+    Let \(\sim_{R}\) be an equivalence relation on \(S\) and let \(a \in S\). An equivalence class of \(A\), denoted \([a]_R\) or \([a]\), is the set \(\left\{x \in S : x \sim a\right\}\). That is, it is a set of \(x\)'s such that \((a, x) \in R\) or that \(a\) and \(x\) are equivalent.
 \end{definition}
 
 \begin{theorem}[Equivalence Classes Partition]
