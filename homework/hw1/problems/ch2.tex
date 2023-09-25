@@ -1,0 +1,111 @@
+\section*{Chapter 2}
+
+\begin{hwproblem}
+{4}{
+    Which of the following sets are closed under the given operation?
+    \begin{enumerate}[label=\textbf{\alph*.}]
+        \item $\{0,4,8,12\}$ addition ${}\bmod 16$
+        \item $\{0,4,8,12\}$ addition ${}\bmod 15$
+        \item $\{1,4,7,13\}$ multiplication ${}\bmod 15$
+        \item $\{1,4,5,7\}$ multiplication ${}\bmod 9$
+    \end{enumerate}
+}
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+    \item Closed
+    \item Not closed, \((8 + 12) \bmod 15 = 20 \bmod 15 = 5 \notin \left\{0, 4, 8, 12\right\}\)
+    \item Closed
+    \item Not closed, \((4 \cdot 5) \bmod 9 = 20 \mod 9 = 2 \not in \left\{1, 4, 5, 7\right\}\)
+\end{enumerate}
+\end{hwproblem}
+
+\begin{hwproblem}
+{10}{
+    Show that the group $G L(2, \mathbf{R})$ of Example 9 is non-Abelian by exhibiting a pair of matrices $A$ and $B$ in $G L(2, \mathbf{R})$ such that $A B \neq B A$.
+}
+
+Recall that \(GL(2, \mathbb{R}) = \left\{A \in M_{2 \times 2}(\mathbb{R}) : \det(A) \neq 0\right\}\).
+
+Consider
+\[
+A = 
+\begin{bmatrix}
+    1 & 2 \\
+    3 & 4 \\
+\end{bmatrix}, \qquad
+B = 
+\begin{bmatrix}
+    1 & 3 \\
+    3 & 1 \\
+\end{bmatrix}
+\]
+
+Observe that \(\det(A) = 1 \cdot 4 - 2 \cdot 3 = 4 - 6 = -2\) and \(\det(B) = 1 \cdot 1 - 3 \cdot 3 = 1 - 9 = -8\). Hence, we have that \(A, B \in GL(2, \mathbb{R})\). Consider
+\[
+\begin{aligned}
+    AB &= \begin{bmatrix}
+        7 & 5 \\
+        15 & 13 \\
+    \end{bmatrix}
+\end{aligned}
+\]
+but
+\[
+\begin{aligned}
+    BA &= \begin{bmatrix}
+        10 & 14 \\
+        6 & 10 \\
+    \end{bmatrix}
+\end{aligned}
+\]
+
+Therefore, by counterexample, we have that \(GL(2, \mathbb{R})\) is non-Abelian.
+\end{hwproblem}
+
+\begin{hwproblem}
+{20}{
+    For any integer $n>2$, show that there are at least two elements in $U(n)$ that satisfy $x^2=[1]$. (Adjusted for version of \(U(n)\) taught in class.)
+}
+
+Recall that \(U(n)\) can be constructed by
+\[
+    U(n) = \left\{[k] \in \mathbb{Z}_n : \gcd(k, n) = 1\right\}
+\]
+We claim that \(U(n)\) will always contain \([1]\) and \([n-1]\) and that \([1]^2 = [1]\) and \([n-1]^2 = [1]\). Note that \(\pmod n\) is implicitly implied.
+
+\underline{\textit{For \([1]\).}} First, let us apply the division algorithm to find \(\gcd(1, n)\).
+\[
+\begin{aligned}
+    n &= 1 \cdot (n) + 0
+\end{aligned}
+\]
+Hence, we have that \(\gcd(1, n) = 1\) and \([1] \in U(n)\). Now, consider
+\[
+\begin{aligned}
+    [1]^2 &= [1] \cdot [1] \\
+          &= [1 \cdot 1] \\
+          &= [1]
+\end{aligned}
+\]
+Thus, we can conclude that \([1] \in U(n)\) for any \(n\) and \([1]^2 = [1]\).
+
+\underline{\textit{For \([n-1]\).}} First, let us apply the division algorithm to find \(\gcd(n-1, n)\).
+\[
+\begin{aligned}
+    n &= (n-1) \cdot (1) + 1 \\
+    n-1 &= 1 \cdot (n-1) + 0
+\end{aligned}
+\]
+Hence, we have that \(\gcd(n-1, n) = 1\) and \([n-1] \in U(n)\). Now, consider
+\[
+\begin{aligned}
+    [n-1]^2 &= [n-1] \cdot [n-1] \\
+            &= [(n-1) \cdot (n-1)] \\
+            &= [n^2 - 2n + 1] \\
+            &= [1]
+\end{aligned}
+\]
+Thus, we can conclude that \([n-1] \in U(n)\) and \([n-1]^2 = [1]\) for any \(n > 2\).
+
+Since \(n > 2\), it follows that \(n-1 > 2-1 = 1\). This means that \(n-1 \neq 1\) and \([n-1] = [1]\) is impossible. Therefore, we can conclude that there are always at least two elements in \(U(n)\) that satisfies \(x^2 = [1]\).
+\end{hwproblem}
