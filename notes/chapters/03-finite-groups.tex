@@ -1,5 +1,7 @@
 \chapter{Finite Groups and Subgroups}
 
+\section{Subgroups}
+
 \begin{definition}[Order of a Group]
     The number of elements of a group \(G\) is called its \textit{order}. We write \(|G|\) to represent the order of \(G\). If \(G\) is not finite, then we write \(|G| = \infty\).
 \end{definition}
@@ -17,5 +19,235 @@
 \end{definition}
 
 \begin{nexample}
-    Consider \(G = \left\{A \in M_{2 \times 2}(\mathbb{R}) : \det(A) \neq 0\right\}\). We know that \((G, {}\cdot{})\) is a group. Now, consider \(H_1 = \left\{A \in M_{2 \times 2}(\mathbb{Z}) : \det(A) \neq 0\right\}\). Is \(H \leq G\)?
+    Consider \(G = \left\{A \in M_{2 \times 2}(\mathbb{R}) : \det(A) \neq 0\right\}\). We know that \((G, {}\cdot{})\) is a group. Now, consider \(H_1 = \left\{A \in M_{2 \times 2}(\mathbb{Z}) : \det(A) \neq 0\right\}\). Is \(H \leq G\)? The answer is \textit{no}.
+
+    Consider
+    \[
+        A = \begin{bmatrix}
+            1 & 0 \\
+            0 & 2
+        \end{bmatrix}
+    \]
+    Observe that \(\det(A) = 2\). Then, we would have that
+    \[
+        A^{-1} = \begin{bmatrix}
+            1 & 0 \\
+            0 & \frac{1}{2}
+        \end{bmatrix}
+    \]
+    However, it is clear that \(A^{-1} \notin H_1\) since it has a non-integer entry.
 \end{nexample}
+
+\begin{nexample}
+    Consider \(H_2 = \left\{A \in M_{2 \times 2}(\mathbb{Z}) : \det(A) = 1\right\}\). Observe that \(H_2 \subseteq G := (M_{2 \times 2}(\mathbb{R}), {}\cdot{})\). Is this a subgroup?
+
+    First, let us check the closure property. Let \(A, B \in H_2\). Notice that \(\det(A \cdot B) = \det(A) \cdot \det(B) = 1\). Thus, \(AB \in H_2\).
+
+    Next, let us check for associativity. Since \(H_2 \subseteq G\), it has the associativity under the same operation.
+
+    Now, for identity. The identity for \(G\) is the identity matrix. It is clear that \(\det(I) = 1\), meaning that \(I \in H_2\).
+
+    Finally, for inverse. Consider
+    \[
+        A = \begin{bmatrix}
+            a & b \\
+            c & d
+        \end{bmatrix} \in H_2
+    \]
+    Thus, \(a, b, c, d \in \mathbb{Z}\) with \(ad - bc = 1\). Recall that the inverse of a \(2 \times 2\) matrix is
+    \[
+        A^{-1} = \frac{1}{ad - bc}\begin{bmatrix}
+            d & -b \\
+            -c & a
+        \end{bmatrix}
+    \]
+    Hence, it follows that
+    \[
+    \begin{aligned}
+        A^{-1} &= \frac{1}{ad - bc}\begin{bmatrix}
+                    d & -b \\
+                    -c & a
+               \end{bmatrix} \\
+               &= \frac{1}{1}\begin{bmatrix}
+                   d & -b \\
+                   -c & a
+               \end{bmatrix} \\
+               &= \begin{bmatrix}
+                   d & -b \\
+                   -c & a
+               \end{bmatrix}
+    \end{aligned}
+    \]
+    Now, notice that \(\det(A^{-1}) = da - (-b)(-c) = ad - bc = 1\). Thus, we can conclude that \(A^{-1} \in H_2\) and that it is a subgroup of \(G\). This subgroup is called the \textit{Special Linear Group over \(\mathbb{Z}\)}, denoted as \(SL_2(\mathbb{Z})\).
+\end{nexample}
+
+\subsection{Subgroup Tests}
+
+\begin{theorem}[One-step Subgroup Test]
+    Let \(G\) be a group and \(\emptyset \neq H \subseteq G\). Assume that for all \(a, b \in H\), we have that \(ab^{-1} \in H\). Then, we can conclude that \(H \leq G\).
+\end{theorem}
+
+\begin{proof}
+    \phantom{Part 0}
+
+    \underline{\textit{Part 1: Associativity.}} Since \(H \subseteq G\), then the operation is associative in \(H\). 
+
+    \underline{\textit{Part 2: Identity.}} Since \(H \neq \emptyset\), there is \(x \in H\). Let \(a = x\) and \(b = x\). By the assumption, \(ab^{-1} \in H\). That is, \(xx^{-1} = e \in H\). Thus, the identity exists in \(H\).
+
+    \underline{\textit{Part 3: Inverse.}} Let \(y \in H\). Choose \(a = e \in H\) and \(b = y \in H\). Then, by the assumption, \(ab^{-1} = y^{-1}\) must be in \(H\) as well.
+
+    \underline{\textit{Part 4: Closure}}. Let \(x_1, x_2 \in H\). We will show that \(x_1x_2 \in H\). From part 3, we already have that \(x_2^{-1} \in H\). Choose \(a = x_1\) and \(b = x_2^{-1}\). By the assumption, we have
+    \[
+    \begin{aligned}
+        ab^{-1} &= x_1(x_2^{-1})^{-1} \\
+                &= x_1x_2 \in H
+    \end{aligned}
+    \]
+    Thus, we have that \(x_1x_2 \in H\).
+\end{proof}
+
+\begin{nexample}
+    Let \(G\) be an Abelian group. Define \(H = \left\{x \in G : x^2 = e\right\}\). Claim that \(H \leq G\).
+
+    \begin{proof}
+        Note that \(H \neq \emptyset\) since \(e^2 = e \in H\). Assume that \(a, b \in H\). That means that \(a^2 = e = b^2\). We will now show that \(ab^{-1} \in H\). That is, \(ab^{-1} = e\).
+
+        Consider
+        \[
+        \begin{aligned}
+            (ab^{-1})^2 &= (ab^{-1})(ab^{-1})  \\
+                        &= (aa)(b^{-1}b^{-1}) \\
+                        &= a^2(b^{-1})^2 \\
+                        &= a^2(b^{2})^{-1} \\
+                        &= ee^{-1} \\
+                        &= e
+        \end{aligned}
+        \]
+
+        Thus, we have that \(ab^{-1} = e\). Therefore, by the one-step subgroup test, we have that \(H \leq G\).
+    \end{proof}
+\end{nexample}
+
+\begin{theorem}[Two-step Subgroup Test]
+    Let \(G\) be a group and \(\emptyset \neq H \subseteq G\). Then, \(H \leq G\) if the following conditions satisfy:
+    \begin{enumerate}
+        \item For \(a, b \in H\), then \(ab \in H\)
+        \item For \(a \in H\), then \(a^{-1} \in H\)
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    It follows from the one-step subgroup test.
+\end{proof}
+
+\begin{nexample}
+    Let \(G\) be an Abelian group. Define \(H = \left\{a \in G : |a| < \infty\right\}\). We claim that \(H \leq G\).
+
+    \begin{proof}
+        Since \(|e| = 1 < \infty\), we have that \(e \in H\). Thus, \(H\) is not empty. Let \(a, b \in H\). We have that \(|a| = m\) and \(|b| = n\) for \(m, n \in \mathbb{N}\).
+
+        \underline{\textit{Part 1: Closure.}} We will show that \(ab \in H\). Consider
+        \[
+        \begin{aligned}
+            (ab)^{mn} &= \underbrace{(ab)(ab)\cdot(ab)}_\text{\(mn\) times} \\
+                      &= a^{mn}b^{mn} \\
+                      &= (a^m)^n(b^n)^m \\
+                      &= e^ne^m \\
+                      &= ee = e
+        \end{aligned}
+        \]
+        Thus, we have that \(|ab| < \infty\).
+
+        \underline{\textit{Part 2: Inverse.}} Let \(c \in H\). That is, \(|c| = k < \infty\). Thus, \(c^k = e\). Consider
+        \[
+        \begin{aligned}
+            (c^{-1})^k &= (c^k)^{-1} \\
+                       &= e^{-1} = e
+        \end{aligned}
+        \]
+        Thus, \(|c^{-1}| < \infty\) and we can conclude that \(c^{-1} \in H\).
+
+        Therefore, by the two-step subgroup test, \(H\) is a subgroup of \(G\).
+    \end{proof}
+
+    \begin{remark}
+        For any \(x \in G\), \(|x| = |x^{-1}|\).
+    \end{remark}
+\end{nexample}
+
+\begin{nexample}
+    Let \(G\) be an Abelian group. Let \(H, K \leq G\). Define \(HK = \left\{hk \in G : h \in H, k \in K\right\}\). We claim that \(HK \leq G\). The proof can be done using the 2-step subgroup test.
+\end{nexample}
+
+\begin{theorem}[Finite Subgroup Test]
+    Let \(G\) be a group and \(\emptyset \neq H \subseteq G\). If \(H\) satisfies the following conditions:
+    \begin{enumerate}
+        \item \(H\) is finite, and
+        \item For every \(a, b \in H\), \(ab \in H\)
+    \end{enumerate}
+    Then, \(H\) is a subgroup of \(G\). Note that if \(G\) is already finite, then the first condition is trivially true.
+\end{theorem}
+
+\begin{proof}
+    \phantom{help}
+
+    \underline{\textit{Part 1: Closure.}} The closure property can be directly derived from the second condition.
+
+    \underline{\textit{Part 2: Inverse.}} Let \(a \in H\). Consider \(S = \left\{a^k \in H : k \in \mathbb{N}\right\}\). We have that \(H \subseteq G\). Since \(H\) is finite, so is \(S\). Thus, there are \(a^m = a^n\) for some \(m, n \in \mathbb{N}\) and \(m < n\). Then, we have that
+    \[
+    \begin{aligned}
+        \underbrace{a \cdots a}_{m \in \mathbb{N}}
+            &= \overbrace{\underbrace{a \cdots a}_{m \in \mathbb{N}}\underbrace{a \dots a}_{n-m \in \mathbb{N}}}^{n \in \mathbb{N}} \\
+        a^m &= \underbrace{a^m a^{n-m}}_{a^n} \\
+        e &= a^{n-m}
+    \end{aligned}
+    \]
+    If \(n-m = 1\), then \(e = a\). Thus, \(a^{-1} = e \in H\).
+
+    Otherwise, if \(n-m > 1\), then
+    \[
+    \begin{aligned}
+        e &= a^{n-m} \\
+          &= a\underbrace{a^{n-m-1 \geq 1}}_{a^{-1}}
+    \end{aligned}
+    \]
+    Thus, we can choose \(b = a^{n-m-1}\) and we will have that \(ab = e = ba\). Both cases implies that \(a^{-1} \in H\).
+\end{proof}
+
+\begin{remark}
+\end{remark}
+
+\begin{theorem}
+    Define the following notation:
+    \[
+        \langle a \rangle = \left\{a^n \in G : n \in \mathbb{Z}\right\}
+    \]
+
+    Let \(G\) be a group and \(a \in G\). Then, \(\langle a \rangle\) is an Abelian subgroup of \(G\).
+\end{theorem}
+
+\begin{proof}
+    Left as an exercise. This can be done using the 1SST or 2SST.
+\end{proof}
+
+\begin{definition}[Center of a Group]
+    Let \(G\) be a group. Define
+    \[
+        Z(G) = \left\{a \in G : \ \forall \ a \in G, ax = xa\right\}
+    \]
+    and is called the \textit{center} of group \(G\).
+\end{definition}
+
+\begin{distraction}
+    The \(Z\) comes from the word \textit{``zentrum''} in German which translates to the center.
+\end{distraction}
+
+\begin{theorem}
+    \[
+        Z(G) \leq G
+    \]
+\end{theorem}
+
+\begin{proof}
+    Next time!
+\end{proof}
