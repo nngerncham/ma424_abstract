@@ -1,0 +1,109 @@
+\section*{Chapter 3}
+
+\begin{hwproblem}
+{2}{
+    Let $Q$ be the group of rational numbers under addition and let $Q^*$ be the group of nonzero rational numbers under multiplication. In $Q$, list the elements in $\left\langle\frac{1}{2}\right\rangle$. In $Q^*$, list the elements in $\left\langle\frac{1}{2}\right\rangle$.
+}
+
+For \(\mathbb{Q}\), its elements are
+\[
+    \langle 1/2 \rangle = \left\{\frac{x}{2} \in \mathbb{Z} : x \in \mathbb{Z}\right\} = \left\{\frac{1}{2}, \frac{2}{2}, \frac{3}{2}, \ldots\right\}
+\]
+
+For \(\mathbb{Q}^*\), its elements are
+\[
+    \langle 1/2 \rangle = \left\{\frac{1}{2^k} \in \mathbb{Q} : k \in \mathbb{Z}\right\}
+\]
+\end{hwproblem}
+
+\begin{hwproblem}
+{6}{
+    In the group $Z_{12}$, find $|a|,|b|$, and $|a+b|$ for each case.
+    \begin{enumerate}[label=\alph*.]
+        \item $a=6, b=2$
+        \item $a=3, b=8$
+        \item $a=5, b=4$
+    \end{enumerate}
+    Do you see any relationship between $|a|,|b|$, and $|a+b|$ ?
+}
+
+\begin{enumerate}[label=\alph*.]
+    \item 
+        \[
+        \begin{aligned}
+            |6| &= 2 \\
+            |2| &= 6 \\
+            |6+2| &= |8| \\
+                  &= 3
+        \end{aligned}
+        \]
+    \item 
+        \[
+        \begin{aligned}
+            |3| &= 4 \\
+            |8| &= 3 \\
+            |3+8| &= |11| \\
+                  &= 12
+        \end{aligned}
+        \]
+    \item
+        \[
+        \begin{aligned}
+            |5| &= 60 \\
+            |4| &= 3 \\
+            |5+4| &= |9| \\
+                  &= 4
+        \end{aligned}
+        \]
+\end{enumerate}
+
+[Collaborated with Kanladaporn] The relationship observed is
+\[
+    |a+b| \mid \text{lcm}(|a|, |b|)
+\]
+or that the order of \(a+b\) divides the lowest common multiple of the orders of \(a, b\).
+\end{hwproblem}
+
+\begin{hwproblem}
+{12}{
+    Complete the statement "A group element $x$ is its own inverse if and only if $|x|= \underline{\phantom{wowowowow}}.$
+}
+
+\(x\) is its own inverse if and only if \(|x| = 1\). This is because \(x\) is its own inverse if and only if it's the identity. Since \(|x|\) is the smallest \(k\) such that \(x^k=e\), then if \(x\) is the identity then \(x^1 = e\).
+\end{hwproblem}
+
+\begin{hwproblem}
+{34}{
+    If $H$ and $K$ are subgroups of $G$, show that $H \cap K$ is a subgroup of $G$. (Can you see that the same proof shows that the intersection of any number of subgroups of $G$, finite or infinite, is again a subgroup of $G$?)
+}
+
+We will show this using the 2-step subgroup test (2ST). First, we will show that \(\emptyset \neq H \cap K \subset G\). Since \(H\) and \(K\) are subgroups of \(G\), then both must contain the identity element of \(G\). Thus, \(H \cap K \neq \emptyset\). Additionally, since \(H \cap K = \left\{x : x \in H \land x \in K\right\}\) and \(H, K \leq G\), we have that \(H, K \subseteq G\) and every element in \(H \cap K\) are also elements of \(G\) as well. Thus, \(H \cap K \subseteq G\).
+
+For condition 1, let \(a, b \in H \cap K\). We will show that \(ab \in H \cap K\) as well. Since \(a, b \in H \cap K\), they must both belong to \(H\) and \(K\) each by itself as well. Since \(H\) and \(K\) a subgroups and hence are also groups, they must have the closure property and \(ab \in H, K\). Hence, it follows that \(ab \in H \cap K\) as well. Thus, \(a, b \in H \cap K \implies ab \in H \cap K\).
+
+For condition 2, let \(a \in H \cap K\). It follows that \(a \in H, K\) each as well. Since \(H\) and \(K\) are both subgroups and therefore groups themselves, we have that \(a^{-1} \in H, K\) since groups must contain an inverse for its members. Since \(a^{-1} \in H, K\) each, we also have that \(a^{-1} \in H \cap K\). Thus, \(a \in H \cap K \implies a^{-1} \in H \cap K\).
+
+Therefore, by the 2-step subgroup test, we can conclude that if \(H\) and \(G\) are subgroups of \(G\), then \(H \cap K\) is also a subgroup of \(G\).
+\end{hwproblem}
+
+\begin{hwproblem}
+{42}{
+    In the group $Z$, find
+    \begin{enumerate}[label=\alph*.]
+        \item $\langle 8,14\rangle$;
+        \item $\langle 8,13\rangle$;
+        \item $\langle 6,15\rangle$;
+        \item $\langle m, n\rangle$;
+        \item $\langle 12,18,45\rangle$.
+    \end{enumerate}
+    In each part, find an integer $k$ such that the subgroup is $\langle k\rangle$.
+}
+
+\begin{enumerate}[label=\alph*.]
+    \item $\langle 8,14\rangle: k=2$
+    \item $\langle 8,13\rangle : k=1$
+    \item $\langle 6,15\rangle : k=3$
+    \item $\langle m, n\rangle : k=\gcd(m, n)$
+    \item $\langle 12,18,45\rangle : k=3$
+\end{enumerate}
+\end{hwproblem}
