@@ -1,0 +1,64 @@
+\chapter{Cyclic Groups}
+
+\begin{definition}[Cyclic Group]
+    \(G\) is a \textit{cyclic group} if there is \(a \in G\) such that \(G = \left\{a^n : n \in \mathbb{Z}\right\} = \langle a \rangle\). Additionally, \(a \in G\) is called a \textit{generator} of \(G\).
+
+    Notation-wise, we have the following:
+    \[
+    \begin{aligned}
+        n \geq 1 &: a^n = \underbrace{a a \cdots a}_\text{\(n\) times} \\
+        n = 0 &: a^0 = e \\
+        n = -k, k \in \mathbb{N} &: a^{n} &= (a^{-1})^k = \underbrace{a^{-1} a^{-1} \cdots a^{-1}}_\text{\(n\) times}
+    \end{aligned}
+    \]
+\end{definition}
+
+\begin{nexample}
+    Consider the group \((\mathbb{Z}, +)\). Let \(n \in \mathbb{Z}\) and consider \(1 \in \mathbb{Z}\).
+    \[
+    \begin{aligned}
+        n \geq 1 &: n = \underbrace{1+1+\cdots+1}_\text{\(n\) times} \\
+        n = 0 &: 1^0 = e = 0 \\
+        n \leq -1, n=-k, k \in \mathbb{N} &: 1^{-k} = (-1)^k = -k
+    \end{aligned}
+    \]
+    Thus, \((\mathbb{Z}, +) = \langle 1 \rangle\). Similarly, we can show that \((\mathbb{Z}, +) = \langle -1 \rangle\) as well.
+\end{nexample}
+
+\begin{remark}
+    If \(G = \langle a \rangle\), then \(G = \langle a^{-1} \rangle\) as well.
+\end{remark}
+
+\begin{remark}
+    If \(G\) is Abelian, we can use the \textit{additive} version of \(x^n = x+x+\cdots+x = nx\).
+\end{remark}
+
+\begin{nexample}
+    Consider \((\mathbb{Z}_6, +)\). Notice that
+    \[
+    \begin{aligned}
+        \mathbb{Z}_6 &= \left\{[0], [1], [2], [3], [4], [5]\right\} \\
+                     &= \langle [1] \rangle \\
+                     &= \langle [-1] \rangle \\
+                     &= \langle [5] \rangle 
+    \end{aligned}
+    \]
+
+    Are there any other generators? (Hint: no, but you can try them out first)
+    \[
+    \begin{aligned}
+        \langle [0] \rangle &= [0] \\
+        \langle [2] \rangle &= \left\{[0], [2], [4]\right\} \\
+        \langle [3] \rangle &= \left\{[0], [3]\right\} \\
+        \langle [4] \rangle &= \left\{[0], [2], [4]\right\} \\
+        \langle [5] \rangle &= \left\{[0], [1], [2], [3], [4], [5]\right\}
+    \end{aligned}
+    \]
+
+    Conventionally, we can say that
+    \[
+        \mathbb{Z}_6 = \langle [1] \rangle = \langle [5] \rangle
+    \]
+\end{nexample}
+
+Notice that, in \(\mathbb{Z}_n\), \(\langle [a] \rangle = \left\{k[a] : k \in \mathbb{Z}\right\}\). We claim that \(\langle a \rangle = \mathbb{Z}_n\) if for any \([x] \in \mathbb{Z}_n\), there is \(k \in \mathbb{Z}\) such that \([x] = k[a] = [ka]\). In other words, \(x - ka\) is divisible by \(n\).

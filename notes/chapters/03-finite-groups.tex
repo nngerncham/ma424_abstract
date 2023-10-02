@@ -81,7 +81,7 @@
     Now, notice that \(\det(A^{-1}) = da - (-b)(-c) = ad - bc = 1\). Thus, we can conclude that \(A^{-1} \in H_2\) and that it is a subgroup of \(G\). This subgroup is called the \textit{Special Linear Group over \(\mathbb{Z}\)}, denoted as \(SL_2(\mathbb{Z})\).
 \end{nexample}
 
-\subsection{Subgroup Tests}
+\section{Subgroup Tests}
 
 \begin{theorem}[One-step Subgroup Test]
     Let \(G\) be a group and \(\emptyset \neq H \subseteq G\). Assume that for all \(a, b \in H\), we have that \(ab^{-1} \in H\). Then, we can conclude that \(H \leq G\).
@@ -230,6 +230,8 @@
     Left as an exercise. This can be done using the 1SST or 2SST.
 \end{proof}
 
+\section{Center of Groups}
+
 \begin{definition}[Center of a Group]
     Let \(G\) be a group. Define
     \[
@@ -242,12 +244,78 @@
     The \(Z\) comes from the word \textit{``zentrum''} in German which translates to the center.
 \end{distraction}
 
-\begin{theorem}
+\begin{theorem}\label{thm:subgroup-center}
     \[
         Z(G) \leq G
     \]
 \end{theorem}
 
 \begin{proof}
-    Next time!
+    \underline{\textit{Part 1: Identity.}} Let \(x \in G\). We have that \(ex = xe\). Thus, \(e \in Z(G)\) and \(Z(G) \neq \emptyset\).
+
+    \underline{\textit{Part 2: Invertibility.}} Let \(a \in Z(G)\). We want to show that \(a^{-1} \in Z(G)\) as well. For any \(x \in G\), we have that \(ax = xa\). Consider
+    \[
+    \begin{aligned}
+        a^{-1}(ax)a^{-1} &= a^{-1}(xa)a^{-1} \\
+        (a^{-1}a)xa^{-1} &= a^{-1}x(aa^{-1}) \\
+        xa^{-1} &= a^{-1}x
+    \end{aligned}
+    \]
+    Thus, \(a^{-1} \in Z(G)\).
+
+    By the 2-step subgroup test, we can conclude that \(Z(G) \leq G\).
+\end{proof}
+
+\begin{nexample}
+    Let \(G\) be an Abelian group. Then, for every \(a \in G\) and \(x \in G\). Thus, \(Z(G) = G\).
+\end{nexample}
+
+\begin{nexample}
+    Consider the group \(D_3 = \left\{V_1, V_2, V_3, R_1, R_2, e\right\}\). Observe that \(\left|D_3\right| = 6\). Notice also that
+    \[
+    \begin{aligned}
+        R_1 V_1 &= V_2  &\qquad\text{and}\\
+        V_1 R_1 &= V_3 \\
+        R_1 V_1 &\neq V_1 R_1
+    \end{aligned}
+    \]
+    Thus, \(G\) is not Abelian. In fact, for any rotation \(R\) and any reflection \(V\), \(RV \neq VR\). Hence, we claim that \(Z(G) = \left\{e\right\}\).
+
+    \begin{proof}
+        Let \(x \in G \setminus \left\{e\right\}\). Then, \(x\) is a notation or a reflection. Choose \(y\) to be the other type of symmetry, i.e., if \(x\) is a rotation, then \(y\) is a reflection and vice versa. Then, \(xy \neq yx\). Thus, \(Z(G) = \left\{ e\right\}\).
+    \end{proof}
+\end{nexample}
+
+\begin{definition}[Centralizer of \(a\) in \(G\)]
+    The \textit{centralizer} of \(a \in G\) is defined by
+    \[
+        C(a) = \left\{g \in G : ag = ga\right\}.
+    \]
+\end{definition}
+
+\begin{nexample}
+    Let \(G = D_3\) and \(a = R_1\). We will have that
+    \[
+    \begin{aligned}
+        C(a) &= C(R_1) \\
+             &= \left\{e, R_1, R_1^2\right\} \\
+             &= \langle R_1 \rangle
+    \end{aligned}
+    \]
+
+    Similarly, let \(b = V_2\). We will have that
+    \[
+    \begin{aligned}
+        C(b) &= \left\{e, V_2\right\}
+    \end{aligned}
+    \]
+    If we 
+\end{nexample}
+
+\begin{theorem}
+    Let \(a \in G\). Then, \(C(a) \leq G\) as well.
+\end{theorem}
+
+\begin{proof}
+    The proof is similar to Theorem \ref{thm:subgroup-center}.
 \end{proof}
