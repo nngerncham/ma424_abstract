@@ -1,5 +1,7 @@
 \chapter{Cyclic Groups}
 
+\section{Definitions}
+
 \begin{definition}[Cyclic Group]
     \(G\) is a \textit{cyclic group} if there is \(a \in G\) such that \(G = \left\{a^n : n \in \mathbb{Z}\right\} = \langle a \rangle\). Additionally, \(a \in G\) is called a \textit{generator} of \(G\).
 
@@ -8,7 +10,7 @@
     \begin{aligned}
         n \geq 1 &: a^n = \underbrace{a a \cdots a}_\text{\(n\) times} \\
         n = 0 &: a^0 = e \\
-        n = -k, k \in \mathbb{N} &: a^{n} &= (a^{-1})^k = \underbrace{a^{-1} a^{-1} \cdots a^{-1}}_\text{\(n\) times}
+        n = -k, k \in \mathbb{N} &: a^{n} = (a^{-1})^k = \underbrace{a^{-1} a^{-1} \cdots a^{-1}}_\text{\(n\) times}
     \end{aligned}
     \]
 \end{definition}
@@ -62,3 +64,244 @@
 \end{nexample}
 
 Notice that, in \(\mathbb{Z}_n\), \(\langle [a] \rangle = \left\{k[a] : k \in \mathbb{Z}\right\}\). We claim that \(\langle a \rangle = \mathbb{Z}_n\) if for any \([x] \in \mathbb{Z}_n\), there is \(k \in \mathbb{Z}\) such that \([x] = k[a] = [ka]\). In other words, \(x - ka\) is divisible by \(n\).
+
+\subsection{Bezout's Theorem on Additive Integers with Modulo \(n\)}
+
+\begin{nexample}
+    Consider \(\mathbb{Z}_{14} = \left\{[0], [1], \ldots, [13]\right\}\). Notice that
+    \[
+    \begin{aligned}
+        \langle [0] \rangle &= \left\{k[0] : k \in \mathbb{Z}\right\} \\
+                            &= \left\{[0]\right\} \\
+        \langle [1] \rangle &= \mathbb{Z}_{14} \\
+        \langle [2] \rangle &= \left\{k \cdot [2] : k \in \mathbb{Z}\right\} \\
+                            &= \left\{[2], [4], [6], [8], [10], [12]\right\} \\
+        \langle [3] \rangle &= \left\{k[3] : k \in \mathbb{Z}\right\} \\
+                            &= \left\{[0], [3], [6], [9], [12], [15] = [1], [4], [7], [10], [13], [16]=[2], [5], [8], [11], [14]=[0]\right\} \\
+                            &= \mathbb{Z}_{14} \\
+                            &\phantom{|.}\vdots
+    \end{aligned}
+    \]
+    Notice that we are unable to generate \([14]\) using \([2]\) but we can do so with \([1]\) and \([3]\).
+\end{nexample}
+
+The previous example might now make us wonder: \textit{What are the \([s]\)'s such that \(\langle [s] \rangle\) generates \(\mathbb{Z}_{14}\)}. That is, we want to find \([s]\) such that
+\[
+\begin{aligned}
+    \langle [s] \rangle = \left\{k[s] : k \in \mathbb{Z}\right\} = \mathbb{Z}_{14}
+\end{aligned}
+\]
+
+Since we already know that \([1]\) can always generate \(\mathbb{Z}_{14}\), we can narrow down our search. Namely, we want to find \(k \in \mathbb{Z}\) such that
+\[
+    k[s] = [1] \iff 14 \mid ks-1
+\]
+In other words, there is \(l \in \mathbb{Z}\) such that \(ks-1 = 14l\). Consider
+\[
+\begin{aligned}
+    1 &= 14(-l) + s(-k) \\
+    1 &= 14l_1 + sk_1 &\quad \text{where } l_1 = -l, k_1 = -k
+\end{aligned}
+\]
+
+Recall Theorem \ref{thm:bezout}: If \(a, b \in \mathbb{Z} \setminus \left\{0\right\}\), then there are \(x, y \in \mathbb{Z}\) such that \(ax + by = \gcd(a, b)\). Therefore, we have that we can find \(l_1, k_1 \in \mathbb{Z}\) that satisfies the above equation if and only if \(\gcd(14, s) = 1\). In conclusion, we have that
+\begin{enumerate}
+    \item \(\mathbb{Z}_{14} = \langle [s] \rangle\) if and only if \(\gcd(14, s) = 1\)
+    \item In general, \(\mathbb{Z}_n = \langle [s] \rangle\) if and only if \(\gcd(n, s) = 1\)
+\end{enumerate}
+
+\subsection{Bezout's Theorem on Multiplicative Integers with Modulo \(n\)}
+
+Recall the definition of the multiplicative integer with modulo \(n\):
+\[
+    U(n) = \left\{[k] \in \mathbb{Z}_n : \ \exists \ [s] \in \mathbb{Z}_n, [k][s] = [1]\right\}
+\]
+The last part simply says that \([k]\) has an inverse.
+
+\begin{nexample}
+    Does \([3]\) have an inverse in \(U(n)\)? Consider
+    \[
+    \begin{aligned}
+        [3][7] &= [3 \cdot 7] \\
+               &= [21] \\
+               &= 2[10] + [1] \\
+               &= [1]
+    \end{aligned}
+    \]
+    Thus, \([7]\) is the inverse of \([3]\) in \(U(10)\).
+
+    What about \([2]\)? First, we can see that \(\gcd(2, 10) = 2\) and that we can never achieve \(2x + 10y = 1\) for any \(x, y \in \mathbb{Z}\) by Bezout's Theorem. Thus, \([2]\) does not have an inverse.
+\end{nexample}
+
+From the previous example, we can observe the following:
+\begin{enumerate}
+    \item \([s] \in U(10)\) has a multiplicative inverse if and only if \(\gcd(s, 10) = 1\)
+    \item In general, \([s] \in U(n)\) has an inverse if and only if \(\gcd(s, n) = 1\)
+\end{enumerate}
+
+Additionally, we can simplify the computation of the elements of the multiplicative integer with modulo \(n\) group to be as follows:
+\[
+    U(n) = \left\{[k] \in \mathbb{Z}_n : \gcd(k, n) = 1\right\}
+\]
+
+\begin{nexample}
+    From our above results, we have that
+    \[
+        U(10) = \left\{[1], [3], [7], [9]\right\}
+    \]
+\end{nexample}
+
+\begin{nexample}
+    What about the generators for \(U(10)\)? Consider the following:
+    \[
+    \begin{aligned}
+        \langle [1] \rangle &= \left\{[1]\right\} \\
+        \langle [3] \rangle &= \left\{[3], [3]^2 = [9], [3]^3 = [27] = 7, [3]^4 = [81] = [1]\right\} \\
+                            &= U(10) \\
+        \langle [7] \rangle &= \left\{[7], [7]^2 = [49] = 9, [7]^3 = [63] = [3], [7]^4 = [1]\right\} \\
+                            &= U(10) \\
+        \langle [9] \rangle &= \left\{[9], [9]^2 = [81] = [1], [9]^3 = [729] = [9]\right\}
+    \end{aligned}
+    \]
+    Since the generators eventually come back to \([1]\), we can say that \(U(10)\) is cyclic and can be generated by \(\langle [3] \rangle\) and \(\langle [7] \rangle\).
+\end{nexample}
+
+\begin{distraction}
+    Another notation of the multiplicative integer with modulo \(n\) is
+    \[
+        U(n) = \left(\mathbb{Z}_n\right)^\times
+    \]
+\end{distraction}
+
+\begin{nexample}
+    Is \(U(8)\) cyclic? Notice that
+    \[
+        U(8) = \left\{[1], [3], [5], [7]\right\}
+    \]
+
+    We can try to compute the generators as follows:
+    \[
+    \begin{aligned}
+        \langle [1] \rangle &= \left\{[1]\right\} \\
+        \langle [3] \rangle &= \left\{[3], [3]^2 = [9] = 1\right\} \\
+        \langle [5] \rangle &= \left\{[5], [5]^2 = [25] = [1]\right\} \\
+        \langle [7] \rangle &= \left\{[7], [7]^2 = [49] = [1]\right\}
+    \end{aligned}
+    \]
+
+    Thus, we can conclude that \(U(8)\) is not cyclic.
+\end{nexample}
+
+\begin{remark}
+    \(U(n)\) is cyclic if
+    \[
+        n = 1, 2, 4, p^k \text{ or } 2p^k
+    \]
+    where \(p\) is an odd prime and \(k \in \mathbb{N}\).
+\end{remark}
+
+\section{Criterion for \(a^i = a^j\)}
+
+\begin{theorem}[Criterion for \(a^i = a^j\)]
+    Let \(G\) be a group and \(a \in G\).
+    \begin{enumerate}
+        \item If \(|a| = \infty\), then 
+            \[
+                a^i = a^j \iff i = j
+            \]
+        \item If \(|a| = n\), then
+            \[
+                a^i = a^j \iff n \mid i-j
+            \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \phantom{wow}
+
+    \underline{\textit{Part 1.}} Assume that \(|a| = \infty\). Then, there is no non-zero \(n \in \mathbb{Z}^+\) such that \(a^n = e\). That is, the two-way sequence \(\ldots, a^{-1}, e, a^1, \ldots\) never repeats. Thus, for any \(i, j \in \mathbb{Z}\),
+    \[
+    \begin{aligned}
+        a^i = a^j &\iff a^{i-j} = a^{j-j} = a^{0} = e\\
+                  &\iff i-j = 0 \\
+                  &\iff i=j
+    \end{aligned}
+    \]
+
+    \underline{\textit{Part 2.}} Assume that \(|a| = n \in \mathbb{N}\). Thus, \(n\) is the smallest positive integer such that \(a^n = e\). We will show that \(\langle a \rangle = \left\{e, a, \ldots, a^{n-1}\right\}\). Note that \(\langle a \rangle = \left\{a^k : k \in \mathbb{Z}\right\}\). We will do this by showing that at some point, \(a^k\) will start to have the same values.
+
+    First, we will show that \(\langle a \rangle\) is finite. Let \(k \in \mathbb{Z}\). Since \(n \in \mathbb{N}\), by the division algorithm, there are \(q \in \mathbb{Z}\) and \(r \in \mathbb{Z}\) such that \(k = qn+r\) with \(0 \leq r \leq n-1\). Consider
+    \[
+    \begin{aligned}
+        a^k &= a^{qn + r} \\
+            &= a^{qn} a^r \\
+            &= (a^n)^qa^r \\
+            &= e^q a^r \\
+            &= ea^r \\
+        a^k &= a^r
+    \end{aligned}
+    \]
+    Thus, we have that \(a^k \in \left\{e, a, \ldots, a^{n-1}\right\}\) for any \(k \in \mathbb{Z}\). Therefore, \(\langle a \rangle = \left\{e, a, a^2, \ldots, a^{n-1}\right\}\).
+
+    Now, we will prove the forward case of the claim. Assume that \(a^i = a^j\). Then, we will have that
+    \[
+    \begin{aligned}
+        a^{i} &= a^{j} \\
+        a^i a^{-j} &= e \\
+        a^{i-j} &= e
+    \end{aligned}
+    \]
+    Since \(i, j \in \mathbb{Z}\), then so is \(i-j\). By the division algorithm, there are integers \(q, r \in \mathbb{Z}\) such that
+    \[
+    \begin{aligned}
+        i-j = qn + r : 0 \leq r \leq n-1
+    \end{aligned}
+    \]
+    Then, \(a^{i-j} = a^{qn + r}\). This implies that
+    \[
+    \begin{aligned}
+        e &= a^{i-j} \\
+          &= a^{qn+r} \\
+          &= a^{qn} a^r \\
+          &= ea^r = a^r
+    \end{aligned}
+    \]
+    So, we have that \(a^r = e\) and \(0 \leq r \leq n-1\). Since \(n\) is the smallest natural (positive) integer such that \(a^n = e\), we have that \(r = 0\). Thus, \(i-j = qn\) and therefore, \(n \mid i-j\).
+
+    Finally, we will prove the converse case of the claim. Assume that \(n \mid i-j\). Then, there are \(q \in \mathbb{Z}\) such that \(i-j = qn\). Thus, \(a^{i-j} = a^{qn} = e\).
+\end{proof}
+
+\begin{corollary}
+    The order of an element is the cardinality of the the set of its generator. Symbolically,
+    \[
+        |a| = |\langle a \rangle|
+    \]
+\end{corollary}
+
+\begin{corollary}
+    If \(k\) is an integer such that \(a^k = e\), then \(k\) is a multiple of the order of \(a\). Symbolically,
+    \[
+        a^k = e \iff |a| \mid k
+    \]
+\end{corollary}
+
+\begin{corollary}
+    If \(a, b \in G\) and \(ab = ba\), then \(|ab| \mid |a||b|\).
+\end{corollary}
+
+\begin{proof}
+    Exercise!
+\end{proof}
+
+\begin{remark}
+    By the division algorithm and the Abelian structure of cyclic groups \((G = \langle a \rangle)\), they have the same structure as \(\mathbb{Z}_n\) for some \(n \in \mathbb{N}\) (including \(n = \infty\)). A fancy way to say this is that \(G = \langle a \rangle\) is \textit{isomorphic} to \(\mathbb{Z}\) or \(\mathbb{Z}_n\) for some \(n \in \mathbb{N}\).
+\end{remark}
+
+\begin{theorem}
+    Let \(a \in G\) be such that \(|a| = n\). We have that
+    \[
+        \langle a^k \rangle = \left\langle a^{\gcd(n, k)} \right\rangle
+        \text{ and }
+        \left|a^k\right| = \frac{n}{\gcd(n, k)}
+    \]
+\end{theorem}
