@@ -1,0 +1,49 @@
+\chapter{Permutation Groups}
+
+\section{Definitions}
+
+\begin{definition}[Permutation]
+    Let \(A\) be a set. A bijective function \(f : A \to A\) is called a permutation on set \(A\).
+\end{definition}
+
+\begin{nexample}
+    Consider \(A = \left\{a\right\}\). Then, its permutation function would be 
+    \[
+        f(A) = f(\left\{a\right\}) = \left\{a\right\}
+    \]
+    or
+    \[
+        f = \left\{(a, a)\right\}
+    \]
+\end{nexample}
+
+\begin{remark}
+    We call the permutation function \(f: A \to A\) such that \(f(a) = a\) for every \(a \in A\) the \textit{identity function}, denoted by \(\varepsilon\)
+\end{remark}
+
+\begin{nexample}
+    Now, consider \(A = \left\{a, b\right\}\). We will have permutation functions \(f_1, f_2\) where
+    \[
+        f_1(a) = a \qquad f_1(b) = b
+    \]
+    and
+    \[
+        f_2(a) = b \qquad f_2(b) = a
+    \]
+\end{nexample}
+
+\begin{definition}[Factorial]
+    Let \(n \in \mathbb{N}\). \(n!\) is the number of permutations on a set with \(n\) elements. This is computed by
+    \[
+        n! = 1 \cdot 2 \cdot 3 \cdot \ldots \cdot n
+    \]
+\end{definition}
+
+\begin{nexample}
+    Consider \(A = \emptyset\). Then, permutation function would be \(f: \emptyset \to \emptyset\), \textit{but what does it mean for a function to map \(\emptyset \to \emptyset\)}.
+
+    Typically, a function from \(A \to B\) can be thought of as a subset of the cartesian product \(f = \{(a, b): a \in A, b \in B\}\). Then, we can think of \(f: \emptyset \to \emptyset\) to be an empty set itself.
+
+    Similarly, the factorial function can also be thought of as the size of the set of permutation functions. Thus, we will have that \(0!\) is the size of the set of permutation functions, i.e., the size of the set of subsets of the cartesian product \(A \times B\). In the case of that there are 0 elements in the set---an empty set---this set would be \(\left\{\emptyset\right\}\) and its size is 1. This is why \(0! = 1\).
+\end{nexample}
+

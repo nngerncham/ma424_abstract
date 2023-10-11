@@ -297,11 +297,176 @@ Additionally, we can simplify the computation of the elements of the multiplicat
     By the division algorithm and the Abelian structure of cyclic groups \((G = \langle a \rangle)\), they have the same structure as \(\mathbb{Z}_n\) for some \(n \in \mathbb{N}\) (including \(n = \infty\)). A fancy way to say this is that \(G = \langle a \rangle\) is \textit{isomorphic} to \(\mathbb{Z}\) or \(\mathbb{Z}_n\) for some \(n \in \mathbb{N}\).
 \end{remark}
 
-\begin{theorem}
+\begin{theorem}\label{thm:four-two}
     Let \(a \in G\) be such that \(|a| = n\). We have that
     \[
         \langle a^k \rangle = \left\langle a^{\gcd(n, k)} \right\rangle
-        \text{ and }
+    \]
+    and
+    \[
         \left|a^k\right| = \frac{n}{\gcd(n, k)}
     \]
 \end{theorem}
+
+\begin{proof}
+    Suppose that \(|a| = n\). Let \(d = \gcd(n, k)\). This also means that \(k\) is a multiple of \(d\). We will now prove the first part of the theorem.
+
+    Since \(a^k = a^{dr}\), we already have that \(\langle a^k \rangle \subseteq \langle a^d \rangle\). It now suffices to show that \(\langle a^d \rangle \subseteq \langle a^k \rangle\) as well. By Bezout's theorem, there are \(s, t \in \mathbb{Z}\) such that \(d = ns + kt\). Thus, we have that 
+    \[
+    \begin{aligned}
+        a^d &= a^{ns + kt} \\
+            &= a^{ns} a^{kt} \\
+            &= (a^n)^s (a^k)^t \\
+            &= e(a^k)^t \\
+            &= (a^k)^t \in \langle a^k \rangle
+    \end{aligned}
+    \]
+    Thus, we have that \(\langle a^d \rangle \subseteq \langle a^k \rangle\). Therefore, we can conclude that \(\langle a^k \rangle = \langle a^d \rangle\).
+
+    We will now prove the second part of the theorem. First, claim that \(\left|a^c\right| = n/c\) for any divisor \(c\) of \(n\). Observe that
+    \[
+        (a^c)^{\frac{n}{c}} = a^n = e
+    \]
+    Thus, \(\left|a^c\right| \leq \frac{n}{c}\). Since \(|a| = n\), we have that \((a^c)^i \neq e\) for any \(i \in \mathbb{N}\) such that \(i < \frac{n}{c}\). Hence, it follows that \(\frac{n}{c} \in \mathbb{N}\) is the smallest positive integer such that \((a^c)^\frac{n}{c} = e\). Recall from the previous part that \(\langle a^k \rangle = \langle a^{\gcd(n, k)} \rangle\). Then, it follows that
+    \[
+        \left|\langle a^k \rangle\right| = \left|\langle a^{\gcd(n, k)} \rangle\right|
+    \]
+
+    Therefore, we can conclude that
+    \[
+    \begin{aligned}
+        \left|a^k\right| &= \left|\langle a^k \rangle\right| \\
+                         &= \left|\langle a^{\gcd(n, k)} \rangle\right| \\
+                         &= \frac{n}{\gcd(n, k)}
+    \end{aligned}
+    \]
+\end{proof}
+
+\begin{nexample}
+    Suppose that \(|a| = 36\) for some \(a \in G\). Let us try to find \(\left|\langle a^8 \rangle\right|\). Since \(n = 36\) and \(k = 8\), we will have that
+    \[
+    \begin{aligned}
+        \left|\langle a^8 \rangle\right|
+            &= \frac{n}{\gcd(n, k)} \\
+            &= \frac{36}{\gcd(36, 8)} \\
+            &= \frac{36}{4} = 9
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{corollary}
+    Let \(G\) be a finite cyclic group. For \(g \in G\), \(|g|\) divides \(|G|\).
+\end{corollary}
+
+\begin{corollary}
+    Let \(|a| = n\). Then, we have that
+    \begin{enumerate}
+        \item \(\langle a^i \rangle = \langle a^j \rangle\) if and only if \(\gcd(n, i) = \gcd(n, j)\); and
+        \item \(\left|a^i\right| = \left|a^j\right|\) if and only if \(\gcd(n, i) = \gcd(n, j)\).
+    \end{enumerate}
+\end{corollary}
+
+\begin{corollary}
+    Let \(|a| = n\). We have that
+    \begin{enumerate}
+        \item \(\langle a \rangle = \langle a^j \rangle\) if and only if \(\gcd(n, j) = 1\); and
+        \item \(|a| = |a^j|\) if and only if \(\gcd(n, j) = 1\).
+    \end{enumerate}
+\end{corollary}
+
+\begin{corollary}
+    \[
+        \mathbb{Z}_n = \langle [k] \rangle \iff \gcd(n, k) = 1
+    \]
+\end{corollary}
+
+\section{Classification of Subgroups of Cyclic Groups}
+
+\begin{theorem}[Fundamental Theorem of Cyclic Groups]
+    Every subgroup of a cyclic group is cyclic. If \(\left|\langle a \rangle\right| = n\) and \(k \mid n\), then there is a unique subgroup of order \(k\)---namely, \(\langle a^{\frac{n}{k}} \rangle\).
+\end{theorem}
+
+\begin{proof}
+    Let \(G = \langle a \rangle\) and \(H \leq G\). If \(H = \left\{e\right\}\), then \(H = \langle e \rangle\).
+
+    Now, suppose that \(H \neq \left\{e\right\}\). Since \(H \leq G = \langle a \rangle\), every element of \(H\) is of the form \(a^t\) for some \(t \in \mathbb{Z}\). Let \(S = \left\{k \in \mathbb{N} : a^k \in H\right\}\). Note that \(a^{-t} \in H\) because \(H\) is a group. Since \(H \neq \left\{e\right\}\), we also have that \(S \neq \emptyset\). By the WOA, \(S\) has the smallest element, say \(m \in S\).
+
+    Since \(a^m \in H\), we have that \(\langle a^m \rangle \subseteq H\). We will now show that \(H = \langle a^m \rangle\). For this, it suffices to show that \(H \subseteq \langle a^m \rangle\). Let \(b \in H\). Thus, \(b \in G\) as well. Since \(G\) is cyclic, \(b = a^k\) for some \(k \in \mathbb{Z}\). By the division algorithm, there are \(q, r \in \mathbb{Z}\) such that \(k = qm + r\) with \(0 \leq r \leq m-1\). Then, \(a^k = a^{qm+r}\). Consider
+    \[
+    \begin{aligned}
+        a^k &= a^{qm}a^r \\
+        a^{-qm}a^k &= a^{-qm}a^{qm}a^r \\
+        a^{k - qm} &= a^r \in H
+    \end{aligned}
+    \]
+    Since \(m\) is the smallest positive integer such that \(a^m \in H\) and \(0 \leq r < m\), we have that \(r = 0\). Thus, we have that \(b = a^k = a^{mq+r} = a^{mq} = (a^m)^q\). That is, an arbitrary \(b \in H\) is also a member of \(\langle a^m \rangle\). Hence, we have that \(H \subseteq \langle a^m \rangle\). Therefore, we can conclude that \(H = \langle a^m \rangle\).
+
+    Now, let \(|G| = |\langle a \rangle| = n\) and \(k \in \mathbb{N}\) such that \(k \mid n\). We will show that there is a unique subgroup of \(G\) with order \(k\). Let us first show the existence of this subgroup. Choose \(H = \langle a^m \rangle\) where \(m = \frac{n}{k} \in \mathbb{N}\). Thus, we will have that
+    \[
+    \begin{aligned}
+        |H| &= \left|\langle a^m \rangle\right| \\
+            &= \frac{n}{\gcd(m, n)} \\
+            &= \frac{n}{m} \\
+            &= \frac{n}{\frac{n}{k}} \\
+            &= k
+    \end{aligned}
+    \]
+    Thus, we can conclude that we can always find a subgroup with order \(k\).
+
+    Now, we will show that this subgroup is unique. Assume that there are subgroups \(H_1 = \langle a^{m_1} \rangle\) and \(H_2 = \langle a^{m_2} \rangle\) such that \(|H_1| = |H_2|\) where \(m_1, m_2 \in \mathbb{N}\). Consider
+    \[
+    \begin{aligned}
+        |H_1| &= \left|\langle a^{m_1} \rangle\right| \\
+              &= \frac{n}{\gcd(m_1, n)}
+    \end{aligned}
+    \]
+    and
+    \[
+    \begin{aligned}
+        |H_2| &= \frac{n}{\gcd(m_2, n)}
+    \end{aligned}
+    \]
+    Then, we have that
+    \[
+    \begin{aligned}
+        \frac{n}{\gcd(m_1, n)} &= \frac{n}{\gcd(m_2, n)} \\
+        \gcd(m_1, n) &= \gcd(m_2, n)
+    \end{aligned}
+    \]
+    Let \(g = \gcd(m_1, n) = \gcd(m_2, n)\). Then, by Theorem \ref{thm:four-two}, we have that \(\langle a^{m_1} \rangle = \langle a^{g} \rangle = \langle a^{m_2} \rangle\).
+
+    Therefore, we can conclude that the subgroup \(H \leq G\) with order \(k\) such that \(k \mid n = |G|\) is unique.
+\end{proof}
+
+\begin{nexample}
+    Consider \(G = \mathbb{Z}_{30} = \langle 1 \rangle = \langle 7 \rangle = \langle 11 \rangle = \cdots\). Let us narrow down slightly and let \(G = \langle a \rangle\) for some \(a \in \mathbb{Z}_{30}\). Notice that
+    \[
+        \langle a \rangle = \left\{[0], [1], \ldots, [29]\right\}
+    \]
+\end{nexample}
+
+\begin{corollary}[Subgroups of \(\mathbb{Z}_n\)]
+    For any positive integer \(k \mid n\), we will have that \(\left\langle \left[\frac{n}{k}\right] \right\rangle\) is the unique subgroup of \(\mathbb{Z}_n\) of order \(k\).
+\end{corollary}
+
+\begin{definition}[Euler \(\phi\) Function]
+    Let \(n \in \mathbb{N}\). The \textit{Euler Phi Function} \(\phi(n)\) is the number of coprimes \(i\) of \(n\) such that \(1 \leq i \leq n\).
+\end{definition}
+
+\begin{nexample}
+    \[
+    \begin{aligned}
+        \phi(1) &= 1 \\
+        \phi(n) &= \sum_{i=1}^n \mathds{1}\left[\gcd(i, n) = 1\right]
+        \phi(p); \text{\(p\) prime} &= p-1
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{theorem}
+    If \(d\) is a positive divisor of \(n\), the number of elements of order \(d\) in the cyclic group with order \(n\) is \(\phi(d)\).
+\end{theorem}
+
+\begin{proof}
+    By Theorem \ref{thm:four-two} and the FToCG.
+\end{proof}
