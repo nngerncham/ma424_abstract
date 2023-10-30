@@ -1,6 +1,6 @@
 \chapter{Permutation Groups}
 
-\section{Definitions}
+\section{Permutations}
 
 \begin{definition}[Permutation]
     Let \(A\) be a set. A bijective function \(f : A \to A\) is called a permutation on set \(A\).
@@ -47,3 +47,345 @@
     Similarly, the factorial function can also be thought of as the size of the set of permutation functions. Thus, we will have that \(0!\) is the size of the set of permutation functions, i.e., the size of the set of subsets of the cartesian product \(A \times B\). In the case of that there are 0 elements in the set---an empty set---this set would be \(\left\{\emptyset\right\}\) and its size is 1. This is why \(0! = 1\).
 \end{nexample}
 
+\begin{nexample}
+    Let \(A = \left\{1, 2, 3, 4\right\}\) and \(G\) be the group of permutations of \(A\). For instance, consider functions \(\alpha\) and \(\beta\):
+    \[
+    \begin{aligned}
+        \alpha &= \begin{bmatrix}
+            1 & 2 & 3 & 4 \\
+            2 & 3 & 4 & 1
+        \end{bmatrix} \\
+        \beta &= \begin{bmatrix}
+            1 & 2 & 3 & 4 \\
+            3 & 2 & 1 & 4
+        \end{bmatrix}
+    \end{aligned}
+    \]
+    If we were to compose these functions, we would have
+    \[
+        \alpha \beta = \alpha \circ \beta
+    \]
+    For instance, we would have
+    \[
+    \begin{aligned}
+        \alpha \beta(3) &= \alpha(\beta(3)) \\
+                        &= \alpha(1) \\
+                        &= 2
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{definition}[Symmetric Groups]
+    Let \(a = \left\{1, 2, 3, \ldots, n\right\}\). The set of all permutations of \(A\) is called the \textit{symmetric group of degree} \(n\). This is denoted as \(S_n\).
+\end{definition}
+
+\begin{nexample}
+    Let \(G = S_3\). Recall that \(\varepsilon\) is the identity function. Now, consider the permutation function \(\alpha\) as follows:
+    \[
+        \alpha = \begin{bmatrix}
+            1 & 2 & 3 \\
+            2 & 3 & 1
+        \end{bmatrix}
+    \]
+    Then, we will have that
+    \[
+        \alpha^2 = \begin{bmatrix}
+            1 & 2 & 3 \\
+            3 & 1 & 2
+        \end{bmatrix}
+    \]
+
+    Now, let us define the \(\beta\) function as follows:
+    \[
+        \beta = \begin{bmatrix}
+            1 & 2 & 3 \\
+            1 & 3 & 2
+        \end{bmatrix}
+    \]
+    If we compose both functions, we will have
+    \[
+        \alpha\beta = \begin{bmatrix}
+            1 & 2 & 3 \\
+            2 & 1 & 3
+        \end{bmatrix}
+    \]
+    If we compose them in reverse, we will have
+    \[
+        \beta\alpha = \begin{bmatrix}
+            1 & 2 & 3 \\
+            3 & 2 & 1
+        \end{bmatrix}
+    \]
+    An interesting result is that \(S_3\) is not Abelian. In fact, \(S_n\) is not Abelian in general for \(n \geq 3\). Note that \(|S_n| = n!\).
+\end{nexample}
+
+\section{Cycles in Permutations}
+
+\begin{nexample}
+    Consider \(S_6\). Consider the permutation \(\alpha\) as follows:
+    \[
+        \alpha = \begin{bmatrix}
+            1 & 2 & 3 & 4 & 5 & 6 \\
+            2 & 1 & 4 & 5 & 3 & 6
+        \end{bmatrix}
+    \]
+
+    Notice that 1 maps to 2 and 2 maps back to 1. This creates a cycle. Similarly, 3 goes to 4, 4 goes to 5, then 5 goes to 3 again.
+
+    We can also write it as disjoint cycles as follows:
+    \[
+    \begin{aligned}
+        \alpha_1 &= \begin{bmatrix}
+            1 & 2 & 3 & 4 & 5 & 6 \\
+            2 & 1 & 3 & 4 & 5 & 6
+        \end{bmatrix} \\
+        \alpha_2 &= \begin{bmatrix}
+            1 & 2 & 3 & 4 & 5 & 6 \\
+            1 & 2 & 4 & 5 & 3 & 6 \\
+        \end{bmatrix} \\
+        \alpha_3 &= \begin{bmatrix}
+            1 & 2 & 3 & 4 & 5 & 6 \\
+            1 & 2 & 3 & 4 & 5 & 6 \\
+        \end{bmatrix} \\
+    \end{aligned}
+    \]
+
+    An easier way to denote this is to write 
+    \[
+    \begin{aligned}
+        \alpha_1 &= (1 \ 2) \\
+        \alpha_2 &= (3 \ 4 \ 5) \\
+        \alpha_3 &= (6) = (1) = (2) = \ldots
+    \end{aligned}
+    \]
+    Essentially, we are writing the cycle path of the permutation.
+\end{nexample}
+
+\begin{definition}[Cycle Notation]
+    Let \(\alpha \in S_n\) with \(a_i \in \left\{1, 2, \ldots, n\right\}\) and
+    \[
+    \begin{aligned}
+        \alpha(a_1) &= a_2 \\
+        \alpha(a_2) &= a_3 \\
+                    &\vdots \\
+        \alpha(a_{m-1}) &= a_m \\
+        \alpha(a_m) &= a_1
+    \end{aligned}
+    \]
+    Then, \(\alpha\) is called an \(m\)-cycle of \(S_n\). We denote this as
+    \[
+        \alpha = (a_1\ a_2\ \ldots\ a_m)
+    \]
+\end{definition}
+
+\begin{definition}[Disjoint Cycles]
+    Let \(\alpha, \beta \in S_n\) be 2 cycles. Suppose that \(\alpha = (a_1\ a_2\ \ldots\ a_{m_1})\) and \(\beta = (b_1\ b_2\ \ldots\ b_{m_2})\). \(\alpha\) and \(\beta\) are \textit{disjoint cycles} if \(\left\{a_1, a_2, \ldots, a_{m_1}\right\} \cap \left\{b_1, b_2, \ldots, b_{m_2}\right\} = \emptyset\). 
+
+    Intuitively, it means that the elements that show up in each cycle are not shared.
+\end{definition}
+
+\section{Properties of Permutations}
+
+\begin{theorem}[Product of Disjoint Cycles]\label{thm:five-one}
+    Every permutation of a finite set can be written as a product of disjoint cycles.
+\end{theorem}
+
+\begin{proof}
+    Let \(\alpha \in S_n\) for \(n \in \mathbb{N}\). Choose \(a_1 \in \left\{1, 2, \ldots, n\right\}\). Let \(a_2 = \alpha(a_1)\), \(a_3 = \alpha(a_2)\), and so on until  \(a_1 = \alpha^m(a_1)\) for some \(m\). 
+    
+    If \(\left\{a_1, a_2, \ldots, a_m\right\} = \left\{1, 2, \ldots, n\right\}\), then we are done. Otherwise, we continue to choose \(b_1 \in \left\{1, \ldots, n\right\} \setminus \left\{a_1, \ldots, a_m\right\}\) and create another cycle from the remaining elements as before. Hence, we would have that \(b_1 = \alpha^k(b_1)\) for some \(k \in \mathbb{N}\). The process will end in at most \(n\) times.
+
+    Thus, \(\alpha = (a_1\ a_2\ \ldots\ a_m)(b_1\ b_2\ \ldots\ b_k) \cdots\). Therefore, \(\alpha\) can be written as a product of disjoint cycles.
+\end{proof}
+
+\begin{theorem}[Disjoint Cycles Commute]\label{thm:five-two}
+    If \(\alpha\) and \(\beta\) are disjoint cycles in \(S_n\), then \(\alpha\beta = \beta\alpha\).
+\end{theorem}
+
+\begin{theorem}[Order of Permutation (Ruffini, 1799)]
+    The order of a permutation, say \(\alpha \in S_n\), is the \(\lcm\) of the lengths of disjoint cycles of \(\alpha\).
+\end{theorem}
+
+\begin{proof}
+    Let \(\alpha \in S_n\) for some \(n \in \mathbb{N}\). From Theorem \ref{thm:five-one}, we have that
+    \[
+        \alpha = \alpha_1 \alpha_2 \cdots \alpha_k
+    \]
+    where \(\alpha_i\)'s are mutually disjoint cycles. Then, by Theorem \ref{thm:five-two}, we have that
+    \[
+        \alpha^m = \alpha_1^m \alpha_2^m \cdots \alpha_k^m
+    \]
+    for \(m \in \mathbb{N}\). Let \(|\alpha_i| = m_i\) for \(i = 1, 2, \ldots, k\). Let \(m^* = \text{lcm}(m_1, m_2, \ldots, m_k)\). Then, we will have that  
+    \[
+    \begin{aligned}
+        \alpha^{m^*} &= \alpha_1^{m^*}\alpha_2^{m^*} \cdots \alpha_k^{m^*} \\
+                     &= \varepsilon \varepsilon \cdots \varepsilon \\
+                     &= \varepsilon
+    \end{aligned}
+    \]
+    Moreover, \(m^* \in \mathbb{N}\) is the minimum positive integer such that \(\alpha^{m^*} = \varepsilon\).
+\end{proof}
+
+\begin{nexample}
+    \[
+    \begin{aligned}
+        |(1\ 2\ 3) (4\ 5) (6)| &= \lcm(|\alpha_1|, |\alpha_2|, |\alpha_3|) \\
+                               &= \lcm(3, 2, 1) \\
+                               &= 6
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{theorem}[Product of 2-cycles]
+    Every permutation in \(S_n\) can be written as a product of 2-cycles.
+\end{theorem}
+
+\begin{proof}
+    First, note that the identity \(\varepsilon\) can be expressed as \((1\ 2)(1\ 2)\). Thus, it is a product of 2-cycles.
+
+    Let \(\alpha \in S_n\) where \(n \in \mathbb{N}\) and \(n > 1\). By Theorem \ref{thm:five-one}, we have that \(\alpha = \alpha_1 \alpha_2 \cdots \alpha_k\) where \(\alpha_i\)'s are disjoint cycles. For \(i \in \left\{1, \ldots, k\right\}\), we can write each \(\alpha_i\)'s as follows:
+    \[
+    \begin{aligned}
+        \alpha_i &= (a_1\ a_2\ \ldots\ a_m) \\
+                 &= (a_1\ a_m) (a_1\ a_{m-1}) \cdots (a_1\ a_2)
+    \end{aligned}
+    \]
+    This can be shown through direct computation from the bottom up.
+
+    Thus, any disjoint cycle \(\alpha_i\) can be written as a product of 2-cycles. Therefore, we can conclude that \(\alpha = \alpha_1 \alpha_2 \cdots \alpha_k\) can be written as a product of 2-cycles.
+\end{proof}
+
+\begin{lemma}
+    Let \(\varepsilon = \beta_1 \beta_2 \cdots \beta_r\), where \(\beta_i\)'s are 2-cycles. Then, \(r\) is even.
+\end{lemma}
+
+\begin{proof}
+    We will now show that \(\epsilon\) is an even permutation by induction on \(r\). Note that \(\epsilon \neq (a\ b) \in S_n\) since any 2-cycle is not an identity.
+
+    Write \(\varepsilon = \beta_1 \beta_2 \cdots \beta_{r}\) where \(r \geq 2\). For the base case when \(r=2\), we are done since 2 is even. Now, we will show the inductive case. Assume that \(\varepsilon = \alpha_1 \alpha_2 \cdots \alpha_k\) for \(2 \leq k \leq r\) where \(\alpha_i\)'s are 2-cycles, then \(k\) is even. Observe that \(\beta_{r-1} \beta_r\) can take one of the following forms:
+    \[
+        \beta_{r-1} \beta_{r} = \begin{cases}
+            (a\ b)(a\ b) = \varepsilon \\
+            (a\ c)(a\ b) = (a\ b\ c) = (a\ b)(b\ c) \\
+            (b\ c)(a\ b) = (a\ c\ b) = (a\ c)(c\ b) \\
+            (c\ d)(a\ b) = (a\ b)(c\ d)
+        \end{cases}
+    \]
+    We can continue to perform this procedure until \(a\) is on the left-most of the product (form \(\varepsilon = (a\ x)(y\ z)\cdots\)) or \(a\) is gone. If we end the algorithm with the first case, then \(\varepsilon(a) = x \neq a\), a contradiction. Thus, \(a\) is gone in a certain number of steps. Hence, 
+    \[
+        \varepsilon = \tau_1 \tau_2 \cdots \tau_{r-2+2=r}
+    \]
+    where \(\tau_j\)'s are 2-cycles and \(r-2 \leq r\). By the inductive assumption, \(k=r-2\) is even. Thus, \(r\) must be even as well.
+
+    Therefore, we can conclude that \(\epsilon\) is an even permutation.
+\end{proof}
+
+\begin{theorem}[Always Even or Always Odd]\label{thm:five-five}
+    Every permutation \(\alpha \in S_n\) can be written as a product of odd or even number of 2-cycles only. That is, if
+    \[
+    \begin{aligned}
+        \alpha &= \alpha_1 \alpha_2 \cdots \alpha_r \\
+               &= \beta_1 \beta_2 \cdots \beta_s
+    \end{aligned}
+    \]
+    where \(\alpha_i\)'s and \(\beta_j\)'s are 2-cycles, then \(r-s\) is even.
+\end{theorem}
+
+\begin{proof}
+    Assume that 
+    \[
+    \begin{aligned}
+        \alpha &= \alpha_1 \alpha_2 \cdots \alpha_r \\
+               &= \beta_1 \beta_2 \cdots \beta_s
+    \end{aligned}
+    \]
+    where \(\alpha_i\)'s and \(\beta_j\)'s are 2-cycles. Then, we will have that
+    \[
+    \begin{aligned}
+        \varepsilon &= \alpha \alpha^{-1} \\
+                    &= \alpha_1 \cdots \alpha_r \beta_s^{-1} \cdots \beta_1^{-1} \\
+                    &= \alpha_1 \cdots \alpha_r \beta_s \cdots \beta_1
+    \end{aligned}
+    \]
+    By the previous lemma, then \(r+s\) is even. Thus, \(r-2 = r+s - 2s\) is even. Therefore, we can conclude that \(r\) and \(s\) are both odd or both even.
+\end{proof}
+
+\begin{theorem}
+    \(S_n\) forms a group under composition.
+\end{theorem}
+
+\begin{definition}[Set of Even Permutations]
+    \(A_n = \left\{\alpha \in S_n : \text{\(\alpha\) is an even permutation}\right\}\).
+\end{definition}
+
+\begin{theorem}
+    For \(n \geq 2\), \(A_n\) is a subgroup of \(S_n\).
+\end{theorem}
+
+\begin{proof}
+    Since \(\varepsilon\) is an even permutation, \(\varepsilon\) and \(A_n \neq \emptyset\). Now, suppose that \(\alpha, \beta \in A_n\), then \(\alpha\beta \in A_n\). Similarly, suppose that \(\alpha \in A_n\), then \(\alpha^{-1} \in A_n\).
+
+    Define \(\phi : A_n \to B_n\) where \(O_n = \left\{\gamma \in S_n : \text{\(\gamma\) is an odd permutation}\right\}\) by \(\phi(x) = x(1\ 2)\) for every \(x \in A_n\). Note that \(S_n = A_n \cup O_n\) and \(A_n \cap O_n = \emptyset\).
+
+    If \(\phi\) is 1-to-1, suppose that \(\alpha, \beta \in A_n\) and \(\phi(\alpha) = \phi(\beta)\). Then, we will have that \(\alpha(1\ 2) = \beta(1\ 2)\). Therefore, \(\alpha(1\ 2)(1\ 2)^{-1} = \beta(1\ 2)(1\ 2)^{-1}\) and \(\alpha = \beta\).
+
+    If \(\phi\) is onto, let \(r \in O_n\).  Then, choose \(\alpha  = \phi(1\ 2)\). Since \(\gamma\) is an odd permutation, adding another cycle makes it an even permutation. Thus,
+    \[
+    \begin{aligned}
+        \phi(\alpha) &= \alpha(1\ 2) \\
+                     & =\gamma(1\ 2)(1\ 2) \\
+                     &= \gamma
+    \end{aligned}
+    \]
+    Thus, \(\phi\) is bijective. Therefore, \(|A_n| = |O_n|\). Since \(S_n = A_n \cup O_n\) and \(A_n \cap O_n \neq \emptyset\), then we will have that
+    \[
+        |A_n| = \frac{|S_n|}{2} = \frac{n!}{2}
+    \]
+\end{proof}
+
+\begin{nexample}
+    Consider \(A \in M_{n \times n}(\mathbb{R})\). If \(n=2\), the computation is quite simple.
+    \[
+        A = \begin{bmatrix}
+            a & b \\
+            c & d
+        \end{bmatrix}
+    \]
+    then \(\det(A) = ad - bc\). However, this computation is more complicated with larger \(n\)s.
+\end{nexample}
+
+\begin{definition}[Sign of a Permutation]
+    Let \(\sigma \in S_n\). The sign of \(\sigma\) is defined as follows:
+    \[
+        \sign(\sigma) = \begin{cases}
+            +1 & \text{if \(\sigma\) is an even permutation} \\
+            -1 & \text{if \(\sigma\) is an odd permutation} \\
+        \end{cases}
+    \]
+\end{definition}
+
+\begin{definition}[Matrix Determinant]
+    Let \(A = [a_{i, j}]_{n \times n}\).
+    \[
+        \det(A) = \sum_{\sigma \in S_n} \sign(\sigma)a_{1, \sigma(1)} a_{2, \sigma(2)} \cdots a_{n, \sigma(n)}
+    \]
+\end{definition}
+
+\begin{nexample}
+    Consider
+    \[
+        A = \begin{bmatrix}
+            a & b \\
+            c & d
+        \end{bmatrix}
+    \]
+    We compute the determinant as:
+    \[
+    \begin{aligned}
+        \det(A) &= \sum_{\sigma \in S_2} \sign(\sigma) a_{1, \sigma(1)} a_{2, \sigma(2)} \\
+                &= \sign(\varepsilon) a_{1, 1} a_{2, 2} + \sign((1\ 2)) a_{1, 2} a_{2, 1} \\
+                &= (+1) ad + (-1) cd \\
+                &= ad-cd
+    \end{aligned}
+    \]
+\end{nexample}

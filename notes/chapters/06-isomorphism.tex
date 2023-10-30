@@ -1,0 +1,118 @@
+\chapter{Isomorphism}
+
+\begin{nexample}
+    Consider \((\mathbb{Z}_4, +) = \left\{[0], [1], [2], [3]\right\}\). Consider also the \((U(5), {}\cdot{}) = \left\{[1], [2], [3], [4]\right\}\).
+
+    In \(\mathbb{Z}_4\), we can see that the elements are 
+    \[
+    \begin{aligned}
+        & [1] \\
+        & [2] = [1] + [1] \\
+        & [3] = [1] + [1] + [1] \\
+        & [0] = [4] = [1] + [1] + [1] + [1]
+    \end{aligned}
+    \]
+
+    Similarly, we have the following in \(U(5)\):
+    \[
+    \begin{aligned}
+        & [2] \\
+        & [4] = [2] \cdot [2] \\
+        & [3] = [8] = [2] \cdot [2] \cdot [2] \\
+        & [1] = [16] = [2] \cdot [2] \cdot [2] \cdot [2]
+    \end{aligned}
+    \]
+    We can see that \(\mathbb{Z}_4 = \langle [1] \rangle\) and \(U(5) = \langle [2] \rangle\). We can also see that \((\mathbb{Z}_4, +)\) is \textit{structurally similar} to \(U(5)\).
+\end{nexample}
+
+\begin{definition}[Isomorphism]
+    Let \((G, {}\cdot{})\) and \((\overline{G}, {}*{})\) be groups. An \textit{isomorphism} from \(G\) to \(\overline{G}\) is a bijective function \(\phi : G \overunderset{\text{1-to-1}}{\text{onto}}{\to} \overline{G}\) such that for \(a, b \in G\), \(\phi(a \cdot b) = \phi(a) * \phi(b)\).
+\end{definition}
+
+\begin{definition}[Isomorphic]
+    Groups \(G\) and \(\overline{G}\) are \textit{isomorphic} if there is an isomorphism between them.
+\end{definition}
+
+\begin{nexample}
+    Consider \(G = (\mathbb{R}, {}+{})\) and \(\overline{G} = (\mathbb{R}^+, {}\cdot{})\). We will show that they are isomorphic. First, define the isomorphism \(\phi: G \to \overline{G}\) to be
+    \[
+        \phi(x) = e^x
+    \]
+    for \(x \in \mathbb{R}\).
+
+    Now, we will show that the function is 1-to-1. Since the exponential function is increasing on \(\mathbb{R}\), \(\phi\) is 1-to-1. Next, we will show that the function is onto. Let \(y \in \mathbb{R}^+\). Choose \(x = \ln y\). Then, we have that \(e^x = e^{\ln y} = y\).
+
+    Finally, we will show that \(\phi\) is operation-preserving. Let \(a, b \in \mathbb{R}\). Consider
+    \[
+    \begin{aligned}
+        \phi(a+b) &= e^{a+b} \\
+                  &= e^a \cdot e^b \\
+                  &= \phi(a) \cdot \phi(b)
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{nexample}
+    Consider \(G = S_3\). Recall that 
+    \[
+        S_3 = \left\{\varepsilon, (1\ 2), (1\ 3), (2\ 3) (1\ 2\ 3), (1\ 3\ 2)\right\}
+    \]
+    Then, define the function \(\phi: S_3 \to S_3\) by
+    \[
+        \ \forall \ \alpha \in S_3, \phi(\alpha) = (1\ 2\ 3)\alpha
+    \]
+
+    To show that \(\phi\) is 1-to-1, we will assume that \(\phi(\alpha_1) = \phi(\alpha_2)\) and show that \(\alpha_1 = \alpha_2\). Consider
+    \[
+    \begin{aligned}
+        \phi(\alpha_1) &= \phi(\alpha_2) \\
+        (1\ 2\ 3)\alpha_1 &= (1\ 2\ 3)\alpha_2 \\
+        (1\ 2\ 3)^{-1}(1\ 2\ 3) \alpha_1 &= (1\ 2\ 3)^{-1}(1\ 2\ 3) \alpha_2 \\
+        \alpha_1 &= \alpha_2
+    \end{aligned}
+    \]
+
+    To show that \(\phi\) is onto, let \(\beta \in S_3\). Choose \(\alpha_0 = (1\ 2\ 3)^{-1}\beta\). Then, \(\phi(\alpha_0) = (1\ 2\ 3)[(1\ 2\ 3)^{-1}\beta] = \beta\).
+
+    To show that \(\phi\) is operation preserving, let \(\tau_1, \tau_2 \in S_3\). Consider 
+    \[
+    \begin{aligned}
+        \phi(\tau_1 \tau_2) &= (1\ 2\ 3)(\tau_1 \tau_2) \\
+                            &= 
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{theorem}[Cayley's Theorem]
+    Every group is isomorphic to a subgroup of permutations. That is,
+    \[
+        G \cong \overline{G} \text{ where } \overline{G} \leq S_G
+    \]
+\end{theorem}
+
+\begin{proof}
+    First, define \(\phi: G \to \overline{G} \leq S_G\) where \(\overline{G} = \left\{\phi_g \in S_G : \phi_g(x) = gx, x \in G\right\}\) as follows: For any \(g \in G\), \(\phi(g) = \phi_g\) where \(\phi_g(x) = gx\) for some \(x \in G\). Claim that \(\phi\) is an isomorphism.
+
+    First, we will show that it is 1-to-1. Assume that \(g_1, g_2 \in G\) be such that \(\phi(g_1) = \phi(g_2)\). Thus, \(\phi_{g_1} = \phi_{g_2}\) as functions. Choose \(x = e \in G\). Consider
+    \[
+    \begin{aligned}
+        \phi_{g_1}(e) &= \phi_{g_2}(e) \\
+        g_1 e &= g_2 e \\
+        g_1 &= g_2
+    \end{aligned}
+    \]
+
+    Now, we will show that \(\phi\) is onto. Let \(T \in \overline{G} \subseteq S_G\). Thus, there is \(g_0 \in G\) such that \(T(x) = g_0 x\) for any \(x \in G\). Choose \(g = g_0\). Then, we will have that \(\phi(g) = T\).
+
+    Finally, we will show that \(\phi\) preserves operation and \(\overline{G} < S_G\). Namely, we will show that for \(g_1, g_2 \in G\), \(\phi(g_1 g_2) = \phi(g_1) \circ \phi(g_2)\). Let \(x \in G\). Consider
+    \[
+    \begin{aligned}
+        \phi(g_1 g_2)(x) &= \phi_{g_1 g_2}(x) \\
+                         &= (g_1 g_2)x \\
+                         &= g_1(g_2 x) \\
+                         &= g_1(\phi_{g_2}(x)) \\
+                         &= (\phi_{g_1} \circ \phi_{g_2}) (x)
+    \end{aligned}
+    \]
+    Thus, \(\phi(g_1 g_2) = \phi_{g_1 g_2}\). Hence, \(\phi\) is an isomorphism.
+\end{proof}
