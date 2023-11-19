@@ -1,0 +1,142 @@
+\section*{Chapter 6}
+
+\begin{hwproblem}
+{4}{
+    Show that \(U(8)\) is not isomorphic to \(U(10)\).
+}
+
+First, observe that
+\[
+\begin{aligned}
+    U(8) &= \left\{1, 2, 3, 5, 7\right\} \\
+    U(10) &= \left\{1, 2, 3, 5, 7, 9\right\}
+\end{aligned}
+\]
+We can see that \(|U(8)| = 5\) and \(|U(10)| = 6\). 
+
+Assume to the contrary that there is an isomorphism \(\phi : U(8) \to U(10)\). This means that \(\phi\) must be a 1-to-1 and onto function. If \(\phi\) is 1-to-1, then every element of \(U(10)\) must be mapped from a unique element in \(U(8)\). However, this is a contradiction since there is not enough unique elements in \(U(8)\) to map to a unique element of \(U(10)\) because it is a smaller set. Therefore, we can conclude that \(U(8)\) is not isomorphic to \(U(10)\).
+\end{hwproblem}
+
+\begin{hwproblem}
+{6}{
+    Prove that isomorphism is an equivalence relation. That is, for any groups $G, H$, and $K$
+
+$$
+\begin{aligned}
+& G \approx G \\
+& G \approx H \text { implies } H \approx G \\
+& G \approx H \text { and } H \approx K \text { implies } G \approx K .
+\end{aligned}
+$$
+}
+
+\noindent\textbf{Part 1.} We will show that \(G\) is isomorphic to itself. That is, there is an isomorphism \(\phi: G \to G\). Consider the identity function, an already 1-to-1 and onto function from \(G\) onto itself. Thus, \(G \approx G\).
+
+\noindent\textbf{Part 2.} We will show that isomorphism is symmetric. Assume that there is an isomorphism \(\phi_1 : G \to H\). We will show that there is a bijective function (isomorphism) \(\phi_2 : H \to G\) as well.
+
+For this, we can define \(\phi_2\) as follows. Let \(g \in G\) and \(h \in H\). Then, \(\phi_2(h) = g\) such that \(\phi_1(g) = h\). Since \(\phi_1\) is 1-to-1, we know that for any \(h' \in H\), there is a unique \(g' \in G\) that satisfies this condition. Additionally, since \(\phi_1\) is onto, this condition also satisfies for any element of \(H\). Thus, we can conclude that there is an isomorphism \(\phi_2 : H \to G\).
+
+\noindent\textbf{Part 3.} We will show that isomorphism is transitive. That is, suppose that \(G \approx H\) and \(H \approx K\), then \(G \approx K\). Since \(G \approx H\), there is an isomorphism \(\phi_1 : G \to H\). (Not the same isomorphism as previous part.) Similarly, there is an isomorphism \(\phi_2 : H \to K\) as well.
+
+Now, define \(\phi_3 : G \to K\) to be the composition of \(\phi_1, \phi_2\). Namely, for \(g \in G\), we have that \(\phi_3(g) = \phi_2(\phi_1(g)) = k \in K\). Notice that this is a mapping from \(G \to H\) and \(H \to K\) which gives us a mapping \(G \to K\) in the end. Since \(\phi_1, \phi_2\) are isomorphisms, the \(k\) that satisfies this condition is unique. Similarly, the condition also satisfies for all \(k \in K\). Thus, we can always find an isomorphism from \(G \to K\) if \(G \approx H\) and \(H \approx K\).
+
+Therefore, with the three parts proven, we can conclude that isomorphism is an equivalence relation.
+\end{hwproblem}
+
+\newpage
+\begin{hwproblem}
+{8}{
+    Show that the mapping \(a \to \log_{10} a\) is an isomorphism from \(\mathbb{R}^+\) under multiplication to \(\mathbb{R}\) under addition.
+}
+
+First, we will show that \(a \to \log_{10} a\) is 1-to-1. Recall from Real Analysis that \(\log\) functions in general are monotonically increasing. Then, we already have that \(a \to \log_{10}a\) is a 1-to-1 function. We just need to show the rest.
+
+Next, we will show that \(a \to \log_{10} a\) is onto. Let \(y \in \mathbb{R}\). We want to find \(x \in \mathbb{R}^+\) such that \(x \to \log_{10}x = y\). Consider
+\[
+\begin{aligned}
+    y &= \log_{10} x \\
+    10^y &= x
+\end{aligned}
+\]
+We will now verify that \(x \in \mathbb{R}^+\). Consider the following cases:
+\begin{itemize}
+    \item If \(y < 0\), then 
+        \[
+            10^y = \frac{1}{10^{|y|}} > 0
+        \]
+    \item If \(y \geq 0\), then
+        \[
+            10^y \geq 10^0 = 1 > 0
+        \]
+\end{itemize}
+Thus, for any \(y \in \mathbb{R}\), we can always pick a positive real number \(x\) that satisfies \(x \to \log_{10} x = y\) and the mapping is hence onto.
+
+Finally, we will show that the mapping is operation-preserving under addition. Let \(a, b \in \mathbb{R}^+\) and \(\log_{10}a = c \in \mathbb{R}\) and \(\log_{10}b = d \in \mathbb{R}\). Using \(\log\) properties, we already have that
+\[
+    \log_{10}(a \cdot b) = \log_{10}(a) + \log_{10}(b)
+\]
+which shows that the mapping preserves operations. Therefore, we can conclude that the mapping \(a \to \log_{10} a\) is an isomorphism.
+\end{hwproblem}
+
+\begin{hwproblem}
+{12}{
+    Let \(G\) be a group. Prove that the mapping \(\alpha(g) = g^{-1}\) for all \(g \in G\) is an automorphism if and only if \(G\) is Abelian.
+}
+
+First, we will show in the forward direction. Assume that \(\alpha(g) = g^{-1} \ \forall \  g \in G\) is an automorphism. We will show that \(G\) is Abelian. Since \(\alpha\) is an automorphism, we have that the following. Let \(a, b \in G\).
+\[
+\begin{aligned}
+    \alpha(ab) &= \alpha(a)\alpha(b) \\
+    (ab)^{-1} &= a^{-1}b^{-1} \\
+    b^{-1}a^{-1} &= a^{-1}b^{-1} 
+\end{aligned}
+\]
+Thus, \(G\) is Abelian.
+
+Now, we will show in the backward direction. Assume that \(G\) is Abelian. We will show that the mapping \(\alpha(g) = g^{-1}\) is an isomorphism. Since \(G\) is a group, the mapping inherits its 1-to-1 property and onto-ness from the inverse since the inverse is unique and exists for every element in the group. So, it suffices to show that \(\alpha\) is operation-perserving. Namely, that \(\alpha(ab) = \alpha(a)\alpha(b)\). Let \(a, b \in G\). Consider
+\[
+\begin{aligned}
+    b^{-1}a^{-1} &= a^{-1}b^{-1} \\
+    (ab)^{-1} &= a^{-1}b^{-1} \\
+    \alpha(ab) &= \alpha(a)\alpha(b)
+\end{aligned}
+\]
+Thus, \(\alpha\) is an automorphism.
+
+Therefore, we can conclude that the claim in the problem statement is true.
+\end{hwproblem}
+
+\newpage
+\begin{hwproblem}
+{20}{
+    Let $H$ be the subgroup of all rotations in $D_n$ and let $\phi$ be an automorphism of $D_n$. Prove that $\phi(H)=H$. (In words, an automorphism of $D_n$ carries rotations to rotations.)
+}
+
+% First, we will show that it is impossible for an automorphism \(\phi\) of \(D_n\) to carry a rotation to a reflection. Since \(\phi\) is an automorphism, it must be operation-preserving. 
+
+First, note that the subgroup \(H\) is cyclic since we can always use the \textit{smallest rotation}, i.e. the element \(g\) whose order is \(n\) (dependent on \(D_n\)), to generate all rotations. Since \(\phi\) is an automorphism of \(D_n\), then we have that
+\[
+    \phi(g^m) = \phi(g)^m
+\]
+for any \(m \in \mathbb{N}\) by being operation-preserving. Hence, it suffices to only show that \(\phi(g)\) is always a rotation. Let \(k_1 \in \mathbb{Z}^+\) where \(k_1 = qn + r\) for some \(q, r \in \mathbb{Z}, 0 \leq r < n\), and \(n\) is the same one as in \(D_n\). Consider
+\[
+\begin{aligned}
+    \phi(g^{k_1}) &= \phi(g)^{k_1} \\
+    \phi(g^{qn}g^r) &= \phi(g)^{qn}\phi(g)^r \\
+    \phi(g^r) &= \phi(g)^{qn}\phi(g)^r
+\end{aligned}
+\]
+Now, suppose that \(|\phi(g)| \neq n\) and let \(k_2 \in \mathbb{Z}^+\) where \(k_2 = pn + r\), \(p \neq q\), and \(|\phi(g)|\) does not divide \(pn\) nor \(qn\). Then, we have that
+\[
+\begin{aligned}
+    \phi(g^{k_2}) &= \phi(g)^{k_2} \\
+    \phi(g^{pn}g^r) &= \phi(g)^{pn}\phi(g)^r \\
+    \phi(g^r) &= \phi(g)^{pn}\phi(g)^r
+\end{aligned}
+\]
+This would be a contradiction since \(\phi(g)^{pn} \neq \phi(g)^{qn}\) and \(\phi\) is not 1-to-1. Thus, \(\phi(g)\) must have order \(n\) and hence is a rotation since reflections have order 2 and dihedral groups consider when \(n \geq 3\).
+
+Therefore, we can conclude that \(\phi(H) = H\).
+
+Source/Inspiration: \href{https://math.stackexchange.com/questions/335688/let-h-be-the-subgroup-of-all-rotations-in-d-n-and-let-phi-be-an-automor}{https://math.stackexchange.com/questions/335688/}.
+\end{hwproblem}
