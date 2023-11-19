@@ -1,0 +1,83 @@
+\chapter{External Direct Product}
+
+\section{Definitions and Examples}
+
+\begin{definition}[External direct product]
+    Let \(G_1, G_2, \ldots, G_n\) be groups. The \textit{external direct product} of \(G_1, G_2, \ldots, G_n\) is
+    \[
+        G_1 \circledplus G_2 \circledplus \cdots \circledplus G_n = 
+        \left\{(g_1, g_2, \ldots, g_n) : g_i \in G_i\right\}
+    \]
+    with respect to each group operation.
+\end{definition}
+
+\begin{nexample}
+    Consider \(\mathbb{R}^2\). In this context, we can define the following with ``\(+\)'':
+    \[
+        \mathbb{R}^2 = \mathbb{R} \circledplus \mathbb{R}
+    \]
+
+    Similarly,
+    \[
+    \begin{aligned}
+        \mathbb{C} &= \mathbb{R} \circledplus \mathbb{R} \\
+                   &= \left\{x + iy : x, y \in \mathbb{R}\right\} \\
+                   &\cong \left\{(x, y) : x, y \in \mathbb{R}\right\}
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{nexample}
+    Consider \(\mathbb{Z}_3 \circledplus \mathbb{Z}_2\) under \(+\). We would have that
+    \[
+    \begin{aligned}
+        \mathbb{Z}_3 \circledplus \mathbb{Z}_2 
+            &= \left\{(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)\right\}
+    \end{aligned}
+    \]
+    In computation, we have
+    \[
+    \begin{aligned}
+        (0, 1) \circledplus (2, 1) &= (0+2, 1+1) \\
+                                   &= (2, 2) \\
+                                   &= (2, 0)
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{nexample}
+    Consider \(U(3) \circledplus U(4)\). Recall that
+    \[
+    \begin{aligned}
+        U(3) &= \left\{1, 2\right\} \\
+        U(4) &= \left\{1, 3\right\}
+    \end{aligned}
+    \]
+    Thus, 
+    \[
+        U(3) \circledplus U(4) = \left\{(1, 1), (1, 3), (2, 1), (2, 3)\right\}
+    \]
+    In computation, we have
+    \[
+    \begin{aligned}
+        (1, 3) \circledplus (2, 1) &= (1 \cdot 2, 3 \cdot 1) \\
+                                   &= (2, 3)
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{nexample}
+    Let \(G\) be a group of order 4. Observe that \(G \cong \mathbb{Z}_4\) or \(G \cong \mathbb{Z}_2 \circledplus \mathbb{Z}_2\). The second clause comes from the fact that
+    \[
+        \mathbb{Z} \circledplus \mathbb{Z} = \left\{(0, 0), (0, 1), (1, 0), (1, 1)\right\}
+    \]
+\end{nexample}
+
+\section{Applications of EDP}
+
+\begin{theorem}[Order of EDP]
+    Let \(G_1, G_2, ..., G_n\) be groups and \((g_1, g_2, ..., g_n) \in G_1 \circledplus G_2 \circledplus \cdots \circledplus G_n\). We have that
+    \[
+        |(g_1, g_2, ..., g_n)| = \lcm(|g_1|, |g_2|, ..., |g_n|)
+    \]
+\end{theorem}

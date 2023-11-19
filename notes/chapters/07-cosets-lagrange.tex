@@ -1,0 +1,280 @@
+\chapter{Cosets and Lagrange's Theorem}
+
+\section{Definitions}
+
+\begin{definition}[Coset]
+    Let \(H \leq G\) and \(a \in G\).
+
+    \begin{enumerate}
+        \item We define 
+            \[
+                aH = \left\{ah : h \in H\right\}
+            \]
+            to be the \textit{left coset} of \(H\) containing \(a\).
+        \item We define
+            \[
+                Ha = \left\{ha : h \in H\right\}
+            \]
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    Let \(H \leq G\) and \(a, b \in G\). Then, we will have hte following without loss of generality.
+    \begin{enumerate}
+        \item \(a \in aH\), (identity has to be in \(H\))
+        \item \(aH = H\) if and only if \(a \in H\)
+        \item \((ab)H = a(bH)\)
+        \item \(aH = bH\) if and only if \(a \in bH\)
+        \item \(aH = bH\) or \(aH \cap bH = \emptyset\)
+        \item \(aH = bH\) if and only if \(a^{-1}b \in H\)
+        \item \(|aH| = |bH|\)
+        \item \(aH = Ha\) if and only if \(H = aHa^{-1}\)
+        \item \(aH \leq G\) if and only if \(a \in H\)
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \textit{\underline{Part 2.}} First, we will prove the direct case. Assume that \(aH = H\). Since \(e \in H\), we have that \(ae = a \in aH = H\). Then, we will have that \(a \in H\).
+
+    Now, we will show the converse case. Assume that \(a \in H\). Since \(H \leq G\) and \(a \in H\), we have that \(a^{-1} \in H\). We will first show that \(aH \subseteq H\). Let \(x \in aH\). Thus, \(x = ah\) for some \(a, h \in H\). Since \(a, h \in H\) and \(H \leq G\), \(ah \in H\). Next, we will show that \(aH \supseteq H\). Let \(y \in H\). Rewrite \(y = a(a^{-1}y)\). Thus, \(a(a^{-1}y) \in aH\). Hence, \(aH = H\).
+
+    \textit{\underline{Part 5.}} We will show that \(aH = bH\) or \(aH \cap bH = \emptyset\). Recall that \(p \land q \equiv \lnot p \lor q\) in logic.
+
+    Assume that \(aH \neq bH\). Without loss of generality, we can assume that there is a \(x \in aH \setminus bH\). Thus, \(x = ah\) for some \(h \in H\) but \(x \neq bh^*\) for all \(h^* \in H\). Assume to the contrary that \(aH \cap bH \neq \emptyset\). Then, there is \(y \in aH \cap bH\) with \(y = bh_1 = ah_2\) for some \(h_1, h_2 \in H\). Thus, \(ah_1 = y \in bH\).
+
+    \textit{\underline{Part 7.}} Define \(f : aH \to bH\) by \(f(ah) = bh\) for all \(h \in H\). We will show that this function is an isomorphism.
+
+    Assume that \(bh_1 = bh_2\) for \(h_1, h_2 \in H\). Thus, 
+    \[
+    \begin{aligned}
+        b^{-1}(bh_1) &= b^{-1}(bh_2) \\
+        h_1 &= h_2
+    \end{aligned}
+    \]
+    Now, let \(bh_3 \in bH\). Choose \(ah_3 \in aH\). Then, \(f(ah_3) = bh_3\). Thus, \(f\) is bijective and the cardinality is the same.
+\end{proof}
+
+\section{Lagrange's Theorem}
+
+\begin{theorem}[Lagrange's Theorem]
+    Let \(G\) be a finite group and \(H \leq G\). Then, \(|H|\) divides \(|G|\).
+\end{theorem}
+
+\begin{proof}
+    Since \(G\) is finite and \(H \leq G\), there are finite distinct finite number of left cosets \(H, a_1H, a_2H, \ldots, a_kH\) for some \(k \in \mathbb{N}\) and \(a_1, a_2, \ldots, a_k \in G\). We have that
+    \[
+        G = H \cup a_1H \cup \dots \cup a_kH
+    \]
+
+    Since \(H, a_1H, \ldots, a_kH\) is a complete list of left cosets. From the previous theorem, \(|aH| = |bH|\) for all \(a, b \in G\). Hence, \(\left\{H, a_1H, a_2H, \ldots, a_kH\right\}\) is a list of disjoint cosets, and
+    \[
+    \begin{aligned}
+        |G| &= |H| + |a_1H| + \ldots |a_kH| \\
+            &= |H| + |H| + \ldots + |H| \\
+            &= (k+1)|H|
+    \end{aligned}
+    \]
+    Therefore, we can conclude that \(|H|\) divides \(|G|\).
+\end{proof}
+
+\begin{definition}[Index]
+    \(|G| / |H|\) is called the \textit{index} of \(H\) (in \(G\)). We write \([G : H] = |G : H| = |G| / |H|\).
+\end{definition}
+
+\begin{corollary}
+    \[
+        [G:H] = \frac{|G|}{|H|}
+    \]
+\end{corollary}
+
+\begin{corollary}\label{col:col2}
+    \[
+        |a| \mid |G|
+    \]
+\end{corollary}
+
+\begin{corollary}
+    A group of prime order is cyclic.
+\end{corollary}
+
+\begin{proof}
+    Let \(G\) be a group with \(|G| = p\) with \(p\) prime. Let \(a \in G \setminus \left\{e\right\}\). Thus, \(|\langle a \rangle| > 1\). By Corollary \ref{col:col2}, we have that \(|a|\) divides \(|G| = p\). Thus, \(|G| = |a|\). That is, \(G = \langle a \rangle\). Hence, \(G\) is cyclic.
+\end{proof}
+
+\begin{corollary}\label{col:col-3}
+    \[
+        a^{|G|} = e
+    \]
+\end{corollary}
+
+\subsection{Application of Lagrange Theorem}
+
+\begin{theorem}[Fermat's Little Theorem]
+    For \(a \in \mathbb{Z}\) and prime \(p\), we will have that
+    \[
+        a^p \equiv a \pmod p
+    \]
+\end{theorem}
+
+\begin{proof}
+    Let \(p\) be a prime number and let \(a \in \mathbb{Z}\). Then, there are two cases to consider.
+
+    \textit{Case 1.} If \(p \mid a\), then \(a^p \equiv 0 \equiv a \pmod p\).
+
+    \textit{Case 2.} Otherwise, \(p \not{\mid} a\). Consider the group \(U(p) = \left\{[1], [2], \ldots, [p-1]\right\}\). Notice that \(|U(p)| = p-1\). By Corollary \ref{col:col-3}, we have that
+    \[
+    \begin{aligned}
+        a^{p-1} &\equiv [1] \pmod p \\
+        a \cdot a^{p-1} &\equiv a \cdot [1] \pmod p \\
+                        &= a \pmod p
+    \end{aligned}
+    \]
+\end{proof}
+
+\begin{theorem}
+    Let \(H, K \leq G\) where \(G\) is a finite group. We have that
+    \[
+        |HK| = \frac{|H||K|}{|H \cap K|}
+    \]
+    where \(HK = \left\{hk : h \in H, k \in K\right\}\).
+\end{theorem}
+
+\begin{proof}
+    Define \(f : H \times K \to HK\) by
+    \[
+        f(h, k) = hk
+    \]
+    for any \(h \in H\) and \(k \in K\). Let \(|H \cap K| = n \in \mathbb{N}\) where \(H \cap K = \left\{t_1, t_2, \ldots, t_n\right\}\). We will show that \(f\) is an \(n\)-to-1 map onto \(HK\).
+
+    Let \(x = hk \in HK\) where \(h \in H\) and \(k \in K\). There are \(n\) different order pairs: \((ht_1, t_2^{-1}k)\), \((ht_2, t_2^{-1}k)\), \(\ldots\), \((ht_n, t_n^{-1}k)\) such that
+    \[
+    \begin{aligned}
+        f(ht_i, t_i^{-1}k) &= (ht_i)(t_i^{-1}k) \\
+                           &= hk
+    \end{aligned}
+    \]
+    for all \(i = 1, 2, \ldots, n\). Thus, \(f\) is an \(n\)-to-1 map.
+
+    Therefore, we can conclude that
+    \[
+    \begin{aligned}
+        |HK| &= \frac{|HK|}{|H \cap K|} \\
+             &= \frac{|H||K|}{|H \cap K|}
+    \end{aligned}
+    \]
+\end{proof}
+
+\begin{nexample}
+    Consider a group with \(|G| = 75\). Can \(G\) have more than one subgroup of order 25?
+
+    NO! We will now prove it. Assume to the contrary that there are \(H, K \leq G\) and \(|H| = |K| = 25\) and \(H \neq K\). Note that \(H \cap K\) is a subgroup of \(H\) or \(K\). Without loss of generality, \(|H \cap K|\) must divide \(|H|\) by Lagrange's Theorem. So, \(|H \cap K| = 1, 5\) but not 25 since then they would be the same. We will now show by case.
+
+    \textit{Case 1.} Suppose that \(|H \cap K| = 1\). Then, we have that
+    \[
+    \begin{aligned}
+        |HK| &= \frac{|H||K|}{|H \cap K|} \\
+             &= |H||K|
+    \end{aligned}
+    \]
+    It then follows that
+    \[
+        75 = |G| \geq |HK| = |H||K| = 25^2 = 625
+    \]
+    which is a contradiction.
+
+    \textit{Case 2.} Similarly, we will have
+    \[
+    \begin{aligned}
+        |HK| &= \frac{|H||K|}{|H \cap K|} \\
+             &= \frac{25^2}{5} \\
+             &= 125
+    \end{aligned}
+    \]
+    We arrive at the same contradiction as the previous case.
+
+    Therefore, we can conclude that \(G\) can have at most 1 subgroup with order 25.
+\end{nexample}
+
+\begin{remark}
+    Sylow's Theorem can justify that \(G\) has exactly one subgroup of order 25.
+\end{remark}
+
+\begin{theorem}[Classification of Groups of Order \(2p\)]
+    Let \(G\) be a group with \(|G| = 2p\) where \(p\) is a prime. Then, \(G \cong \mathbb{Z}_{2p}\) or \(G \cong D_p\). Note that \(D_p = \langle r, f \rangle\) where \(r\) is a rotation and \(f\) is a reflection.
+\end{theorem}
+
+\begin{proof}
+    \phantom{woah}
+
+    \textit{Case 1.} If \(G\) has an element \(g\) with order \(2p\), then we are done since \(G = \langle g \rangle\).
+
+    \textit{Case 2.} If \(G\) has no element with order \(2p\), we will show that \(G \cong D_p\). Namely, we will show that \(G\) has an element \(g\) with \(|g| = p\).
+
+    Assume to the contrary that any element of \(G\) has order not equal to \(p\). By Lagrange's Theorem, for any element \(g \in G\), \(|g|\) must divide \(2p\). Since \(|g| \neq p \neq 2p\), it follows that \(|g| = 1, 2\). Note that if \(|g|=1\), then \(g = e\). Thus, for any \(g \in G \setminus \left\{e\right\}\), \(|g| = 2\). This implies that \(G\) is abelian. 
+
+    Choose non-identity element \(a, b \in G\) such that \(a \neq b\). Since \(a, b, ab\) have order 2 and \(G\) is abelian, \(H = \left\{e, a, b, ab\right\}\) is a subgroup of \(G\). Since \(H \leq G\) and \(|H| = 4\). By Lagrange's Theorem, \(|H|\) must divide \(|G| = 2p\). This is a contradiction. Thus, there is \(g \in G\) such that \(|g| = p\).
+
+    Choose \(a \in G\) such that \(a \notin \langle g \rangle\). Then, we have that \(|a| = 2, p\). If \(|a| = p\), then we also have that \(\langle a \rangle \cap \langle g \rangle = \left\{e\right\}\). Then, we have that
+    \[
+    \begin{aligned}
+        |\langle a \rangle\langle g \rangle|
+            &= |\langle a \rangle||\langle g \rangle| \\
+            &= p \cdot p \\
+            &= p^2 > p
+    \end{aligned}
+    \]
+    Thus, \(|a| = 2\).
+
+    Finally, we will show that \(ag = ga^{-1}\). Recall that \(G\) is non-cyclic, \(|G| = 2p\), and there are \(a, g \in G\) such that \(|a| = 2, |g| = p\). Observe that
+    \[
+        G = \langle a, g \rangle
+    \]
+    because that \(\langle a \rangle, \langle g \rangle\) are subgroups of \(G\). Let \(H = \langle a \rangle\) with \(|H| = 2\) and \(K = \langle g \rangle\) with \(|K| = p \geq 3\). Then, \(H \cap K = \left\{e\right\}\) and \(HK \subseteq G\). By Lagrange's Theorem, we have that
+    \[
+    \begin{aligned}
+        |HK| &= \frac{|H||K|}{|H \cap K|} \\
+             &= \frac{2p}{1} = 2p
+    \end{aligned}
+    \]
+    Hence, it follows that \(2p \leq |\langle a, g \rangle| \leq |G| = 2p\). Thus, we can conclude that \(G = \langle a, g \rangle\). That is,
+    \[
+    \begin{aligned}
+        (ga)^{-1} &= a^{-1}g^{-1} \\
+                  &= ag^{-1} &\qquad\text{since \(|a| = 2\)}
+    \end{aligned}
+    \]
+    Note that \(ag \notin \langle g \rangle\) since, if \(ag \in \langle g \rangle\), then \(a = agg^{-1} \in \langle g \rangle\)---a contradiction. Thus, \(|ga| = 2\). It also follows that \(ga = (ga)^{-1} = g^{-1}a\).
+
+    Therefore, we can conclude that \(G\) and \(D_p\) have the same group structure where \(g \sim R\) and \(a \sim F\).
+\end{proof}
+
+\subsection{Sylow's Theorem (Sidetrack)}
+
+\begin{definition}[\(p\)-group and \(p\)-subgroup]
+    Let \(G\) be a group and let \(p\) be a prime. A group of order \(p^{k_1}\) for some \(k_1 \geq 1\) is called a \(p\)-group. Similarly, a subgroup of the order \(p^{k_2}\) for some \(k_2\) for some \(k \geq 1\) is called a \(p\)-subgroup.
+\end{definition}
+
+\begin{definition}[Sylow \(p\)-subgroup]
+    If \(|G| = p^\alpha m\) where \(\gcd(p, m) = 1\), then we call a subgroup of order \(p^\alpha\) a \textit{Sylow \(p\)-subgroup} of \(G\). We use the following notations:
+    \begin{itemize}
+        \item \(\Syl_p(G)\).
+        \item \(n_p(G) = |\Syl_p(G)|\)
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}[Sylow's Theorem]
+    Let \(G\) be a group with \(|G| = p^\alpha m\) where \(\gcd(p, m) = 1\). We have the following properties:
+    \begin{enumerate}
+        \item \(\Syl_p(G) \neq \emptyset\), that is, Sylow \(p\)-subgroup exists.
+        \item All Sylow \(p\)-subgroups are \textit{conjugate} in \(G\). That is, if \(P_1\) and \(P_2\) are both Sylow \(p\)-subgroups of \(G\), then there is \(g \in G\) such that \(P_2 = g P_1 g^{-1}\).
+        \item Any \(p\)-subgroup of \(G\) is contained in a Sylow \(p\)-subgroup
+        \item \(n_p(G) \equiv 1 \pmod p\) or \(n_p(G) = pl + 1, l \in \left\{0, 1, \ldots\right\}\)
+    \end{enumerate}
+\end{theorem}
+
+We could use this theorem to prove a previous theorem. The proof would go something like:
+\begin{itemize}
+    \item If \(G \cong \mathbb{Z}_{2p}\), then we are done.
+    \item If \(G\) is not cyclic, then by first part of Sylow's Theorem, we have \(H_2\) a Sylow 2-subgroup and \(H_p\) a Sylow \(p\)-subgroup. That is, there are \(a, g \in G\) such that \(\langle a \rangle = H_2\) and \(\langle g \rangle = H_p\). 
+    \item The subgroup of order \(p\) is unique by the fourth part Sylow's Theorem.
+\end{itemize}
