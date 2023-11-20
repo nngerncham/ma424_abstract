@@ -1,0 +1,76 @@
+\section*{Chapter 7}
+
+\begin{hwproblem}
+{2}{
+    Rewrite the condition \(a^{-1}b \in H\) given the property 6 of the lemma on page 139 in additive notation. Assume that the group is Abelian.
+}
+
+Recall that the condition is as follows. Let \(H\) be a subgroup of \(G\) and \(a, b \in G\). Then, \(aH = bH\) if and only if \(a^{-1}b \in H\). This simply means that the result of applying the binary operator on the inverse of \(a\) and \(b\) is a member of \(H\). Thus, in additive form, we have
+\[
+    \text{Let \(H\) be a subgroup of \(G\) and \(a, b \in G\). Then, \(a+H = b+H\) if and only if \(b-a \in H\)}
+\]
+where \(x+H = \left\{x + h : h \in H\right\}\) for some member \(x \in G\).
+\end{hwproblem}
+
+\begin{hwproblem}
+{6}{
+    Suppose that \(a\) has order 15. Find all left cosets of \(\langle a^5 \rangle\) in \(\langle a \rangle\).
+}
+
+Note that \(|\langle a^5 \rangle| = 15/\gcd(15, 5) = 3\). By a corollary of Lagrange's Theorem, we know that the index of \(H\) (number of distinct left cosets of \(H\) in \(G\)) is \(|G| / |H|\). Thus, we have that there are \(15 / 3 = 5\) distinct left cosets of \(\langle a^5 \rangle\) we need to identify. Let us now identify all the left cosets. They are:
+
+\[
+\begin{aligned}
+    e \langle a^5 \rangle &= \langle a^5 \rangle \\
+    a \langle a^5 \rangle &= \left\{a^6, a^11, a^16 = a\right\} \\
+    a^2 \langle a^5 \rangle &= \left\{a^7, a^12, a^17 = a^2\right\} \\
+    a^3 \langle a^5 \rangle &= \left\{a^8, a^13, a^18 = a^3\right\} \\
+    a^4 \langle a^5 \rangle &= \left\{a^9, a^14, a^19 = a^4\right\}
+\end{aligned}
+\]
+\end{hwproblem}
+
+\newpage
+\begin{hwproblem}
+{10}{
+    Let \(a, b \in G\) and \(H, K\) be subgroups of \(G\). If \(aH = bK\), prove that \(H = K\).
+}
+
+Since \(H\) is a subgroup, it must contain \(e\). Then, we have that \(ae = a \in aH = bK\). Since \(a \in bK\), it follows that \(bK = aK\) by the properties of cosets.
+Consider
+\[
+\begin{aligned}
+    aH &= bK \\
+    aH &= aK \\
+    H &= K
+\end{aligned}
+\]
+Therefore, we can conclude that if \(aH = bK\), then \(H = K\).
+\end{hwproblem}
+
+\begin{hwproblem}
+{16}{
+    Suppose that $K$ is a proper subgroup of $H$ and $H$ is a proper subgroup of $G$. If $|K|=42$ and $|G|=420$, what are the possible orders of $H$ ?
+}
+
+By Lagrange's Theorem, we know that \(|K| = 42\) must divide \(|H|\). Similarly, we know that \(|H|\) must divide \(|G| = 420\). Thus, we need to identify multiples of 42 that divides 420 which are not 42 nor 420. These numbers are 84 and 210.
+\end{hwproblem}
+
+\begin{hwproblem}
+{18}{
+    Recall that, for any integer $n$ greater than $1, \phi(n)$ denotes the number of positive integers less than $n$ and relatively prime to $n$. Prove that if $a$ is any integer relatively prime to $n$, then $a^{\phi(n)} \bmod n=1$.
+}
+
+Since we are considering an integer \(a\) multiplying itself a certain number of times, we can reformulate this problem using the group of integer multiplication under modulo \(n\), \(U(n)\). Since \(\gcd(a, n) = 1\), it follows that \(a \in U(n)\). Using a corollary of Lagrange's Theorem, we know that \(|a|\) must divide \(|U(n)|\) which is \(\phi(n)\) since we can construct \(U(n)\) as the set of coprimes of \(n\).
+
+Let \(k\) denote the order of \(a\). Since \(k \mid \phi(n)\), we have that \(\phi(n) = km\) for some \(m \in \mathbb{Z}\). Consider
+\[
+\begin{aligned}
+    a^{\phi(n)} &= a^{km} &\pmod n \\
+                &= (a^k)^m &\pmod n \\
+                &= 1^m = 1 &\pmod n
+\end{aligned}
+\]
+
+Therefore, we can conclude that if \(a\) is a coprime of \(n\), then \(a^{\phi(n)} = 1 \pmod n\).
+\end{hwproblem}
