@@ -1,0 +1,262 @@
+\chapter{Normal Subgroups and Factor Groups}
+
+Let us briefly recall cosets. If we have \(H \leq G\), then we can form the following cosets (assuming finite group):
+\[
+    \left\{H, g_1H, g_2H, ..., g_nH\right\} = \left\{gH : g \in G\right\}
+\]
+where \(gH = \left\{gh : h \in H\right\}\). Note that, in general, \(gH \neq Hg\).
+
+If we consider the group \(G = \mathbb{Z}\) under some modulo, say 5, then \(H = \left\{5k : k \in \mathbb{Z}\right\}\). Additionally, we get the following cosets: \(\left\{0+H, 1+H, 2+H, 3+H, 4+H\right\} = \left\{[0], [1], [2], [3], [4]\right\}\). With this, is it possible for us to have something to analogous to \textit{modulo} for groups in general? If we are consider normal subgroups, then the answer would be yes. Namely, it would be possible for us to consider
+\[
+    g \equiv g_1 \pmod H
+\]
+To achieve this, we just need the property that \(gH = Hg\) for all \(g \in H\). With this, we would be able to do the following:
+\[
+\begin{aligned}
+    (g_1H)(g_2H) &= g_1(Hg_2)H \\
+                 &= g_1(g_2H)H \\
+                 &= g_1 g_2 H
+\end{aligned}
+\]
+
+\section{Normal Groups}
+
+\begin{definition}[Normal Subgroups]
+    A subgroup \(H \leq G\) is called a \textit{normal subgroup} of \(G\) if \(aH = Ha\) for all \(a \in G\). We denote this by \(H \triangleleft G\).
+\end{definition}
+
+\begin{nexample}
+    If \(G\) is Abelian and \(H \leq G\), then \(H \unlhd G\) by definition.
+\end{nexample}
+
+\begin{nexample}
+    Consider the subgroup \(A_5 \leq S_5\). Recall that \(A_n\) refers to the set of even permutations in \(S_n\). We want to show that \(\alpha A_5 = A_5 \alpha\) for all \(\alpha \in S_5\). It suffices to show that \(\alpha A_5 \alpha^{-1} = A_5\) for all \(\alpha \in S_5\). Let \(\alpha \in S_5\) and \(\beta \in A_5\).
+
+    We will show that \(\alpha \beta \alpha^{-1} \in A_5\). Since we know that \(\beta\) is even and \(\alpha, \alpha^{-1}\) have the same parity, we have that \(\alpha \beta \alpha^{-1}\) is an even as well. Thus, \(\alpha \beta \alpha^{-1} \in A_5\) and \(\alpha A_5 \alpha^{-1} \subseteq A_5\).
+
+    Next, we will show that if \(\beta \in A_5\), then \(\beta \in \alpha A_5 \alpha^{-1}\) for \(\alpha \in S_5\). Consider
+\[
+\begin{aligned}
+    \beta &= \alpha(\alpha^{-1} \beta \alpha)\alpha^{-1} \\
+          &= \beta \in \alpha A_5 \alpha^{-1}
+\end{aligned}
+\]
+Thus, we have that \(A_5 \subseteq \alpha A_5 \alpha^{-1}\).
+
+Together, we can conclude that \(\alpha A_5 \alpha^{-1} = A_5\) for \(\alpha \in S_5\) and \(A \unlhd S_5\).
+\end{nexample}
+
+\begin{theorem}[Normal Subgroup Test]
+    \(H \unlhd G\) if and only if \(x \in G\) and \(xHx^{-1} \subseteq H\).
+\end{theorem}
+
+\begin{proof}
+    First, we will show the forward case. Since \(H \unlhd G\), we have that \(xH = Hx\) for all \(x \in G\). Hence, \(x H x^{-1} = H\) for all \(x \in G\). Thus, we have that \(x H x^{-1} \subseteq H\). for all \(x \in H\).
+
+    We will now show the converse case. Assume that \(xHx^{-1} \subseteq H\) for all \(x \in H\). Let \(x = a \in G\). Then, we have that \(aHa^{-1} \subseteq H\). That is, \(aH \subseteq Ha\). Similarly, letting \(x = a^{-1} \in G\). Then, \(a^{-1}Ha \subseteq H\). That is, \(Ha \subseteq Ha\). Together, we can conclude that \(aH = Ha\) for all \(a \in G\).
+\end{proof}
+
+\begin{remark}
+    The following are equivalent:
+    \begin{enumerate}
+        \item \(H \unlhd G\)
+        \item For all \(x \in G\), \(xH = Hx\)
+        \item For all \(x \in G\), \(xHx^{-1} = H\)
+        \item For all \(x \in G\), \(xHx^{-1} \subseteq H\)
+    \end{enumerate}
+\end{remark}
+
+\begin{nexample}
+    Consider the center \(Z(G) = \left\{z \in G : \ \forall \ g \in G, gz = zg\right\}\). Is this a normal subgroup? \textit{Of course XD}. We will now prove it :)
+
+    We will show that \(xZ(G)x^{-1} \subseteq Z(G)\) for all \(x \in G\). Let \(x \in G\) and \(z \in Z(G)\). Then, we have that \(xzx^{-1} = xx^{-1}z = z \in Z(G)\). Therefore, \(xZ(G)x^{-1} \subseteq Z(G)\) and we can conclude that \(Z(G) \unlhd G\).
+\end{nexample}
+
+\begin{nexample}
+    \(A_n \unlhd S_n\) for any \(n \in \mathbb{N}\).
+\end{nexample}
+
+\begin{nexample}
+    Let \(A\) be the set of all rotations in \(D_n\). We can see that this is a subgroup of \(D_n\). Is this a normal subgroup? We claim that it is.
+
+    If we pick \(x\) to be a rotation, then we are done. If \(x\) is a reflection \(F \in D_n\), we have \(FR = R^{-1}F\). Notice that \(R, R^{-1} \in A\). Thus, \(FRF^{-1} = R^{-1} \in A\). Hence, we can conclude that \(xAx^{-1} \subseteq A\) for all \(x \in G\). Therefore, \(A \unlhd D_n\).
+\end{nexample}
+
+\section{Factor Groups}
+
+\begin{definition}[Factor Groups]
+    \( G / H \) is called a factor group of \(G\) by \(H\).
+\end{definition}
+
+\begin{theorem}[Holder, 1889]
+    Assume that \(H \unlhd G\). Then, 
+    \[
+        \frac{G}{H} = \left\{aH : a \in G\right\}
+    \]
+    is a group under the operation \((aH)(bH) = abH\) for \(a, b \in G\).
+\end{theorem}
+
+\begin{proof}
+    We will show that the operation on \(G / H\) is well-defined. That is, we will prove that \(* : G/H \times G/H \to G/H\) is a function. In English, this means that \(G/H\) is the set of all cosets of \(H\) in \(G\).
+
+    Let \(a, a', b, b' \in G\). Assume that \(aH = a'H\) and \(bH = b'H\). We will show that \(abH = a'b'H\). Since \(aH = a'H\) and \(bH = b'H\), there are \(h_1, h_2 \in H\) such that \(a' = ah_1\) and \(b' = bh_2\). Thus, 
+    \[
+    \begin{aligned}
+        a'b'H &= (ah_1)(bh_2) \\
+              &= a h_1 (b H) \\
+              &= a h_1 (H b)  &\qquad\text{[\(H\) is a normal subgroup]} \\
+              &= a(h_1 H) b \\
+              &= a H b \\
+              &= abH
+    \end{aligned}
+    \]
+    Thus, the operation is well-defined.
+
+    Now, we will show that \(G/H\) is a group.
+    \begin{enumerate}
+        \item \textit{Identity.} We have that \(eH = H\) so it is simply \(e \in G\).
+        \item \textit{Associativity.} Let \(aH, bH, cH \in G/H\). Consider
+            \[
+            \begin{aligned}
+                (aHbH)cH &= (abH)cH \\
+                         &= ((ab)c H) \\
+                         &= a(bc)H \\
+                         &= (aH)(bcH) \\
+                         &= (aH)(bH)(cH)
+            \end{aligned}
+            \]
+        \item \textit{Inverse.} Let \(aH \in G/H\). Claim that \(a^{-1}H\) is an inverse of \(aH\). Then,
+            \[
+            \begin{aligned}
+                (aH)(a^{-1}H) &= aa^{-1}H \\
+                              &= eH \\
+                              &= H
+            \end{aligned}
+            \]
+            Similarly, \((a^{-1}H)(aH) = H\). Thus, \(G / H = \left\{aH : a \in G\right\}\) is a group.
+    \end{enumerate}
+\end{proof}
+
+\section{Applications of Factor Groups}
+
+\begin{theorem}
+    Let \(Z(G)\) be the center of \(G\). If \(G / Z(G)\) is cyclic, then \(G\) is Abelian.
+\end{theorem}
+
+\begin{proof}
+    Note that \(G\) is Abelian if and only if . We will show that \(G / Z(G) = \left\{Z(G)\right\}\). Since, \(G / Z(G)\) is cyclic, there is \(g \in G\) such that \(G / Z(G) = \langle gZ(G) \rangle\).
+
+    Let \(a \in G\). We would have that there is \(i \in \mathbb{Z}\) such that
+\[
+\begin{aligned}
+    aZ(G) &= (gZ(G))^i \\
+          &= g^iZ(G)
+\end{aligned}
+\]
+Thus, \(a = g^iz\) for some \(z \in Z(G)\). Similarly, for any \(b \in G\), \(b = g^jz'\) for some \(j \in \mathbb{Z}\) and \(z' \in Z(G)\). We have \(ab = (g^iz)(g^jz)\). Since these are in the center, we have
+\[
+\begin{aligned}
+    ab &= (g^iz)(g^jz) \\
+       &= g^ig^jzz' \\
+       &= (g^jz')(g^iz) \\
+       &= ba
+\end{aligned}
+\]
+Thus, \(G\) is Abelian. Therefore, we can conclude that \(G/Z(G) = \left\{Z(G)\right\}\).
+\end{proof}
+
+\begin{theorem}[Cauchy's Theorem for Abelian Groups]
+     Let \(G\) be a finite Abelian group and \(p \mid |G|\). Then, there is a subgroup of order \(p\).
+\end{theorem}
+
+\begin{proof}
+    (Sketch.) Choose \(x \in G \left\{e\right\}\). Let \(H = \langle x \rangle\). Consider the factor group \(G/H\). We can do this since \(G\) is Abelian. Using Mathematical Induction, we can show that there is a subgroup \(\overline{H} < G/H\) with \(|\overline{H}| = p\).
+\end{proof}
+
+\begin{remark}
+    Cauchy's Theorem is a special case of Sylow's Theorem (\(p^i|G| \implies \ \exists \  H \leq G\ s.t. |H| = p^i\)). 
+\end{remark}
+
+\section{Internal Direct Products}
+
+\begin{definition}[Internal Direct Products]
+    A group \(G\) is the \textit{internal direct product} of \(H, K \leq G\) if the following satisfies:
+    \begin{enumerate}
+        \item \(H, K \unlhd G\)
+        \item \(H \cap K = \left\{e\right\}\)
+        \item \(HK = G\)
+    \end{enumerate}
+    We denote this by \(G = H \times K\).
+\end{definition}
+
+\begin{nexample}
+    Recall that we define \(U(n) = \left\{x \in \mathbb{Z}_n : \gcd(x, n) = 1\right\}\). We further defined \(U_k(n) = \left\{{x} \in U(n) : x \equiv 1 \pmod k\right\}\).
+
+    Let \(s = 5, t = 7\). Then, we would have that \(U(st) \cong U(s) \circledplus U(t)\). Then, we have
+    \[
+    \begin{aligned}
+        U(s) &\cong U_s(st) \\
+        U(t) &\cong U_t(st) \\
+        \text{and } U(st) &= U_s(st) \times U_t(st)
+    \end{aligned}
+    \]
+\end{nexample}
+
+\begin{definition}[General Definition of IDP]
+    Let \(H_1, H_2, ..., H_n \unlhd G\). We say that \(G\) is the internal direct product of \(H_1, H_2, ..., H_n\) if the following satisfies:
+    \begin{enumerate}
+        \item \(G = H_1 H_2 \cdots H_n\)
+        \item \(H_1 H_2 \cdots H_i \cap H_{i+1} = \left\{e\right\}\) for any \(i = 1, 2, \ldots, n-1\)
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Let \(G = H_1 \times H_2 \times \cdots \times H_n\). Then, \(H_1 \times H_2 \cdots H_n \cong H_1 \circledplus H_2 \circledplus \cdots \circledplus H_n\).
+\end{theorem}
+
+\begin{proof}
+    We will only show for the case of \(n=2\) but this can be further extended for arbitrary \(n \geq 2\). Assume that \(G = H \times K\) such that \(H, K \unlhd G\), \(HK = G\), and \(H \cap K = \left\{e\right\}\). Define \(T : H \times K \to H \circledplus K\) as follows: For each \(hk \in H \times K\),
+    \[
+        T(hk) = (h, k) \in H \circledplus K
+    \]
+
+    First, we will prove that \(T\) is well defined. Assume that \(hk = h'k'\). We will show that \((h, k) = (h', k')\). Since \(hk = h'k'\), we have that
+    \[
+        \underbrace{(h')^{-1}h}_{\in H} = \underbrace{k'k^{-1}}_{\in K}
+    \]
+    Thus, we have that \((h')^{-1}h, k'k^{-1} \in H \cap K\). Then, we have that \((h')^{-1}h = e = k'k^{-1}\). Since inverses are unique, it follows that \(h=h'\) and \(k=k'\).
+
+    Next, we will show that \(T\) is 1-to-1. Assume that \(T(h_1 k_1) = T(h_2 k_2)\) where \(h_1, h_2 \in H\) and \(k_1, k_2 \in K\). Thus, \((h_1, k_1) = (h_2, k_2)\). Thus, \(h_1 = h_2\) and \(k_1 = k_2\) and we have \(h_1 k_1 = h_2 k_2\).
+
+    Now, we will show that \(T\) is onto. Let \((h, k) \in H \circledplus K\). Choose \(hk \in H \times K = HK\). Then, we will have that \(T(hk) = (h, k)\).
+
+    Finally, we will show that \(T\) is operation-preserving. Consider \(h_1 k_1, h_2 k_2 \in H \times K\). Recall that the group binary operation \({}\cdot{}\) on \(H \circledplus K\) is \((h, k) \cdot (h', k') = (hh', kk')\). We define the binary operation \({}*{}\) on \(H \times K\) to be
+    \[
+    \begin{aligned}
+        (h_1 k_1) * (h_2 k_2) &= (h_1 h_2) (k_1 k_2)
+    \end{aligned}
+    \]
+    Then, we have
+    \[
+    \begin{aligned}
+        T((h_1 k_1) * (h_2 k_2)) &= T((h_1 h_2)(k_1 k_2)) \\
+                                 &= (h_1 h_2, k_1 k_2) \\
+                                 &= (h_1, k_1) \cdot (h_2, k_2) \\
+                                 &= T(h_1 k_1) \cdot T(h_2 k_2)
+    \end{aligned}
+    \]
+\end{proof}
+
+\subsection{Applications of IDP}
+
+\begin{theorem}
+    Let \(|G| = p^2\). Then, we have the following properties:
+    \begin{enumerate}
+        \item \(G \cong \mathbb{Z}_{p^2}\)
+        \item \(G \cong \mathbb{Z}_p \circledplus \mathbb{Z}_p\)
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    If \(|G| = p^2\), then \(G\) is Abelian.
+\end{corollary}
