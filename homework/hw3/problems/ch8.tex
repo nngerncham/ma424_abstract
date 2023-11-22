@@ -1,0 +1,172 @@
+\section*{Chapter 8}
+
+\begin{hwproblem}
+{2}{
+    Prove that \((1, 1)\) is an element of largest order in \(\mathbb{Z}_{n_1} \circledplus \mathbb{Z}_{n_2}\). State the general case.
+}
+
+Recall that for groups \(G_1, G_2\) and \((g_1, g_2) \in G_1 \circledplus G_2\), we can compute the order as follows:
+\[
+    |(g_1, g_2)| = \lcm(|g_1|, |g_2|)
+\]
+Now, recall that for any \(n \in \mathbb{N}\), we have that
+\begin{itemize}
+    \item \(|1| = n\)
+    \item \(\mathbb{Z}_n = \langle 1 \rangle\)
+\end{itemize}
+Hence, it follows that \(|(1, 1)| = \lcm(n_1, n_2)\) in \(\mathbb{Z}_{n_1} \circledplus \mathbb{Z}_{n_2}\).
+
+Recall also that for any \(k = 0, 2, 3, \ldots, n-1\), we can generate a subgroup \(\langle k \rangle\) with order \(n / \gcd(n, k)\) which means that the order of each \(i\) is at most \(n\). By Lagrange's Theorem, this order must also divide \(n\). Thus, 1 has the largest order by itself in \(\mathbb{Z}_n\).
+
+Let \(i \in \mathbb{Z}_{n_1}\) and \(j \in \mathbb{Z}_{n_2}\). Then,
+\[
+\begin{aligned}
+    |(i, j)| &= \lcm(|i|, |j|)
+\end{aligned}
+\]
+Claim that \(\lcm(|i|, |j|) \leq \lcm(n_1, n_2)\) for any choice of \(i, j\). Let \(m_1 = n_1 / |i|\) and \(m_2 = n_2 / |j|\). We know this to be possible since \(i, j\) divides \(n_1, n_2\) respectively. Consider
+% \[
+% \begin{aligned}
+%     \lcm(|i|, |j|) \leq |i| |j| \\
+% \end{aligned}
+% \]
+% and
+\[
+\begin{aligned}
+    \lcm(n_1, n_2) = \lcm(|i|m_1, |j|m_2) \geq \lcm(|i|, |j|) = |(i, j)|
+\end{aligned}
+\]
+Therefore, we can conclude that \((1, 1)\) is the element with the largest order in \(\mathbb{Z}_{n_1}\circledplus\mathbb{Z}_{n_2}\).
+
+The general case: Let \(G_1 = \langle a_1 \rangle\) and \(G_2 = \langle a_2 \rangle\) where they are both finite. Then, we will have that \((a_1, a_2)\) is the element with the largest order in \(G_1 \circledplus G_2\).
+
+\end{hwproblem}
+
+\begin{hwproblem}
+{4}{
+    Show that \(G \circledplus H\) is Abelian if and only if \(G\) and \(H\) are Abelian. State the general case.
+}
+
+Recall that the group operation \({}*{}\) in \(G_1 \circledplus G_2\) is
+\[
+    (a, b) * (c, d) = (a c, b d)
+\]
+
+For the forward case, consider
+\[
+\begin{aligned}
+    (g_1 g_2, h_1 h_2)
+        &= (g_1, h_1) * (g_2, h_2) \\
+        &= (g_2, h_2) * (g_1, h_1) \\
+        &= (g_2 g_1, h_2 h_1)
+\end{aligned}
+\]
+
+For the converse case, consider
+\[
+\begin{aligned}
+    (g_1, h_1) * (g_2, h_2)
+        &= (g_1 g_2, h_1 h_2) \\
+        &= (g_2 g_1, h_2 h_1) \\
+        &= (g_2, h_2) * (g_1, h_1)
+\end{aligned}
+\]
+
+Therefore, we can conclude that \(G \circledplus H\) is Abelian if and only if \(G\) and \(H\) are Abelian. I also think that this is already the general case.
+\end{hwproblem}
+
+\begin{hwproblem}
+{6}{
+    Prove, by comparing orders of elements, that $Z_8 \oplus Z_2$ is not isomorphic to $Z_4 \oplus Z_4$.
+}
+
+Let us first identify the possible orders of elements in each group:
+\begin{itemize}
+    \item In \(\mathbb{Z}_2\), the possible orders are 1, 2
+    \item In \(\mathbb{Z}_4\), the possible orders are 1, 2, 4
+    \item In \(\mathbb{Z}_8\), the possible orders are 1, 2, 4, 8
+\end{itemize}
+Then, let us identify the possible orders of the EDPs:
+\begin{itemize}
+    \item For \(\mathbb{Z}_4 \circledplus \mathbb{Z}_4\), we can take the lcm of all possible orders and get:
+        \[
+        \begin{aligned}
+            \lcm(1, 1) &= 1 & \lcm(1, 2) &= 2 \\
+            \lcm(1, 4) &= 4 & \lcm(2, 4) &= 4
+        \end{aligned}
+        \]
+    \item For \(\mathbb{Z}_2 \circledplus \mathbb{Z}_8\), we can take the lcm of all possible orders and get:
+        \[
+        \begin{aligned}
+            \lcm(1, 1) &= 1 & \lcm(1, 2) &= 2 \\
+            \lcm(1, 4) &= 4 & \lcm(1, 8) &= 8 \\
+            \lcm(2, 1) &= 2 & \lcm(2, 2) &= 2 \\
+            \lcm(2, 4) &= 4 & \lcm(2, 8) &= 8
+        \end{aligned}
+        \]
+\end{itemize}
+
+Observe that it is possible to have order 8 in \(\mathbb{Z}_2 \circledplus \mathbb{Z}_8\) but not in \(\mathbb{Z}_4 \circledplus \mathbb{Z}_4\). Claim that element(s) in \(\mathbb{Z}_2 \circledplus \mathbb{Z}_8\) with order 8 cannot be mapped to anything in \(\mathbb{Z}_4 \circledplus \mathbb{Z}_4\).
+
+Let \(x \in \mathbb{Z}_2 \circledplus \mathbb{Z}_4\) be such that \(|x| = 8\). Assume to the contrary that there is isomorphism \(\phi\) between the two. Then, there must be element \(y \in \mathbb{Z}_4 \circledplus \mathbb{Z}_4\) such that \(\phi(x) = y\). Consider the following cases:
+\begin{itemize}
+    \item If \(|y| = 1\) or \(2\), then
+        \[
+            \phi(x) = y = y^2 = \phi(x^2)
+        \]
+        This is impossible otherwise \(\phi\) is not 1-to-1 since \(x \neq x^2\) but \(\phi(x) = \phi(x^2)\).
+    \item If \(|y| = 4\) or \(2\), then
+        \[
+            \phi(x) = y = y^4 = \phi(x^4)
+        \]
+        This is impossible otherwise \(\phi\) is not 1-to-1 since \(x \neq x^4\) but \(\phi(x) = \phi(x^4)\).
+\end{itemize}
+
+Therefore, we can conclude that they are not isomorphic to each other.
+\end{hwproblem}
+
+\begin{hwproblem}
+{8}{
+    Is \(\mathbb{Z}_3 \circledplus \mathbb{Z}_9\) isomorphic to \(\mathbb{Z}_{27}\)? Why?
+}
+
+They are not isomorphic. Abusing notation, note that when we refer to an integer, we refer to its equivalent classes. Consider the possible orders of
+\begin{itemize}
+    \item \(\mathbb{Z}_3\): 1 and 3. Namely,
+    \item \(\mathbb{Z}_9\): 1, 3, and 9. Namely,
+    \item \(\mathbb{Z}_{27}\): 1, 3, 9, and 27. Namely,
+\end{itemize}
+Notice that no matter which combination \((a_3, a_9)\) from \(\mathbb{Z}_3 \circledplus \mathbb{Z}_9\), \(\lcm(|a_3|, |a_9|)\) can never be 27 while there are plenty of elements with order 27 in \(\mathbb{Z}_{27}\). Therefore, we can conclude that they are not isomorphic.
+\end{hwproblem}
+
+\begin{hwproblem}
+{12}{
+    Give examples of four groups of order 12 , no two of which are isomorphic. Give reasons why no two are isomorphic.
+}
+
+Consider the following groups and a few notable properties:
+\begin{itemize}
+    \item \(\mathbb{Z}_3 \circledplus \mathbb{Z}_4\)'s elements have orders: 1, 2, 3, 4, 6, 12 and the elements are
+        \[
+            \left\{ (0, 0), (0, 1), (0, 2), (0, 3),
+            (1, 0), (1, 1), (1, 2), (1, 3),
+            (2, 0), (2, 1), (2, 2), (2, 3)\right\}
+        \]
+    \item \(\mathbb{Z}_{2} \circledplus \mathbb{Z}_{6}\)'s elements have orders: 1, 2, 3, 6 and the elements are
+        \[
+            \left\{(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5)
+            (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5)\right\}
+        \]
+    \item \(D_6\)'s elements have orders: 1, 2, 3, 4, 6 and the group is not Abelian and the elements are
+        \[
+            \left\{e, R, R^2, R^3, R^4, R^5,
+            F_1, F_2, F_3, F_4, F_5, F_6\right\}
+        \]
+    \item \(A_4\)'s elements have orders: 1, 3, 4 and the group is not Abelian and the elements are
+        \[
+            \left\{(1), (1\ 2\ 3), (1\ 2\ 4), (1\ 3\ 2), (1\ 3\ 4), (1\ 4\ 2), (1\ 4\ 3), (2\ 3\ 4), (2\ 4\ 3), (1\ 2)(3\ 4), (1\ 3)(2\ 4), (1\ 4)(2\ 3)\right\}
+        \]
+\end{itemize}
+
+Clearly, \(\mathbb{Z}_3 \circledplus \mathbb{Z}_4, \mathbb{Z}_2 \circledplus \mathbb{Z}_6 \ncong D_6, A_4\) pair-wise since the first two are Abelian and the second two are not. Then, \(\mathbb{Z}_3 \circledplus \mathbb{Z}_4 \ncong \mathbb{Z}_2 \circledplus \mathbb{Z}_6\) since it has elements with order 4 and 12 but the other doesn't. Similarly, \(D_6 \ncong A_4\) since it has elements with order 2 and 6 but the other doesn't.
+\end{hwproblem}
