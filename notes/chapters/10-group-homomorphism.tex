@@ -1,0 +1,200 @@
+\chapter{Group Homomorphisms}
+
+Remember that
+\begin{itemize}
+    \item Homo means like
+    \item Morphism refers to change form
+\end{itemize}
+
+\section{Definitions and Examples}
+
+\begin{definition}[Homomorphism]
+    A \textit{homomorphism} \(\phi : G \to \overline{G}\) is a function from \(G\) to \(\overline{G}\) that is operation-preserving. That is, \(\phi(ab) = \phi(a)\phi(b)\) for all \(a, b \in G\).
+\end{definition}
+
+Notice that with homomorphism, it does not require \(\phi\) to be 1-to-1 or onto. You can think of this as a relaxation of isomorphism.
+
+\begin{nexample}
+    Consider \(\phi: \mathbb{Z} \to \mathbb{Z}_5\). We would have
+    \[
+    \begin{aligned}
+        \phi(x) &= x \mod 5
+    \end{aligned}
+    \]
+    We can see that \(\phi(ab) = \phi(a)\phi(b)\) for any \(a, b \in \mathbb{Z}\). Therefore, we have that \(\phi\) is a homomorphism but no an isomorphism.
+\end{nexample}
+
+\begin{remark}
+    If \(\phi : G \to \overline{G}\) is an isomorphism, then \(\phi\) is also a homomorphism.
+\end{remark}
+
+\begin{nexample}
+    Recall that \(\mathbb{R}[x] = \left\{f : \mathbb{R} \to \mathbb{R} : f(x) = a_n x^n + \cdots + a_0 x^0\right\}\). Consider the map \(\phi : \mathbb{R}[x] \to \mathbb{R}[x]\) by
+    \[
+        \phi(f(x)) = f'(x)
+    \]
+    Then, we can see that
+    \[
+    \begin{aligned}
+        \phi(f(x) g(x)) &= [f(x) + g(x)]' \\
+                        &= f'(x) + g'(x) \\
+                        &= \phi(f(x)) + \phi(g(x))
+    \end{aligned}
+    \]
+    Thus, \(\phi\) is a homomorphism. However, \(\phi\) is not an isomorphism.
+
+    Choose \(f_1(x) = 2\) and \(f_2(x) = 5\). We can see that \(f_1, f_2 \in \mathbb{R}[x]\). Then,
+    \[
+    \begin{aligned}
+        \phi(f_1(x)) &= 2x \\
+                     &= \phi(f_2(x)) \\
+    \end{aligned}
+    \]
+    However, \(f_1(x) \neq f_2(x)\). So, \(\phi\) is not 1-to-1 and is not an isomorphism.
+\end{nexample}
+
+\begin{definition}[Kernel]
+    Let \(\phi : G \to \overline{G}\) be a homomorphism and \(\overline{e}\) is the identity of \(\overline{G}\). Then, the \textit{kernel} of \(\phi\) is the set
+    \[
+        \ker(\phi) = \left\{x \in G : \phi(x) = \overline{e}\right\}
+    \]
+\end{definition}
+
+\begin{theorem}
+    Let \(\phi : G \to \overline{G}\) be a homomorphism and \(g \in G\). Then, we have the following properties:
+    \begin{enumerate}
+        \item \(\phi(e) = \overline{e}\) where \(e\) and \(\overline{e}\) are identities of \(G\) and \(\overline{G}\), respectively
+        \item \(\phi(g^n) = \phi(g)^n\) for any \(n \in \mathbb{Z}\)
+        \item If \(|g| < \infty\), then \(|\phi(g)|\) divides \(|g|\)
+        \item \(\ker\phi\) is a subgroup of \(G\)
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \phantom{gg}
+
+    \textit{Part 1.} Let \(e \in G\) be the identity of \(G\). Then, we will have that
+    \[
+    \begin{aligned}
+        \phi(e) &= \phi(e e) \\
+        \phi(e) &= \phi(e) \phi(e) \\
+        \phi(e)\overline{e} &= \phi(e)\phi(e) \\
+        \overline{e} &= \phi(e)
+    \end{aligned}
+    \]
+    \(\phi(e) = \phi(e e) = \phi(e)\phi(e)\).
+
+    \textit{Part 2.} Consider
+    \[
+    \begin{aligned}
+        \phi(g^n) &= \phi(\underbrace{g g \cdots g}_\text{\(n\) times}) \\
+                  &= \underbrace{\phi(g) \phi(g) \cdots \phi(g)}_\text{\(n\) times} \\
+                  &= \phi(g)^n
+    \end{aligned}
+    \]
+
+    \textit{Part 3.} Assume that \(|g| = k < \infty\). Then, we will have that
+    \[
+    \begin{aligned}
+        \overline{e} &= \phi(e) \\
+                     &= \phi(g^k) \\
+                     &= \phi(g)^k
+    \end{aligned}
+    \]
+    Thus, \(|\phi(g)|\) must divide \(k\).
+
+    \textit{Part 4.} First, we already have that \(\ker\phi \subseteq G\). We will now use the 2-step Subgroup Test to show that \(\ker\phi \leq G\).
+    \begin{enumerate}
+        \item Let \(a, b \in \ker\phi\). Thus, \(\phi(a) = \overline{e} = \phi(b)\). Then, 
+            \[
+            \begin{aligned}
+                \phi(ab) &= \phi(a) \phi(b) \\
+                         &= \overline{e} \overline{e} \\
+                         &= \overline{e}
+            \end{aligned}
+            \]
+        \item Let \(a \in \ker\phi\). Therefore,
+            \[
+            \begin{aligned}
+                \phi(a) &= \overline{e} \\
+                (\phi(a))^{-1} &= (\overline{e})^{-1} \\
+                (\phi(a))^{-1} &= \phi(a^{-1})
+            \end{aligned}
+            \]
+            Thus, \(\phi(a^{-1}) = \overline{e}\) and \(a^{-1} \in \ker\phi\).
+    \end{enumerate}
+        Therefore, by the 2-step subgroup test, we can conclude that \(\ker\phi \leq G\).
+\end{proof}
+
+\begin{definition}[]
+    Let \(g \in G\). Define
+    \[
+        g\ker\phi = \left\{x \in G : \phi(x) = \phi(g)\right\}
+    \]
+\end{definition}
+
+Notice that letting \(a \in \ker\phi\). Then,
+\[
+\begin{aligned}
+    \phi(ga) &= \phi(g)\phi(a) \\
+             &= \phi(g)\overline{e} 
+\end{aligned}
+\]
+That is, you can consider \(g\ker\phi\) to be the left coset of the kernel as well.
+
+\begin{theorem}[Subgroups under Homomorphism]
+    \phantom{gg}
+
+    \begin{enumerate}
+        \item \(\phi(a) = \phi(b)\) if and only if \(a\ker\phi = b\ker\phi\)
+        \item If \(\phi(g) = g'\), then \(\phi^{-1}(g') = \left\{x \in G : \phi(x) = g'\right\} = g\ker\phi\)
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \phantom{g fucking g}
+
+    \textit{Part 1.} We will first prove the forward case. Assume that \(\phi(a) = \phi(b)\) and let \(x \in a\ker\phi\). Thus, \(\phi(x) = \phi(a) = \phi(b)\). Hence, it follows that \(x \in b\ker\phi\). That is, \(a\ker\phi \subseteq b\ker\phi\). Similarly, we can prove that \(b\ker\phi \subseteq a\ker\phi\) using the same maneuver. Thus, \(a\ker\phi = b\ker\phi\).
+
+    Now, we will prove the converse case. Assume that \(a\ker\phi = b\ker\phi\). Note that \(a \in a\ker\phi\) and \(b \in b\ker\phi\). Since \(a\ker\phi = b\ker\phi\), we also have that \(a \in b\ker\phi\) and \(b \in a\ker\phi\). Thus, \(\phi(a) = \phi(b)\).
+
+    \textit{Part 2.} Assume that \(\phi(g) = g'\). We will show that \(\phi^{-1}(g') = g\ker\phi\). Let \(x \in \phi^{-1}(g') = \left\{a \in G : \phi(a) = g' = \phi(g)\right\}\). Thus, \(\phi(x) = g' = \phi(g)\) and we have that \(x \in g\ker\phi\).
+
+    Now, we will show that \(y \in g\ker\phi\). Then, \(\phi(y) = \phi(g) = g'\) and we have that \(y \in \phi^{-1}(g')\).
+\end{proof}
+
+\begin{theorem}[Subgroups under Homomorphism]
+    Let \(\phi : G \to \overline{G}\) be a group with homomorphism such that \(H \leq G\). Then, we have the following properties:
+    \begin{enumerate}
+        \item \(\phi(H) \leq \overline{G}\)
+        \item If \(H\) is cyclic, then \(\phi(H)\) is cyclic as well
+        \item If \(H\) is Abelian, then \(\phi(H)\) is Abelian as well
+        \item If \(H\) is normal, then \(\phi(H)\) is normal as well
+        \item If \(|\ker\phi| = n\), then \(\phi\) is an \(n\)-to-1 mapping
+        \item \(|\phi(H)|\) divides \(|H|\)
+        \item If \(\overline{K} \leq G\), then \(\phi^{-1}(K) \leq G\)
+        \item If \(\overline{K} \unlhd G\), then \(\phi^{-1}(\overline{K}) \unlhd \overline{G}\)
+        \item If \(\phi\) is onto and \(\ker\phi = \left\{e\right\}\), then \(\phi\) is an isomorphism from \(G\) to \(\overline{G}\)
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \phantom{gg}
+
+    \textit{Part 1.} We will show that \(\phi(H) \leq \overline{G}\) using the 2-step subgroup test. First, let \(x, y \in \phi(H)\). Thus, there are \(a, b \in H\) such that \(x = \phi(a)\) and \(y = \phi(b)\). Therefore, \(xy = \phi(a)\phi(b) = \phi(ab) \in \phi(H)\).
+
+    Now, let \(x \in \phi(H)\). We will show that \(x^{-1} \in \phi(H)\). Thus, there is \(a \in H\) such that \(x^{-1} = \phi(a)\). Hence, by the 2-step subgroup test, \(\phi(H) \leq G\).
+
+    \textit{Part 2.} Let \(H = \langle g \rangle\) and let \(x \in \phi(H)\). There is \(a = g^i \in H\) such that \(\phi(a) = x\) for some \(i \in \mathbb{Z}\). Thus, \(x = \phi(a) = \phi(g^i) = (\phi(g))^i\). We have that \(\phi(H) = \langle \phi(g) \rangle\).
+
+    \textit{Part 4.} We will show that if \(H \unlhd G\), then \(\phi(H) \unlhd \overline{G}\). Assume that \(H \unlhd G\). We will show that for any \(x \in \overline{G}\), \(x\phi(H)x^{-1} \subseteq \phi(H)\). 
+
+    Let \(x \in \overline{G}\) and \(g' \in \phi(H)\). Therefore, there are \(a \in G\) and \(g \in H\) such that \(x = \phi(a)\) and \(g' = \phi(g)\). Then,
+    \[
+    \begin{aligned}
+        xg'x^{-1} &= \phi(a) \phi(g) \phi(a^{-1}) \\
+                  &= \phi(aga^{-1})
+    \end{aligned}
+    \]
+    Since \(H \unlhd G\), \(aga^{-1} \in H\). Therefore, \(xg'x^{-1} \in \phi(H)\). We have \(x\phi(Hx^{-1) \subseteq \phi(H)})\) for any \(x \in \phi(G)\). Thus, \(\phi(H) \unlhd \phi(G)\).
+\end{proof}
