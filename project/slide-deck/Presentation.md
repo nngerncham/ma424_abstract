@@ -20,7 +20,7 @@ style: |
 
 <!-- _class: lead -->
 
-# (Hand-waving) Shor's Algorithm
+## (Non-Quantum Parts of) Shor's Algorithm
 
 ##### By Nawat Ngerncham
 
@@ -49,7 +49,7 @@ def generate_rsa_keys():
     p, q = large_prime(size=2)
     N = p * q  # ~2000-4000 bits long, i.e. N in [2^2000, 2^4000]
     e = pick_with_prop(1 < e < phi(N), gcd(e, phi(N)) == 1)
-    d = pick_with_prop(de == 1 (mod n))
+    d = pick_with_prop(de == 1 (mod phi(N)))
     return e, d, N
 ```
 
@@ -60,6 +60,8 @@ def generate_rsa_keys():
 ---
 
 <!-- _header: Shor's Algorithm -->
+
+# Shor's Algorithm
 
 ```python
 def shors_algorithm(N):
@@ -80,16 +82,16 @@ def shors_algorithm(N):
 #### Why do we get the factors from $g \mapsto g^p \pm 1$?
 
 $$
-    g^p \equiv 1 \pmod n \iff g^p = m \cdot n + 1
+    g^p \equiv 1 \pmod N \iff g^p = m \cdot N + 1
 $$
 
 Then, for some integer $m$,
 
 $$
 \begin{align*}
-    g^p &= mn + 1\\
-    g^p - 1 &= mn \\
-    (g^{p / 2} + 1)(g^{p / 2} - 1) &= mn
+    g^p &= mN + 1\\
+    g^p - 1 &= mN \\
+    (g^{p / 2} + 1)(g^{p / 2} - 1) &= mN
 \end{align*}
 $$
 
@@ -99,8 +101,14 @@ So, $mn$ has factors as shown above and to get factors of just $n$, we can take 
 
 <!-- _header: Throwing in the Quantum Madness -->
 
-- On a classical computer, compute $|g| \pmod N$ by brute forcing
-- On a quantum computer, we can use **Quantum Fourier Transform**
+On a quantum computer, define the following operation:
+$$
+\begin{align*}
+    \text{Input: } \lvert \psi \rangle &= \lvert p_1 \rangle + \lvert p_2 \rangle + \lvert p_3 \rangle + \cdots \\
+        &\mapsto \lvert p_1, r_1 \rangle + \lvert p_2, r_2 \rangle + \lvert p_3, r_3 \rangle + \cdots
+\end{align*}
+$$
+where $p_i, r_i$ are such that $g^{p_i} = mN + r_i$.
 
 ---
 
