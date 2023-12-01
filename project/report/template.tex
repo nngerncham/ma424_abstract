@@ -3,17 +3,151 @@
 \input{preamble.tex}
 \input{macros.tex}
 
-\title{\Huge{$\langle$Homework Number$\rangle$}
+\title{\Huge{Shor's Algorithm (Non-Quantum Part)}
 	\\
-	\Large\scshape{$\langle$Subject$\rangle$}}
-\author{$\langle$Author Name$\rangle$}
+	\Large\scshape{Abstract Algebra}}
+\author{Nawat Ngerncham}
 \date{\today}
 
 \begin{document}
 
 \maketitle
-	
-% To add a problem/chapter, use \input
-Hello
+
+\section{Abstract}
+
+In 1994, Shor's Factorization Algorithm was designed by American mathematician Peter Shor to be a quantum algorithm that can very quickly find the prime factors of large integers which is the core of public-key cryptography used in modern day data encryption and security. The algorithm itself uses a handful results from Number Theory and Quantum Mechanics which I think may be interesting to share.
+
+\section{RSA Cryptosystem}
+
+Before we look into how Shor's Algorithm works, we must first understand why it is such a security risk by understanding the algorithm whose security relies on the difficulty prime factoring of large numbers: RSA.
+
+\subsection{Public-key Cryptosystem}
+
+First, let us describe what a public-key cryptosystem is. In short, a \textit{public-key cryptosystem} is a cryptosystem where the encryption key is available to the public but a different decryption key is kept private by the publisher. This means that anyone can use the encryption key to encrypt a message and send it to the publisher without worry that the message will be understood by an adversary.
+
+\subsection{Encrypting and Decrypting with RSA}
+
+Now, we will describe RSA. RSA, short for the names of its 3 inventors: Rivest, Shamir, and Adleman, is a public-key cryptosystem that is currently being widely used for security in many modern systems. The encryption and decryption key relies on a large integer \(N\) that is the product of two prime numbers \(p, q\). In general, \(N\) is around 2000 to 4000 bits long which makes factoring \(N\) into its prime factors very difficult on a classical computer. Following are how one can use RSA to encrypt a message.
+
+Suppose that you have some plaintext that is encoded into an integer $m$. The encoding scheme itself does not matter much as long as it is consistent. Given non-negative integers (keys) $e, d, N$ such that $0 \leq m < N$, we encrypt the message by 
+$$ m \mapsto m^e \pmod N $$
+and decrypt the message by
+$$ m^e \mapsto (m^e)^d \pmod N $$
+
+\subsection{Generating the Keys for RSA}
+
+In order to generate the keys \(e, d, N\), we use the following algorithm.
+
+\begin{algorithm}
+\caption{RSA key generation}
+\label{alg:rsa-keygen}
+\begin{algorithmic}[1]
+    \Procedure{GenerateRSAKeys}{}
+        \State{Let \(p, q\) be unique prime numbers}
+        \State{\(N = p \cdot q\)}
+        \State{Pick \(e\) such that \(1 < e < \phi(N)\) and \(\gcd(e, \phi(N)) = \gcd(e, N) = 1\)}
+        \State{Pick \(d\) such that \(de \equiv 1 \pmod {\phi(N)}\)}
+        \State{\Return \(e, d, N\)}
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+Since \(N = p \cdot q\) where they are unique primes, we have that \(\phi(N) = (p-1)(q-1)\). To prove this, we can count how many numbers are \textit{not} relatively prime with \(pq\) which is \(N\). Since \(p\) and \(q\) are unique primes, the only numbers \(1 < k < pq\) that are not relatively prime to \(pq\) are multiple of \(p\) and \(q\). That is, numbers \(k_1p\) for \(k_1 = 1, 2, ..., q-1\) and \(k_2q\) for \(k_2 = 1, 2, ..., p-1\). Altogether, we end up with \(p+q-2\) numbers that are not relatively prime with \(pq\). Since there are \(pq-1\) positive integers that is less that \(pq\), we are left with the following number of coprimes:
+\[
+\begin{aligned}
+    pq-1 - (p+q-2) &= pq - 1 - p - q + 2 \\
+                   &= pq - p - q + 1 \\
+                   &= (p-1)(q-1)
+\end{aligned}
+\]
+Since \(N\) is part of the public key that is published, it follows that if an adversary were able to find \(p\) and \(q\) that makes up our, then they would be able to compute the decryption key \(d\). However, this would take forever on a classical computer.
+
+\section{Shor's Algorithm}
+
+\subsection{Description of Shor's Algorithm}
+
+As mentioned before, the security of the RSA cryptosystem relies on the pratical difficulty of computing the prime factors of a very large number \(N\). However, this difficulty is only the case on classical computers. Quantum computers, however, \textit{are built different}. Introducing: Shor's Algorithm, which we will now describe. Surprisingly, it is quite straightforward.
+
+\begin{algorithm}
+\caption{Shor's Algorithm}
+\label{alg:shors}
+\begin{algorithmic}[1]
+    \Procedure{ShorsPrimeFactorization}{\(N\){}}
+        \State{Let \(g\) be the guess from \([2..N)\)}
+        \State{Let \(p\) be the order of \(g\) under \(\pmod N\)}
+        \State{Assert that \(p\) is even. If not, pick another \(g\)}
+
+        \State{Let \(f_1, f_2\) be \(g^{p/2} \pm 1\), respectively}
+        \State{Assert that \(f_1, f_2\) each is not a multiple of \(N\)}
+        \State{\Return \(\gcd(f_1, N), \gcd(f_2, N)\)}
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Why does Shor's Algorithm work?}
+
+Note that \(f_1, f_2\) are not necessarily the factors that we are looking for. Namely, \(f_1, f_2\) are integers who shares factors with \(N\). That is, suppose that \(f_1', f_2'\) are the actual factors of \(N\), then \(f_1 = \alpha f_1', f_2 = \beta f_2'\), and
+\begin{equation}\label{eqn:f1f2}
+\begin{aligned}
+    mN &= f_1 f_2 \\
+       &= (\alpha f_1')(\beta f_2') \\
+       &= (\alpha\beta)(f_1' f_2')
+\end{aligned}
+\end{equation}
+That is, \(m = \alpha\beta\) and \(N = f_1'f_2'\). Now, recall that \(g^p \equiv 1 \pmod N\) is equivalent to \(g^p = mN + 1\) for some integer \(m\). Then, we have
+\begin{equation}\label{eqn:factor-gp}
+\begin{aligned}
+    g^p &= mN + 1 \\
+    g^p - 1 &= mN \\
+    (g^{p/2}+1)(g^{p/2}-1) &= mN
+\end{aligned}
+\end{equation}
+Here, notice that Equations \ref{eqn:f1f2} and \ref{eqn:factor-gp} are quite similar. Namely, that
+\[
+    (g^{p/2}+1)(g^{p/2}-1) = (\alpha f_1')(\beta f_2') = mN
+\]
+Therefore, we can obtain the actual factors \(f_1', f_2'\) of \(N\) by assigning \(f_1, f_2 = g^{p/2} \pm 1\) and taking their \(\gcd\) with \(N\). However, this is only part of why Shor's algorithm is so powerful.
+
+\subsection{Introducing Quantum Mechanics into the Algorithm}
+
+On a classical computer, the order \(p\) of \(g\) can be only be computed by brute-forcing different values of \(p\) until it satisfies \(g^p \equiv 1 \pmod N\). However, we can speed up this process by a lot by using quantum superposition. This section will be hand-wavy, however, since it is a bit out of scope for this project.
+
+To compute the order (period) of \(g\), we first define the following operation:
+\[
+\begin{aligned}
+    \lvert \psi \rangle = \lvert p_1 \rangle + \lvert p_2 \rangle + \lvert p_3 \rangle + \cdots \mapsto \lvert p_1, r_1 \rangle + \lvert p_2, r_2 \rangle + \lvert p_3, r_3 \rangle + \cdots
+\end{aligned}
+\]
+where \(\lvert \psi \rangle\) is the superposition of the different values of \(p\). Namely, the values are \(p_1, p_2, ... \in \mathbb{N}\). Then, the output of this operation is the superposition such that each \(p_i\) and \(r_i\) satisfies
+\[
+    g^{p_i} = m_iN + r_i
+\]
+for some \(m_i \in \mathbb{Z}\).
+
+In addition, we can set up this operation such that the \textit{wrong answers} will cancel each other out in the final position. That is, we will be left with the superposition
+\[
+    \lvert p_1', r \rangle + \lvert p_2', r \rangle + \lvert p_3', r \rangle + \cdots
+\]
+where each \(p_i'\)s are a multiple of \(p\) apart from each other. This can be done with Quantum Fourier Transform but we will not go further into details about it. Finally, we can simply compute \(p\) from taking the difference and then taking their \(\gcd\)s.
+
+\section{What now?}
+
+Finally, let us now look at what the effects of Shor's algorithm on modern day security. In short, we can rest assured that Shor's algorithm will not be able to break the current cryptography schemes but our data may still be vulnerable. We will now explain why.
+
+Firstly, Shor's Algorithm (and by extension other quantum prime factorization algorithms) require thousands of qubits in order to work properly. That is, since there are too much quantum noise in current quantum computers whose number of qubits is mostly less than a thousand, Shor's Algorithm will not work well with existing technology. For context following are a few notable existing quantum computers:
+\begin{itemize}
+    \item Atom Computing's Unnamed Machine that came out in October 2023 and is announced to have 1225 qubits (but only around 1185 works as of now)
+    \item IBM's Osprey that came out in 2022 has 443 qubits
+    \item Google's Sycamore whose first research paper using it came out in 2019 has 53 qubits
+\end{itemize}
+
+Furthormore, NIST had just recently approve 3 new quantum-resistant cryptographic algorithms to be included their standard for Post-Quantum cryptography. These algorithms are lattice-based which is another thought-to-be-difficult mathematical problem where there is no quantum algorithm to solve it yet.
+
+So, we can rest assured that our data will be safe for now and Shor's Algorithm will not be able to decrypt our data for a while. However, it is important to note that it is still possible for an adversary to steal our data now (which is encrypted using prime-based cryptography), store it, and decrypt it later when quantum computers become more readily available so it may not be as safe after all.
+
+\section{Conclusion}
+
+In conclusion, Shor's Algorithm is a quantum algorithm that exploits quantum computer's ability to quickly compute the order of an integer under modular arithmetic to compute the factors of a large integer. This can be used to break modern-day data encryption schemes such as RSA. However, it is still impossible to be run on existing quantum computers and steps have already been taken to ensure that future data encryption schemes will be safe from it with quantum-resistant cryptography algorithms.
 
 \end{document}

@@ -99,16 +99,25 @@ So, $mn$ has factors as shown above and to get factors of just $n$, we can take 
 
 ---
 
-<!-- _header: Throwing in the Quantum Madness -->
+<!-- _header: What about the quantum part? -->
 
-On a quantum computer, define the following operation:
+On a quantum computer, we can compute the order of a number really quickly. Define the following operation.
+
 $$
 \begin{align*}
     \text{Input: } \lvert \psi \rangle &= \lvert p_1 \rangle + \lvert p_2 \rangle + \lvert p_3 \rangle + \cdots \\
         &\mapsto \lvert p_1, r_1 \rangle + \lvert p_2, r_2 \rangle + \lvert p_3, r_3 \rangle + \cdots
 \end{align*}
 $$
-where $p_i, r_i$ are such that $g^{p_i} = mN + r_i$.
+where $p_i, r_i$ are such that $g^{p_i} = mN + r_i$. We can set this up such that it returns a single pair $p, r$.
+
+---
+
+<!-- _header: What about the quantum part? -->
+
+On a quantum computer, if there are multiple possible answers, then the return value is actually the superposition. That is, you get
+$$ \lvert p_1', r \rangle + \lvert p_2', r \rangle + \lvert p_3', r \rangle + \cdots $$
+where each $p_i'$ are $p$ apart.
 
 ---
 
