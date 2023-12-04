@@ -1,0 +1,34 @@
+\chapter{Integral Domain}
+
+\begin{definition}[Zero Divisor]
+    Let \(R\) be a ring. An element \(a \in R\) is called a \textit{zero divisor} if \(a \neq 0\) and there is \(b \neq 0 \in R\) such that \(ab = 0\) or \(ba = 0\).
+\end{definition}
+
+\begin{definition}[Integral Domain]
+    An \textit{integral domain} is a commutative ring with unity and no zero divisors.
+\end{definition}
+
+\begin{theorem}
+    Let \(a, b, c \in R\) where \(R\) is an integral domain. Then, \(ab = ac\) implies \(b = c\).
+\end{theorem}
+
+\begin{definition}[Field]
+    A field \(F\) is a ring such that
+    \begin{enumerate}
+        \item \(F\) has a unity
+        \item \(F\) is commutative
+        \item For all \(x \in F \setminus \left\{0\right\}\), \(x\) has a multiplicative inverse
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    A field \((F, +, \cdot)\) is a commutative ring such that
+    \begin{enumerate}
+        \item \((F, {}+{})\) is an Abelian group
+        \item \((F \setminus \left\{0\right\}, {}\cdot{})\) is an Abelian group
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    A finite integral domain is a field.
+\end{theorem}

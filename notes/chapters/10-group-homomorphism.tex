@@ -164,7 +164,7 @@ That is, you can consider \(g\ker\phi\) to be the left coset of the kernel as we
 \end{proof}
 
 \begin{theorem}[Subgroups under Homomorphism]
-    Let \(\phi : G \to \overline{G}\) be a group with homomorphism such that \(H \leq G\). Then, we have the following properties:
+    Let \(\phi : G \to \overline{G}\) be a group with homomorphism and \(H \leq G\). Then, we have the following properties:
     \begin{enumerate}
         \item \(\phi(H) \leq \overline{G}\)
         \item If \(H\) is cyclic, then \(\phi(H)\) is cyclic as well
@@ -173,7 +173,7 @@ That is, you can consider \(g\ker\phi\) to be the left coset of the kernel as we
         \item If \(|\ker\phi| = n\), then \(\phi\) is an \(n\)-to-1 mapping
         \item \(|\phi(H)|\) divides \(|H|\)
         \item If \(\overline{K} \leq G\), then \(\phi^{-1}(K) \leq G\)
-        \item If \(\overline{K} \unlhd G\), then \(\phi^{-1}(\overline{K}) \unlhd \overline{G}\)
+        \item If \(\overline{K} \unlhd G\), then \(\phi^{-1}(\overline{K}) \unlhd {G}\)
         \item If \(\phi\) is onto and \(\ker\phi = \left\{e\right\}\), then \(\phi\) is an isomorphism from \(G\) to \(\overline{G}\)
     \end{enumerate}
 \end{theorem}
@@ -198,3 +198,23 @@ That is, you can consider \(g\ker\phi\) to be the left coset of the kernel as we
     \]
     Since \(H \unlhd G\), \(aga^{-1} \in H\). Therefore, \(xg'x^{-1} \in \phi(H)\). We have \(x\phi(Hx^{-1) \subseteq \phi(H)})\) for any \(x \in \phi(G)\). Thus, \(\phi(H) \unlhd \phi(G)\).
 \end{proof}
+
+\begin{corollary}
+    Let \(\phi : G \to \overline{G}\) be a homomorphism. Then, \(\ker{\phi} \unlhd G\).
+\end{corollary}
+
+\begin{theorem}[The First Isomorphism Theorem]
+    Let \(\phi : G \to \overline{G}\) be a homomorphism. Then,
+    \[
+        \frac{G}{\ker\phi} \cong \phi(G)
+    \]
+    by \(\tilde{\phi} : G/\ker\phi \to \phi(G)\) where
+    \[
+        \tilde{\phi} (g \ker\phi) = \phi(g)
+    \]
+    for any \(g \in G\).
+\end{theorem}
+
+\begin{corollary}
+    Let \(G, \overline{G}\) be finite groups. If \(\phi : G \to \overline{G}\) is a homomorphism, then \(|\phi(G)| \mid |G|, |\overline{G}|\).
+\end{corollary}

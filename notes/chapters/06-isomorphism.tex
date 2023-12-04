@@ -116,3 +116,49 @@
     \]
     Thus, \(\phi(g_1 g_2) = \phi_{g_1 g_2}\). Hence, \(\phi\) is an isomorphism.
 \end{proof}
+
+\begin{theorem}
+    Suppose that \(\phi : G \to \overline{G}\) is an isomorphism. Then, we have the following:
+    \begin{enumerate}
+        \item \(\phi(e)\) is the identity in \(\overline{G}\)
+        \item For all \(n \in \mathbb{Z}\) and \(g \in G\), \(\phi(g^n) = [\phi(g)]^n\)
+        \item For any \(a, b \in G\), \(ab = ba\) if and only if \(\phi(a)\phi(b) = \phi(b)\phi(a)\)
+        \item \(G = \langle g \rangle\) if and only if \(\overline{G} = \langle \phi(g) \rangle\)
+        \item For any \(g \in G\), \(|g| = |\phi(g)|\)
+        \item \(|G| = |\overline{G}|\)
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    If \(\phi: G \to \overline G\) is an isomorphism, then so is \(\phi^{-1} : \overline{G} \to G\)
+\end{theorem}
+
+\begin{definition}[Automorphism]
+    An isomorphism \(\phi : G \to G\) is called an \textit{automorphism} of \(G\).
+\end{definition}
+
+\begin{definition}[Inner Automorphism]
+    Let \(G\) be a group and \(a \in G\). Then, the isomorphism \(\phi_a : G \to G\) defined by
+    \[
+        \phi_a(g) = aga^{-1}
+    \]
+    for any \(g \in G\) is called an \textit{inner automorphism} of \(G\) induced by \(a\).
+\end{definition}
+
+\begin{definition}
+    Let \(G\) be a group. Then, we have
+    \[
+    \begin{aligned}
+        \Aut(G) &= \left\{\phi : G \to G | \text{\(\phi\) is an automorphism of \(G\)}\right\} \\
+        \Inn(G) &= \left\{\phi_a : G \to G | \text{\(\phi_a\) is an inner automorphism of \(G\)}\right\}
+    \end{aligned}
+    \]
+    Note that \(\Inn(G) \subseteq \Aut(G)\).
+\end{definition}
+
+\begin{theorem}
+    Let \(n \in \mathbb{N}\). Then,
+    \[
+        \Aut(\mathbb{Z}_n) \cong U(n).
+    \]
+\end{theorem}

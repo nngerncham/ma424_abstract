@@ -1,0 +1,41 @@
+\chapter{Introduction to Rings}
+
+\begin{definition}[Rings]
+    A ring \(R\) with two binary operations: addition \(+\) and multiplication \(\cdot\) such that for all \(a, b, c \in R\):
+    \begin{enumerate}
+        \item \(a + b = b + a\)
+        \item \((a + b) + c = a + (b + c)\)
+        \item There is an additive identity \(0\) such that \(a + 0 = a\) for all \(a \in R\)
+        \item For all \(a \in R\), there is \(-a \in R\) such that \(a + (-a) = 0\)
+        \item \((ab)c = a(bc)\)
+        \item \(a(b+c) = ab + ac\) and \((b+c)a = ba + ca\)
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    If a set \(A\) has more than 2 operations, then we call it \textit{universal algebra}.
+\end{remark}
+
+\begin{remark}
+    If \(R\) has a multiplicative identity, say 1, then \(R\) is called \textit{a ring with unity}.
+\end{remark}
+
+\begin{theorem}
+    Let \(a, b, c \in R\). Then,
+    \begin{enumerate}
+        \item \(a0 = 0a = 0\)
+        \item \(a(-b) = (-a)b = -(ab)\)
+        \item \((-a)(-b) = ab\)
+        \item \(a(b-c) = ab - ac\) and \((b-c)a = ba - ca\)
+        \item If a ring has unity, then \(-1)a = -a\)
+        \item If a ring has unity, then \((-1)(-1) = 1\)
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    If a ring has a unity, then it is unique. Similarly, if an element in a ring has a multiplicative inverse, then it is unique.
+\end{theorem}
+
+\begin{definition}[Subring]
+    A set \(S \subseteq R\) of a ring \(R\) is called a \textit{subring} if it itself is a ring with the same operations with \(R\).
+\end{definition}

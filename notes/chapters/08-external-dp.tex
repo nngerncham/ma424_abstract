@@ -81,3 +81,32 @@
         |(g_1, g_2, ..., g_n)| = \lcm(|g_1|, |g_2|, ..., |g_n|)
     \]
 \end{theorem}
+
+\begin{theorem}[Criterion for \(G \circledplus H\) to be cyclic]
+    Let \(G, H\) be finite cyclic groups. Then, \(G \circledplus H\) is cyclic if and only if \(\gcd(|G|, |H|) = 1\).
+\end{theorem}
+
+\begin{corollary}
+    This can be generalized for more than 2 groups.
+\end{corollary}
+
+\begin{corollary}
+    Let \(m = n_1 n_2 \cdots n_k\). Then,
+    \[
+        \mathbb{Z}_m = \mathbb{Z}_{n_1} \circledplus \mathbb{Z}_{n_2} \circledplus \cdots \circledplus \mathbb{Z}_{n_k}
+    \]
+    if and only if \(\gcd(n_i, n_j) = 1\) for for all \(i \neq j\).
+\end{corollary}
+
+\section{The Group of \(U(n)\)}
+
+\begin{theorem}
+    Let \(s, t\) be such that \(\gcd(s, t) = 1\). Then,
+    \[
+        U(st) \cong U(s) \circledplus U(t)
+    \]
+\end{theorem}
+
+\begin{corollary}
+    This can be generalized for \(n\) many groups.
+\end{corollary}
